@@ -1,0 +1,11 @@
+{
+  "version": "1.0.4",
+  "download_url": "https://takaregister.in/#download",
+  "whats_new": [
+    "Fabric dyeing lots are marked Complete automatically when received metres match",
+    "Sale entries now record colour and sub-category — fabric stock deducts the right variant",
+    "New SOLD columns on the Fabric Stock page show sold quantities at a glance",
+    "Fabric Dyeing moved to Data Entry with a cleaner one-line quality display",
+    "Sent challans with received entries can no longer be deleted by mistake"
+  ]
+}
