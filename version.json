@@ -1,10 +1,10 @@
 {
-  "version": "1.0.6",
+  "version": "1.0.7",
   "download_url": "https://takaregister.in/#download",
   "whats_new": [
-    "Fixed wrong entry opening after search on Cards, Weaver Warping, and Temp Challans pages",
-    "Fixed Yarn Dyeing search lag — all three tabs now respond instantly",
-    "Lason can now be set to 0 in production entries",
-    "Cards (TDS) column headers now show actual tape length from settings"
+    "New Help & FAQ button — search answers to any question about the app",
+    "60+ help articles covering every module",
+    "Help content updates automatically — no reinstall needed",
+    "Support WhatsApp number updated to +91 78209 86133"
   ]
 }
