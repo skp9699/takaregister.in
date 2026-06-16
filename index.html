@@ -148,6 +148,35 @@
 
     .btn-primary svg { width: 18px; height: 18px; }
 
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.4);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 13px 27px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.1);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary svg { width: 18px; height: 18px; }
+
     /* ── ABOUT ── */
     #about {
       padding: 90px 5%;
@@ -435,14 +464,23 @@
       <span class="hero-badge">Weaving Mill ERP</span>
       <h1 class="hero-title">Enterprise Software<br/>for <em>Textile Mills</em></h1>
       <p class="hero-sub">Streamline textile manufacturing with our comprehensive ERP platform — built for Bhiwandi weaving operations.</p>
-      <a href="https://github.com/skp9699/taka-register/releases/latest/download/TakaRegister.exe" class="btn-primary">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-          <polyline points="7 10 12 15 17 10"/>
-          <line x1="12" y1="15" x2="12" y2="3"/>
-        </svg>
-        Download for Windows
-      </a>
+      <div class="hero-buttons">
+        <a href="https://github.com/skp9699/taka-register/releases/latest/download/TakaRegister.exe" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download for Windows
+        </a>
+        <a href="https://github.com/skp9699/takaregister-mobile/releases/latest/download/TakaRegister-mobile.apk" class="btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="2" width="12" height="20" rx="2"/>
+            <line x1="11" y1="18" x2="13" y2="18"/>
+          </svg>
+          Download for Android
+        </a>
+      </div>
     </div>
   </section>
 
@@ -547,6 +585,7 @@
             <ul>
               <li><strong>Google Account Data:</strong> If you enable Google Drive backup, we request access to your Google Drive solely to store and retrieve your backup files. We do not read, modify, or share any other Google account data.</li>
               <li><strong>Local Business Data:</strong> All mill operational data (weavers, purchases, production records) is stored in a local SQLite database on your machine.</li>
+              <li><strong>Mobile App:</strong> The Taka Register mobile app uses Google Sign-In to access the same Google Drive backup created by the desktop app, so you can view your mill data and submit new orders on the go. No data is sent to Taka Register's own servers from the mobile app either.</li>
             </ul>
           </div>
         </div>
