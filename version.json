@@ -1,10 +1,11 @@
 {
-  "version": "1.0.7",
+  "version": "1.0.8",
   "download_url": "https://takaregister.in/#download",
   "whats_new": [
-    "New Help & FAQ button — search answers to any question about the app",
-    "60+ help articles covering every module",
-    "Help content updates automatically — no reinstall needed",
-    "Support WhatsApp number updated to +91 78209 86133"
+    "New Weaver Bill Checker — recompute a weaver's bill from your own production, compare it to what they billed, and save it",
+    "New Yarn Dyeing Bill Checker — quality + colour wise, base+add rates that auto-fill from the last bill",
+    "Bills remember rates per party and never bill the same taka twice",
+    "Print any saved bill to PDF",
+    "Companion app: new Reports hub — 11 owner reports including party sales, fabric-at-dyer aging, dyeing turnaround, yarn days-of-cover, overdue orders and dormant customers"
   ]
 }
