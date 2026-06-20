@@ -1,11 +1,10 @@
 {
-  "version": "1.0.8",
+  "version": "1.0.9",
   "download_url": "https://takaregister.in/#download",
   "whats_new": [
-    "New Weaver Bill Checker — recompute a weaver's bill from your own production, compare it to what they billed, and save it",
-    "New Yarn Dyeing Bill Checker — quality + colour wise, base+add rates that auto-fill from the last bill",
-    "Bills remember rates per party and never bill the same taka twice",
-    "Print any saved bill to PDF",
-    "Companion app: new Reports hub — 11 owner reports including party sales, fabric-at-dyer aging, dyeing turnaround, yarn days-of-cover, overdue orders and dormant customers"
+    "Mobile app: new fabric and dyeing orders now appear instantly with a Pending sync badge",
+    "Mobile orders link back to the desktop automatically, with no duplicate entries",
+    "Share new orders to WhatsApp or any app right after saving",
+    "Fixed New Dyeing Order screen getting stuck while loading"
   ]
 }
