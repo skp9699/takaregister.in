@@ -1,10 +1,11 @@
 {
-  "version": "1.0.9",
+  "version": "1.0.10",
   "download_url": "https://takaregister.in/#download",
   "whats_new": [
-    "Mobile app: new fabric and dyeing orders now appear instantly with a Pending sync badge",
-    "Mobile orders link back to the desktop automatically, with no duplicate entries",
-    "Share new orders to WhatsApp or any app right after saving",
-    "Fixed New Dyeing Order screen getting stuck while loading"
+    "Bill Checker: set up GST and other recurring charges once with Manage Labels — they appear on every new bill automatically",
+    "Bill Checker: adjustments now split into before-taxable (e.g. discount) and after-taxable (e.g. CGST/SGST), so tax is calculated on the right amount",
+    "Weaver bills only show the columns the chosen rate method needs, and the rate fills in automatically for the paisa × picks method",
+    "Search weaver and dyeing-unit dropdowns by typing",
+    "Save a bill with Ctrl+S, and answer the PDF prompt with Y or N"
   ]
 }
