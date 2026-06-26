@@ -1,0 +1,45 @@
+# Build the Android APK and publish it to the PUBLIC download-host repo.
+#
+# Install:  copy this file to  takaregister-mobile/.github/workflows/release.yml
+# Secret:   add RELEASE_TOKEN  = fine-grained PAT with Contents:read/write on
+#           skp9699/takaregister-android
+# Release:  git tag v1.0.11 && git push origin v1.0.11
+#
+# The published asset is named TakaRegister-mobile.apk so the website's
+# releases/latest/download/TakaRegister-mobile.apk link resolves to it.
+
+name: Release Android APK
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Build release APK
+        run: |
+          flutter pub get
+          flutter build apk --release
+          cp build/app/outputs/flutter-apk/app-release.apk TakaRegister-mobile.apk
+
+      - name: Publish to public download host
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$TAG" TakaRegister-mobile.apk \
+            --repo skp9699/takaregister-android \
+            --title "$TAG" \
+            --notes "Automated release of $TAG"
