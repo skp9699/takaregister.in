@@ -1,11 +1,10 @@
 {
-  "version": "1.0.10",
+  "version": "1.0.11",
   "download_url": "https://takaregister.in/#download",
   "whats_new": [
-    "Bill Checker: set up GST and other recurring charges once with Manage Labels — they appear on every new bill automatically",
-    "Bill Checker: adjustments now split into before-taxable (e.g. discount) and after-taxable (e.g. CGST/SGST), so tax is calculated on the right amount",
-    "Weaver bills only show the columns the chosen rate method needs, and the rate fills in automatically for the paisa × picks method",
-    "Search weaver and dyeing-unit dropdowns by typing",
-    "Save a bill with Ctrl+S, and answer the PDF prompt with Y or N"
+    "Google Drive backups now live in a private, hidden folder that can't be seen or accidentally deleted",
+    "Order edits made on the mobile app now sync into the desktop correctly",
+    "Add Order: enter multiple design line-items under one party in a single go",
+    "Mobile order imports are now clearly labelled as new orders vs edits"
   ]
 }
