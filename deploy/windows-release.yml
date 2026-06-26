@@ -1,0 +1,44 @@
+# Build the Windows EXE and publish it to the PUBLIC downloads repo.
+#
+# Install:  copy this file to  <windows-source-repo>/.github/workflows/release.yml
+# Secret:   add RELEASE_TOKEN = fine-grained PAT with Contents:read/write on
+#           skp9699/takaregister-downloads
+# Release:  git tag v1.0.11 && git push origin v1.0.11
+#
+# NOTE: the build step below is a placeholder — replace it with your actual
+# Windows build (PyInstaller / Electron / .NET / Inno Setup, etc.) so it
+# produces a file named TakaRegister.exe, which the website link expects.
+
+name: Release Windows EXE
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build release EXE
+        run: |
+          echo "TODO: replace with the real build for this app's toolchain."
+          echo "It must produce TakaRegister.exe in the working directory."
+        shell: bash
+
+      - name: Publish to public downloads repo
+        env:
+          GH_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+          TAG: ${{ github.ref_name }}
+          REPO: skp9699/takaregister-downloads
+        shell: bash
+        run: |
+          # Create the release if it doesn't exist yet, then attach this asset.
+          gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1 \
+            || gh release create "$TAG" --repo "$REPO" --title "$TAG" --notes "Release $TAG"
+          gh release upload "$TAG" TakaRegister.exe --repo "$REPO" --clobber
