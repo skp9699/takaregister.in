@@ -4,24 +4,28 @@ How the apps and this website are built, hosted, and updated.
 
 ## Overview
 
+A single **public** repo hosts the downloadable binaries for every platform as release assets.
+App *source* lives in separate private repos; only the built binaries are published publicly.
+
 | Piece | Repo | Visibility | Role |
 |-------|------|-----------|------|
 | Website (this repo) | `skp9699/takaregister.in` | public | GitHub Pages site at `www.takaregister.in` (`CNAME`). Hosts `index.html`, `version.json`, `faq/`. |
 | Windows app source | *(private)* | private | Builds `TakaRegister.exe`. |
-| Windows downloads | `skp9699/taka-register` | **public** | Release-only host. Serves `TakaRegister.exe` as a release asset. |
 | Android app source | `skp9699/takaregister-mobile` | private | Flutter source. Builds `TakaRegister-mobile.apk`. |
-| Android downloads | `skp9699/takaregister-android` | **public** *(new)* | Release-only host. Serves `TakaRegister-mobile.apk` as a release asset. |
+| **Downloads (all platforms)** | `skp9699/takaregister-downloads` | **public** | Release-only host. Each `vX.Y.Z` release carries both `TakaRegister.exe` and `TakaRegister-mobile.apk`. |
+
+> Replaces the older per-platform host repo `taka-register` (EXE only), which can be deleted
+> once `takaregister-downloads` is publishing.
 
 ### Download links (on the website)
 
-`index.html` points the download buttons at the **public** release-host repos using the
+`index.html` points both download buttons at the public downloads repo using the
 `releases/latest/download/<asset>` URL, which always resolves to the newest published release:
 
-- Windows: `https://github.com/skp9699/taka-register/releases/latest/download/TakaRegister.exe`
-- Android: `https://github.com/skp9699/takaregister-android/releases/latest/download/TakaRegister-mobile.apk`
+- Windows: `https://github.com/skp9699/takaregister-downloads/releases/latest/download/TakaRegister.exe`
+- Android: `https://github.com/skp9699/takaregister-downloads/releases/latest/download/TakaRegister-mobile.apk`
 
-> The release-host repo **must be public**, otherwise these URLs return 404 for anonymous visitors.
-> The app *source* stays in a separate private repo — only the built binary is published publicly.
+> The downloads repo **must be public**, otherwise these URLs return 404 for anonymous visitors.
 
 ### In-app update check
 
@@ -32,50 +36,55 @@ existing installs notice the update.
 
 ---
 
-## One-time setup: the public Android downloads repo
+## One-time setup: the public downloads repo
 
-The session token used by automation cannot create repositories, so create it once by hand.
+The session token used by automation cannot create or delete repositories, so do this by hand once.
 
-**Option A — GitHub web UI**
-1. New repository → name `takaregister-android`, **Public**, add a README.
-2. Done. (No source goes here — it only holds release assets.)
+**Create it** (web UI: New repository → `takaregister-downloads`, **Public**, add a README), or:
 
-**Option B — gh CLI**
 ```bash
-gh repo create skp9699/takaregister-android --public \
-  --description "Public download host for the Taka Register Android app (APK)." \
+gh repo create skp9699/takaregister-downloads --public \
+  --description "Public download host for Taka Register (Windows EXE + Android APK)." \
   --add-readme
+```
+
+**Retire the old repo** once the first combined release is live and the site change is merged:
+
+```bash
+gh repo delete skp9699/taka-register   # optional; or archive it instead
 ```
 
 ---
 
 ## Publishing a release
 
-### Manual (quickest)
+One release tag per version carries **both** assets. Asset filenames must stay exactly
+`TakaRegister.exe` and `TakaRegister-mobile.apk` to match the website links.
+
+### Manual
 
 ```bash
-# Windows EXE
+# Create the release for this version (first asset creates it)...
 gh release create v1.0.11 ./TakaRegister.exe \
-  --repo skp9699/taka-register --title "v1.0.11" --notes "What's new..."
+  --repo skp9699/takaregister-downloads --title v1.0.11 --notes "What's new..."
 
-# Android APK  (asset name must stay TakaRegister-mobile.apk to match the website link)
-gh release create v1.0.11 ./build/app/outputs/flutter-apk/app-release.apk \
-  --repo skp9699/takaregister-android --title "v1.0.11" --notes "What's new..."
-# If the built file isn't named TakaRegister-mobile.apk, rename it first:
-#   cp app-release.apk TakaRegister-mobile.apk
+# ...then attach the other platform's asset to the same release.
+gh release upload v1.0.11 ./TakaRegister-mobile.apk --repo skp9699/takaregister-downloads
 ```
 
 Then bump `version.json` in this repo and push to `main`.
 
 ### Automated (recommended)
 
-Let each private *source* repo build its binary and publish the release into the public
-download-host repo. A ready-to-use workflow for the Android source repo is in
-[`deploy/android-release.yml`](deploy/android-release.yml) — copy it to
-`takaregister-mobile/.github/workflows/release.yml`.
+Each private source repo builds its binary on a tag push and publishes it into
+`takaregister-downloads`. Whichever job runs first creates the release for the tag; the other
+attaches its asset. Ready-to-use workflows are in [`deploy/`](deploy/):
 
-It needs one secret in `takaregister-mobile`: a fine-grained PAT named `RELEASE_TOKEN`
-with **Contents: read/write** on `takaregister-android`. Trigger a release by pushing a tag:
+- [`deploy/android-release.yml`](deploy/android-release.yml) → `takaregister-mobile/.github/workflows/release.yml`
+- [`deploy/windows-release.yml`](deploy/windows-release.yml) → the Windows source repo (adjust the build step to your toolchain)
+
+Both need a secret `RELEASE_TOKEN` in the source repo: a fine-grained PAT with
+**Contents: read/write** on `takaregister-downloads`. Cut a release with:
 
 ```bash
 git tag v1.0.11 && git push origin v1.0.11
