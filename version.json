@@ -1,10 +1,36 @@
 {
-  "version": "1.0.11",
-  "download_url": "https://takaregister.in/#download",
-  "whats_new": [
-    "Google Drive backups now live in a private, hidden folder that can't be seen or accidentally deleted",
-    "Order edits made on the mobile app now sync into the desktop correctly",
-    "Add Order: enter multiple design line-items under one party in a single go",
-    "Mobile order imports are now clearly labelled as new orders vs edits"
-  ]
+  "schema": 2,
+  "apps": {
+    "takaregister-desktop": {
+      "version": "1.0.12",
+      "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister.exe",
+      "whats_new": [
+        "Google Drive backups now live in a private, hidden folder that can't be seen or accidentally deleted",
+        "Order edits made on the mobile app now sync into the desktop correctly",
+        "Add Order: enter multiple design line-items under one party in a single go",
+        "Mobile order imports are now clearly labelled as new orders vs edits"
+      ]
+    },
+    "takaregister-mobile": {
+      "version": "1.0.12",
+      "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister-mobile.apk",
+      "whats_new": [
+        "General improvements and bug fixes."
+      ]
+    },
+    "vyora-desktop": {
+      "version": "2.0.32",
+      "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/Vyora.exe",
+      "whats_new": [
+        "General improvements and bug fixes."
+      ]
+    },
+    "vyora-mobile": {
+      "version": "2.0.32",
+      "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/app-release.apk",
+      "whats_new": [
+        "General improvements and bug fixes."
+      ]
+    }
+  }
 }
