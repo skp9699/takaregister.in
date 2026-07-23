@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Taka Register — Enterprise ERP software for weaving mills. Streamline textile manufacturing with our desktop platform." />
-  <meta name="author" content="Taka Register" />
-  <meta property="og:title" content="Taka Register" />
-  <meta property="og:description" content="Streamline textile manufacturing with our ERP platform" />
+  <meta name="description" content="TakaRegister — a small software studio in Bhiwandi. Taka Register: ERP for powerloom weaving mills. Vyora: view your Tally books on your phone." />
+  <meta name="author" content="TakaRegister" />
+  <meta property="og:title" content="TakaRegister — Software for powerloom mills & Tally-run businesses" />
+  <meta property="og:description" content="Two focused tools from Bhiwandi — Taka Register (powerloom mill ERP) and Vyora (your Tally books, on your phone)." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://takaregister.in" />
-  <title>Taka Register</title>
+  <title>TakaRegister — Powerloom Mill ERP & Vyora</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -22,6 +22,11 @@
       --white:  #ffffff;
       --muted:  #6b7280;
       --border: #ddd8cc;
+      /* Vyora keeps its own indigo identity */
+      --vyora:      #3531a0;
+      --vyora-lite: #6f6ae0;
+      --vyora-ink:  #1b1852;
+      --vyora-mist: #eeedfb;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -71,7 +76,7 @@
 
     .nav-links a:hover { color: var(--gold); }
 
-    /* ── HERO ── */
+    /* ── HERO (company / studio level) ── */
     #home {
       min-height: 100vh;
       display: flex; align-items: center;
@@ -92,7 +97,7 @@
       );
     }
 
-    .hero-inner { position: relative; max-width: 680px; }
+    .hero-inner { position: relative; max-width: 720px; }
 
     .hero-badge {
       display: inline-block;
@@ -113,7 +118,7 @@
       font-size: clamp(2.4rem, 5vw, 3.8rem);
       font-weight: 900;
       color: var(--white);
-      line-height: 1.15;
+      line-height: 1.13;
       margin-bottom: 1.25rem;
     }
 
@@ -123,11 +128,11 @@
     }
 
     .hero-sub {
-      color: rgba(255,255,255,0.78);
+      color: rgba(255,255,255,0.8);
       font-size: 1.1rem;
       font-weight: 300;
       margin-bottom: 2.5rem;
-      max-width: 520px;
+      max-width: 560px;
     }
 
     .btn-primary {
@@ -177,12 +182,34 @@
 
     .btn-secondary svg { width: 18px; height: 18px; }
 
-    /* ── ABOUT ── */
-    #about {
-      padding: 90px 5%;
-      background: var(--white);
+    /* highlighted trust callout — data never leaves for a 3rd-party server */
+    .trust-strip {
+      display: inline-flex; align-items: center; gap: 11px;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.55);
+      border-radius: 8px;
+      padding: 11px 17px;
+      margin-bottom: 2.2rem;
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.9);
+      max-width: 560px;
+      box-shadow: 0 0 0 4px rgba(201,168,76,0.06);
     }
+    .trust-strip svg { width: 20px; height: 20px; color: var(--gold); flex-shrink: 0; }
+    .trust-strip b { color: var(--gold); font-weight: 600; }
 
+    /* small studio strip under hero CTAs */
+    .hero-meta {
+      margin-top: 2.4rem;
+      display: flex; flex-wrap: wrap; gap: 1.5rem 2.5rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+    .hero-meta b { color: rgba(255,255,255,0.9); font-weight: 500; }
+
+    /* ── SHARED SECTION BITS ── */
     .section-label {
       font-size: 0.72rem;
       font-weight: 500;
@@ -204,49 +231,110 @@
     .section-text {
       color: var(--muted);
       font-size: 1.02rem;
-      max-width: 580px;
+      max-width: 620px;
       font-weight: 300;
     }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      margin-top: 3.5rem;
-    }
+    /* ── PRODUCTS ── */
+    #products { padding: 90px 5% 30px; background: var(--white); }
 
-    .feature-card {
-      padding: 2rem 1.75rem;
+    .products-intro { max-width: 640px; margin-bottom: 3rem; }
+
+    .product {
+      max-width: 1100px;
+      margin: 0 auto 2rem;
+      border-radius: 14px;
+      overflow: hidden;
       border: 1px solid var(--border);
-      border-radius: 4px;
-      background: var(--light);
-      transition: border-color 0.2s, transform 0.2s;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
     }
 
-    .feature-card:hover { border-color: var(--teal); transform: translateY(-3px); }
+    .product-info { padding: 2.6rem 2.5rem; }
+    .product-side { padding: 2.6rem 2.5rem; }
 
-    .feature-icon {
-      width: 44px; height: 44px;
-      background: rgba(26,122,110,0.1);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1rem;
-      font-size: 1.3rem;
+    .product-kicker {
+      font-size: 0.72rem; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; margin-bottom: 0.6rem;
     }
 
-    .feature-card h3 {
-      font-size: 1rem;
-      font-weight: 500;
-      color: var(--navy);
-      margin-bottom: 0.5rem;
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.9rem; font-weight: 700; line-height: 1.1;
+      margin-bottom: 0.35rem;
     }
 
-    .feature-card p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      font-weight: 300;
-      line-height: 1.6;
+    .product-tag { font-size: 0.95rem; font-weight: 500; margin-bottom: 1rem; }
+
+    .product-desc { font-size: 0.96rem; font-weight: 300; margin-bottom: 1.6rem; }
+
+    .dl-row { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .dl-btn {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-size: 0.9rem; font-weight: 500;
+      padding: 12px 20px; border-radius: 4px; text-decoration: none;
+      transition: transform 0.15s, background 0.2s, border-color 0.2s;
     }
+    .dl-btn:hover { transform: translateY(-1px); }
+    .dl-btn svg { width: 17px; height: 17px; }
+
+    .feat-list { list-style: none; display: grid; gap: 0.85rem; }
+    .feat-list li {
+      display: flex; align-items: flex-start; gap: 0.7rem;
+      font-size: 0.92rem; font-weight: 300;
+    }
+    .feat-ic {
+      width: 30px; height: 30px; border-radius: 7px; flex-shrink: 0;
+      display: grid; place-items: center; font-size: 0.95rem;
+    }
+
+    /* Taka Register product — house palette */
+    .product.taka { background: var(--light); }
+    .product.taka .product-kicker { color: var(--teal); }
+    .product.taka .product-name { color: var(--navy); }
+    .product.taka .product-tag  { color: var(--teal); }
+    .product.taka .product-desc { color: var(--muted); }
+    .product.taka .product-side { background: var(--white); border-left: 1px solid var(--border); }
+    .product.taka .feat-list li { color: #3f4657; }
+    .product.taka .feat-ic { background: rgba(26,122,110,0.1); }
+    .dl-gold { background: var(--gold); color: var(--navy); }
+    .dl-gold:hover { background: #d4b05c; }
+    .dl-navy-ghost { background: transparent; color: var(--navy); border: 1px solid var(--border); }
+    .dl-navy-ghost:hover { border-color: var(--teal); }
+
+    /* Vyora product — its own indigo world (dark panel) */
+    .product.vyora {
+      background: linear-gradient(150deg, var(--vyora-ink) 0%, var(--vyora) 100%);
+      border-color: transparent;
+      color: #fff;
+    }
+    .product.vyora .product-kicker { color: #cfccff; }
+    .product.vyora .product-name { color: #fff; }
+    .product.vyora .product-tag  { color: #cfccff; }
+    .product.vyora .product-desc { color: rgba(255,255,255,0.78); }
+    .product.vyora .product-side { background: rgba(255,255,255,0.05); border-left: 1px solid rgba(255,255,255,0.12); }
+    .product.vyora .feat-list li { color: rgba(255,255,255,0.86); }
+    .product.vyora .feat-ic { background: rgba(255,255,255,0.14); }
+    .dl-white { background: #fff; color: var(--vyora-ink); }
+    .dl-white:hover { background: #f0efff; }
+    .dl-indigo-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.4); }
+    .dl-indigo-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+    .product-side h4 {
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 500; margin-bottom: 1.2rem; opacity: 0.75;
+    }
+
+    /* ── ABOUT / STUDIO ── */
+    #about { padding: 30px 5% 90px; background: var(--white); }
+    .studio { max-width: 1100px; margin: 0 auto; padding-top: 3.5rem; border-top: 1px solid var(--border); }
+    .studio-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem; margin-top: 2.5rem;
+    }
+    .studio-point h3 { font-size: 0.98rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; }
+    .studio-point p { font-size: 0.9rem; color: var(--muted); font-weight: 300; }
 
     /* ── CONTACT ── */
     #contact {
@@ -324,7 +412,6 @@
       padding: 90px 5%;
       background: var(--light);
     }
-
 
     .policy-updated {
       display: inline-block;
@@ -433,6 +520,12 @@
     footer a:hover { color: var(--gold); }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .product { grid-template-columns: 1fr; }
+      .product.taka .product-side { border-left: none; border-top: 1px solid var(--border); }
+      .product.vyora .product-side { border-left: none; border-top: 1px solid rgba(255,255,255,0.12); }
+    }
+
     @media (max-width: 700px) {
       .contact-grid { grid-template-columns: 1fr; }
       .nav-links { gap: 1.2rem; }
@@ -442,6 +535,8 @@
       nav { padding: 0 4%; }
       .nav-logo { font-size: 1.1rem; }
       .nav-links a { font-size: 0.82rem; }
+      .nav-links { gap: 0.9rem; }
+      .product-info, .product-side { padding: 2rem 1.5rem; }
     }
   </style>
 </head>
@@ -452,74 +547,131 @@
     <a href="#home" class="nav-logo">Taka <span>Register</span></a>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a href="#products">Products</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="#privacy">Privacy Policy</a></li>
+      <li><a href="#privacy">Privacy</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section id="home">
     <div class="hero-inner">
-      <span class="hero-badge">Weaving Mill ERP</span>
-      <h1 class="hero-title">Enterprise Software<br/>for <em>Textile Mills</em></h1>
-      <p class="hero-sub">Streamline textile manufacturing with our comprehensive ERP platform — built for Bhiwandi weaving operations.</p>
+      <span class="hero-badge">Software Studio · Bhiwandi</span>
+      <h1 class="hero-title">Software built for <em>powerloom mills</em><br/>— and the books behind them</h1>
+      <p class="hero-sub">TakaRegister is a small team in Bhiwandi making two focused tools: an ERP for powerloom weaving mills, and a way to carry your Tally books in your pocket.</p>
+      <div class="trust-strip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span><b>Your data never touches a third-party server.</b> It stays on your device and syncs only to your own Google Drive — never to ours.</span>
+      </div>
       <div class="hero-buttons">
-        <a href="https://github.com/skp9699/takaregister-downloads/releases/latest/download/TakaRegister.exe" class="btn-primary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-          Download for Windows
+        <a href="#products" class="btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 13l5 5 5-5"/><path d="M7 6l5 5 5-5"/></svg>
+          Explore our products
         </a>
-        <a href="https://github.com/skp9699/takaregister-downloads/releases/latest/download/TakaRegister-mobile.apk" class="btn-secondary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="6" y="2" width="12" height="20" rx="2"/>
-            <line x1="11" y1="18" x2="13" y2="18"/>
-          </svg>
-          Download for Android
+        <a href="#contact" class="btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Talk to us
         </a>
+      </div>
+      <div class="hero-meta">
+        <span><b>Taka Register</b> · Powerloom mill ERP</span>
+        <span><b>Vyora</b> · Your Tally books, on your phone</span>
+        <span><b>Offline-first</b> · Your data, your Drive</span>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <p class="section-label">What We Do</p>
-    <h2 class="section-title">Streamlined ERP Solution</h2>
-    <p class="section-text">Taka Register offers a comprehensive desktop ERP system tailored for weaving mill operations. It enables business owners and managers to efficiently monitor production workflows, manage yarn inventories, and generate detailed reports.</p>
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="products-intro">
+      <p class="section-label">Our Products</p>
+      <h2 class="section-title">Two tools, one discipline</h2>
+      <p class="section-text">Different jobs, same promise: purpose-built for the trade, fully usable offline, and backed up only to a Google Drive you control. Pick the one that fits your work.</p>
+    </div>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🧵</div>
-        <h3>Production Tracking</h3>
-        <p>Monitor TDS cards, warping, and loom-wise production in real time.</p>
+    <!-- Taka Register -->
+    <div class="product taka" id="taka">
+      <div class="product-info">
+        <p class="product-kicker">Powerloom Mill ERP · Windows &amp; Android</p>
+        <h3 class="product-name">Taka Register</h3>
+        <p class="product-tag">The office that runs your powerloom mill.</p>
+        <p class="product-desc">A comprehensive desktop ERP tailored for powerloom weaving operations — monitor loom-wise production, manage yarn from purchase to dyeing and twisting, track fabric at processors, and pull the reports that keep the mill honest. The mobile app lets you view the same books and submit new orders on the go.</p>
+        <div class="dl-row">
+          <a href="https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister.exe" class="dl-btn dl-gold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Windows
+          </a>
+          <a href="https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister-mobile.apk" class="dl-btn dl-navy-ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+            Android
+          </a>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">📦</div>
-        <h3>Yarn Inventory</h3>
-        <p>Track yarn purchases, dyeing, twisting, and stock across all locations.</p>
+      <div class="product-side">
+        <h4>What it handles</h4>
+        <ul class="feat-list">
+          <li><span class="feat-ic">🧵</span><span><strong>Production</strong> — TDS cards, warping and loom-wise output in real time.</span></li>
+          <li><span class="feat-ic">📦</span><span><strong>Yarn inventory</strong> — purchases, dyeing, twisting and stock across locations.</span></li>
+          <li><span class="feat-ic">🎨</span><span><strong>Dyeing</strong> — yarn &amp; fabric dyeing orders, receipts and pending jobs.</span></li>
+          <li><span class="feat-ic">📊</span><span><strong>Reports</strong> — yarn consumption, weaver stock and closure wizards.</span></li>
+          <li><span class="feat-ic">🔒</span><span><strong>Offline &amp; secure</strong> — local SQLite, optional Google Drive backup.</span></li>
+        </ul>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎨</div>
-        <h3>Yarn Dyeing</h3>
-        <p>Manage dyeing orders, track receipts, and monitor pending and completed jobs.</p>
+    </div>
+
+    <!-- Vyora -->
+    <div class="product vyora" id="vyora">
+      <div class="product-info">
+        <p class="product-kicker">by TakaRegister · Tally companion</p>
+        <h3 class="product-name">Vyora</h3>
+        <p class="product-tag">Your Tally books, on your phone.</p>
+        <p class="product-desc">A lightweight desktop agent quietly mirrors your Tally company data to your own Google Drive. The Vyora app is a fast, read-only window into those books — open party ledgers, check item stock and browse registers from anywhere, even away from the office. No exports, no emailing screenshots.</p>
+        <div class="dl-row">
+          <a href="https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/Vyora.exe" class="dl-btn dl-white">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Windows agent
+          </a>
+          <a href="https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/app-release.apk" class="dl-btn dl-indigo-ghost">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+            Android
+          </a>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🧶</div>
-        <h3>Fabric Dyeing</h3>
-        <p>Track fabric sent for dyeing, processing status, and stock at processor units.</p>
+      <div class="product-side">
+        <h4>Why teams use it</h4>
+        <ul class="feat-list">
+          <li><span class="feat-ic">🔄</span><span><strong>Tally sync</strong> — a background agent keeps your phone in step with the PC.</span></li>
+          <li><span class="feat-ic">📒</span><span><strong>Party ledgers</strong> — outstanding, statements and running balances.</span></li>
+          <li><span class="feat-ic">📥</span><span><strong>Item stock &amp; registers</strong> — sales, purchase and stock at a glance.</span></li>
+          <li><span class="feat-ic">🛡️</span><span><strong>Read-only &amp; private</strong> — synced to your Drive; books are never edited on the phone.</span></li>
+        </ul>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3>Reports & Analysis</h3>
-        <p>Yarn consumption reports, weaver stock summaries, and closure wizards.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔒</div>
-        <h3>Offline & Secure</h3>
-        <p>Fully desktop-based with local SQLite storage — no cloud dependency.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT / STUDIO -->
+  <section id="about">
+    <div class="studio">
+      <p class="section-label">The Studio</p>
+      <h2 class="section-title">Made in Bhiwandi, for people who run real businesses</h2>
+      <p class="section-text">We build software the way a good mill runs — no waste, nothing you don't need. Both products come from the same small team and share the same principles.</p>
+      <div class="studio-grid">
+        <div class="studio-point">
+          <h3>Your data stays yours</h3>
+          <p>Everything lives on your device. Backups go to your own Google Drive — never to our servers.</p>
+        </div>
+        <div class="studio-point">
+          <h3>Built for the floor</h3>
+          <p>Designed around how powerloom mills and trading offices actually work day to day.</p>
+        </div>
+        <div class="studio-point">
+          <h3>Works offline</h3>
+          <p>Power cuts and patchy internet don't stop you. Sync catches up when you're back online.</p>
+        </div>
+        <div class="studio-point">
+          <h3>We pick up the phone</h3>
+          <p>A direct WhatsApp line to the people who make the software — not a call centre.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -530,7 +682,7 @@
     <h2 class="section-title">Contact Us</h2>
     <div class="contact-grid">
       <div class="contact-info">
-        <p>We know that our clients have unique needs. Reach out and we will get back to you soon.</p>
+        <p>Questions about Taka Register or Vyora, or want a quick demo? Reach out and we'll get back to you soon.</p>
         <div class="contact-detail">
           <div>
             <strong>Location</strong>
@@ -567,7 +719,7 @@
   <section id="privacy">
     <p class="section-label">Legal</p>
     <h2 class="section-title">Privacy Policy</h2>
-    <span class="policy-updated">Last updated: June 2026</span>
+    <span class="policy-updated">Last updated: July 2026</span>
 
     <div class="accordion" style="max-width:780px;margin-top:1.5rem;">
 
@@ -581,11 +733,12 @@
         </button>
         <div class="acc-body">
           <div class="acc-body-inner">
-            <p>Taka Register is a desktop application that stores all data locally on your device. We do not collect or transmit personal data to our servers. The following data may be accessed:</p>
+            <p>TakaRegister makes two applications — <strong>Taka Register</strong> and <strong>Vyora</strong>. Both store your business data locally on your device; we do not run our own database of your books. The data involved:</p>
             <ul>
-              <li><strong>Google Account Data:</strong> If you enable Google Drive backup, we request access to your Google Drive solely to store and retrieve your backup files. We do not read, modify, or share any other Google account data.</li>
-              <li><strong>Local Business Data:</strong> All mill operational data (weavers, purchases, production records) is stored in a local SQLite database on your machine.</li>
-              <li><strong>Mobile App:</strong> The Taka Register mobile app uses Google Sign-In to access the same Google Drive backup created by the desktop app, so you can view your mill data and submit new orders on the go. No data is sent to Taka Register's own servers from the mobile app either.</li>
+              <li><strong>Google Account Data:</strong> If you enable Google Drive sync/backup, we request access only to your Google Drive to store and retrieve the files these apps create. We do not read, modify, or share any other Google account data.</li>
+              <li><strong>Taka Register — Local Business Data:</strong> All mill operational data (weavers, purchases, production records) is stored in a local SQLite database on your machine.</li>
+              <li><strong>Vyora — Tally Data:</strong> A desktop agent copies your Tally company data into your own Google Drive so the Vyora app can display it. This data flows between your PC, your Drive, and your phone — it is not sent to TakaRegister.</li>
+              <li><strong>Vyora — Device Licensing:</strong> To manage per-seat licensing, Vyora sends your account email and a device identifier to our licensing service (hosted on Google) when you activate a device. This is used only to count and manage licensed devices.</li>
             </ul>
           </div>
         </div>
@@ -601,14 +754,14 @@
         </button>
         <div class="acc-body">
           <div class="acc-body-inner">
-            <p>If you connect your Google account for Drive backup, Taka Register will:</p>
+            <p>When you connect your Google account, Taka Register and Vyora will:</p>
             <ul>
-              <li>Create and access only the backup files created by this application in your Google Drive.</li>
+              <li>Create and access only the files these applications create in your Google Drive.</li>
               <li>Never read, modify, or share any other files in your Google Drive.</li>
-              <li>Never use your Google data for advertising or any purpose beyond the backup feature.</li>
+              <li>Never use your Google data for advertising or any purpose beyond sync and backup.</li>
               <li>Store your OAuth tokens locally on your device only.</li>
             </ul>
-            <p style="margin-top:0.75rem;">Taka Register's use of Google user data complies with the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+            <p style="margin-top:0.75rem;">Our use of Google user data complies with the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
           </div>
         </div>
       </div>
@@ -623,7 +776,7 @@
         </button>
         <div class="acc-body">
           <div class="acc-body-inner">
-            <p>All application data is stored locally on your Windows device. No data is transmitted to or stored on Taka Register servers. Backup files sent to Google Drive are under the control of your Google account and subject to Google's own privacy policy.</p>
+            <p>Application data is stored locally on your device. We do not keep a copy of your books on TakaRegister servers. Files synced to Google Drive are under the control of your Google account and subject to Google's own privacy policy. The only data we receive is the licensing information described above, used solely to manage device seats.</p>
           </div>
         </div>
       </div>
@@ -638,7 +791,7 @@
         </button>
         <div class="acc-body">
           <div class="acc-body-inner">
-            <p>We do not sell, trade, or share your data with any third parties. The only external service used is Google Drive (optional, user-initiated backup only).</p>
+            <p>We do not sell, trade, or share your data with any third parties. The external services used are Google Drive (user-initiated sync/backup) and, for Vyora, a Google-hosted licensing service used only to verify device seats.</p>
           </div>
         </div>
       </div>
@@ -653,7 +806,7 @@
         </button>
         <div class="acc-body">
           <div class="acc-body-inner">
-            <p>Since all data resides locally on your device, you can delete the application and its database at any time. To revoke Google Drive access, remove the app from your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google Account permissions</a>.</p>
+            <p>Since your data resides on your device and in your own Drive, you can delete the apps and their files at any time. To revoke Google Drive access, remove the app from your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google Account permissions</a>. To release a Vyora device seat, remove the device from the licensing screen in the desktop app.</p>
           </div>
         </div>
       </div>
@@ -668,7 +821,7 @@
         </button>
         <div class="acc-body">
           <div class="acc-body-inner">
-            <p>Taka Register is a business application not intended for use by children under 13. We do not knowingly collect data from children.</p>
+            <p>TakaRegister's applications are business tools not intended for use by children under 13. We do not knowingly collect data from children.</p>
           </div>
         </div>
       </div>
@@ -708,7 +861,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>Copyright &copy; 2026 Taka Register — All Rights Reserved &nbsp;|&nbsp; <a href="#privacy">Privacy Policy</a> &nbsp;|&nbsp; Bhiwandi, Maharashtra, India</p>
+    <p>Copyright &copy; 2026 TakaRegister — All Rights Reserved &nbsp;|&nbsp; Taka Register &amp; Vyora &nbsp;|&nbsp; <a href="#privacy">Privacy Policy</a> &nbsp;|&nbsp; Bhiwandi, Maharashtra, India</p>
   </footer>
 
   <script>
