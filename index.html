@@ -36,6 +36,10 @@
 
     html { scroll-behavior: smooth; }
 
+    /* The nav is fixed and 64px tall, so an anchor jump would otherwise tuck
+       the top of the target underneath it. Keep these in step with nav height. */
+    section[id], .product[id] { scroll-margin-top: 80px; }
+
     body {
       font-family: 'DM Sans', sans-serif;
       background: var(--light);
@@ -544,6 +548,59 @@
       .nav-links { gap: 0.9rem; }
       .product-info, .product-side { padding: 2rem 1.5rem; }
     }
+    /* Android download hint — shown on touch devices, where a plain tap
+       stalls at 100% and the press-and-hold save is the reliable path. */
+    .apkm-overlay {
+      position: fixed; inset: 0; z-index: 999; padding: 20px;
+      background: rgba(15, 31, 56, 0.55);
+      display: none; place-items: center;
+    }
+    .apkm-overlay.open { display: grid; }
+    .apkm {
+      background: var(--white); border-radius: 8px;
+      width: 100%; max-width: 420px; padding: 26px 24px;
+      box-shadow: 0 18px 50px rgba(15, 31, 56, 0.3);
+    }
+    .apkm-title {
+      font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 10px;
+    }
+    .apkm-text {
+      font-size: 0.92rem; font-weight: 300; color: var(--muted);
+      line-height: 1.6; margin-bottom: 18px;
+    }
+    .apkm-drop {
+      background: var(--light); border: 1px dashed var(--border); border-radius: 6px;
+      padding: 16px 14px; text-align: center; margin-bottom: 16px;
+    }
+    /* The real anchor: users press and hold this one, so nothing here may
+       set user-select or -webkit-touch-callout — both kill the hold menu. */
+    .apkm-link {
+      font-size: 0.98rem; font-weight: 600; color: var(--vyora);
+      text-decoration: underline; word-break: break-word;
+    }
+    .apkm-hint {
+      display: block; font-size: 0.78rem; font-weight: 300;
+      color: var(--muted); margin-top: 9px;
+    }
+    .apkm-hint.nudge {
+      color: var(--vyora); font-weight: 500;
+      animation: apkm-nudge 0.4s ease;
+    }
+    @keyframes apkm-nudge {
+      0%, 100% { transform: translateX(0); }
+      25%      { transform: translateX(-4px); }
+      75%      { transform: translateX(4px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .apkm-hint.nudge { animation: none; }
+    }
+    .apkm-actions { display: flex; gap: 10px; }
+    .apkm-btn {
+      flex: 1; font: inherit; font-size: 0.87rem; font-weight: 500;
+      padding: 11px 14px; border-radius: 4px; cursor: pointer;
+      border: 1px solid var(--border); background: transparent; color: var(--navy);
+    }
+    .apkm-btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
   </style>
 </head>
 <body>
@@ -607,7 +664,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Windows
           </a>
-          <a href="https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister-mobile.apk" class="dl-btn dl-navy-ghost" download rel="noopener">
+          <a href="https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister-mobile.apk" class="dl-btn dl-navy-ghost js-apk" data-apk-name="Taka Register" download rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
             Android
           </a>
@@ -637,7 +694,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Windows agent
           </a>
-          <a href="https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/app-release.apk" class="dl-btn dl-indigo-ghost" download rel="noopener">
+          <a href="https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/app-release.apk" class="dl-btn dl-indigo-ghost js-apk" data-apk-name="Vyora" download rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
             Android
           </a>
@@ -894,6 +951,120 @@
         body.style.maxHeight = body.scrollHeight + 'px';
       }
     }
+
+    /* Android APK downloads.
+
+       A plain tap on a touch device navigates to the GitHub asset, which
+       redirects to a freshly signed URL served as
+       application/vnd.android.package-archive. Chrome transfers every byte,
+       then stalls trying to hand the APK to the package installer — the
+       download sits at 100% and quietly fails. Saving the link directly
+       ("Download link") skips that handoff and works every time.
+
+       So on touch devices we intercept the tap and put the same link in a
+       dialog for the user to press and hold. Desktop is left alone, and with
+       JS off the anchor behaves exactly as before. */
+    (function () {
+      var isTouch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+      if (!isTouch) return;
+
+      var overlay, link, hint, title, copyBtn, lastFocus;
+
+      function build() {
+        overlay = document.createElement('div');
+        overlay.className = 'apkm-overlay';
+        overlay.innerHTML =
+          '<div class="apkm" role="dialog" aria-modal="true" aria-labelledby="apkm-title">' +
+            '<div class="apkm-title" id="apkm-title"></div>' +
+            '<p class="apkm-text">Your browser stalls this download at 100% when you tap it. ' +
+              'Press and hold the link below, then choose <strong>Download link</strong> — ' +
+              'the file saves normally that way.</p>' +
+            '<div class="apkm-drop">' +
+              '<a class="apkm-link" href="#"></a>' +
+              '<span class="apkm-hint">Press and hold &rarr; Download link</span>' +
+            '</div>' +
+            '<div class="apkm-actions">' +
+              '<button type="button" class="apkm-btn" data-close>Close</button>' +
+              '<button type="button" class="apkm-btn primary" data-copy>Copy link</button>' +
+            '</div>' +
+          '</div>';
+
+        document.body.appendChild(overlay);
+        title   = overlay.querySelector('.apkm-title');
+        link    = overlay.querySelector('.apkm-link');
+        hint    = overlay.querySelector('.apkm-hint');
+        copyBtn = overlay.querySelector('[data-copy]');
+
+        overlay.addEventListener('click', function (e) {
+          if (e.target === overlay || e.target.hasAttribute('data-close')) close();
+        });
+        copyBtn.addEventListener('click', copy);
+
+        /* Tapping this link would repeat the download that just failed, so
+           swallow the tap and draw the eye to the instruction instead.
+           Press-and-hold fires contextmenu, not click, and is unaffected. */
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          hint.classList.remove('nudge');
+          void hint.offsetWidth;
+          hint.classList.add('nudge');
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+        });
+      }
+
+      function copy() {
+        var url = link.href;
+        var done = function () {
+          copyBtn.textContent = 'Copied';
+          setTimeout(function () { copyBtn.textContent = 'Copy link'; }, 1800);
+        };
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(done, legacyCopy);
+        } else {
+          legacyCopy();
+        }
+
+        function legacyCopy() {
+          var ta = document.createElement('textarea');
+          ta.value = url;
+          ta.setAttribute('readonly', '');
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); done(); } catch (err) { /* nothing to do */ }
+          document.body.removeChild(ta);
+        }
+      }
+
+      function open(anchor) {
+        if (!overlay) build();
+
+        var name = anchor.getAttribute('data-apk-name') || 'the app';
+        title.textContent = 'Downloading ' + name + ' for Android';
+        link.href = anchor.href;
+        link.textContent = anchor.href.split('/').pop();
+
+        lastFocus = document.activeElement;
+        overlay.classList.add('open');
+        link.focus();
+      }
+
+      function close() {
+        overlay.classList.remove('open');
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      document.querySelectorAll('a.js-apk').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          open(anchor);
+        });
+      });
+    })();
   </script>
 </body>
 </html>

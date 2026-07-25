@@ -27,6 +27,26 @@ App *source* lives in separate private repos; only the built binaries are publis
 
 > The downloads repo **must be public**, otherwise these URLs return 404 for anonymous visitors.
 
+### Android downloads go through the website
+
+A plain tap on an Android release link stalls at 100% on Chrome. The link is cross-origin, so the
+`download` attribute is ignored; the tap becomes a navigation to a freshly signed asset URL served as
+`application/vnd.android.package-archive`, and Chrome fails handing the finished file to the package
+installer. Saving the link directly ("Download link") skips that handoff and works every time.
+
+So on touch devices `index.html` intercepts taps on the two `.js-apk` buttons and shows a dialog asking
+the user to press and hold. Desktop is untouched, and with JS off the anchors behave as before.
+
+For the same reason, the **mobile** entries in `version.json` point `download_url` at the product
+section on the website (`#taka`, `#vyora`) rather than straight at the APK — the in-app update popup
+hands its URL to a browser with no page of ours in between, so routing it through the site is the only
+way it reaches that dialog. Desktop entries still link directly to the `.exe`, which downloads fine.
+
+Anchor targets carry `scroll-margin-top` so the fixed 64px nav doesn't cover them; keep the two in step.
+
+> A real fix would serve the APK from our own origin as `application/octet-stream` (a Worker or a host
+> that allows custom headers). Until then the dialog is the workaround.
+
 ### In-app update check
 
 The desktop app polls `https://takaregister.in/version.json` and compares `version` against the
