@@ -609,7 +609,6 @@
       padding: 11px 14px; border-radius: 4px; cursor: pointer;
       border: 1px solid var(--border); background: transparent; color: var(--navy);
     }
-    .apkm-btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
   </style>
 </head>
 <body>
@@ -977,7 +976,7 @@
       var isTouch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
       if (!isTouch) return;
 
-      var overlay, link, steps, title, copyBtn, lastFocus;
+      var overlay, link, steps, title, lastFocus;
 
       function build() {
         overlay = document.createElement('div');
@@ -994,20 +993,17 @@
             '</div>' +
             '<div class="apkm-actions">' +
               '<button type="button" class="apkm-btn" data-close>Close</button>' +
-              '<button type="button" class="apkm-btn primary" data-copy>Copy link</button>' +
             '</div>' +
           '</div>';
 
         document.body.appendChild(overlay);
-        title   = overlay.querySelector('.apkm-title');
-        link    = overlay.querySelector('.apkm-link');
-        steps   = overlay.querySelector('.apkm-steps');
-        copyBtn = overlay.querySelector('[data-copy]');
+        title = overlay.querySelector('.apkm-title');
+        link  = overlay.querySelector('.apkm-link');
+        steps = overlay.querySelector('.apkm-steps');
 
         overlay.addEventListener('click', function (e) {
           if (e.target === overlay || e.target.hasAttribute('data-close')) close();
         });
-        copyBtn.addEventListener('click', copy);
 
         /* Tapping this link would repeat the download that just failed, so
            swallow the tap and draw the eye to the instruction instead.
@@ -1021,32 +1017,6 @@
         document.addEventListener('keydown', function (e) {
           if (e.key === 'Escape' && overlay.classList.contains('open')) close();
         });
-      }
-
-      function copy() {
-        var url = link.href;
-        var done = function () {
-          copyBtn.textContent = 'Copied';
-          setTimeout(function () { copyBtn.textContent = 'Copy link'; }, 1800);
-        };
-
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(url).then(done, legacyCopy);
-        } else {
-          legacyCopy();
-        }
-
-        function legacyCopy() {
-          var ta = document.createElement('textarea');
-          ta.value = url;
-          ta.setAttribute('readonly', '');
-          ta.style.position = 'fixed';
-          ta.style.opacity = '0';
-          document.body.appendChild(ta);
-          ta.select();
-          try { document.execCommand('copy'); done(); } catch (err) { /* nothing to do */ }
-          document.body.removeChild(ta);
-        }
       }
 
       function open(anchor) {
