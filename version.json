@@ -26,10 +26,16 @@
       ]
     },
     "vyora-mobile": {
-      "version": "2.0.32",
+      "version": "2.0.33",
       "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/app-release.apk",
       "whats_new": [
-        "General improvements and bug fixes."
+        "Outstanding bills now list oldest first, the way Tally shows them",
+        "Every bill shows its bill date, due date and days overdue — green while a bill still has time to run",
+        "Fixed garbled bill dates (bills that showed as \"26 Jan 2-Ma\")",
+        "Sharing a reminder opens your app picker — WhatsApp, SMS, mail, anything — instead of WhatsApp opening on its own",
+        "New Default message: type your reminder line once (⋮ → Default message) and every reminder carries it",
+        "Shorter reminder: the fixed \"Outstanding Bill wise details\" and duplicate date lines are gone",
+        "Shared text and PDF now fill in the Date, Due Date and Overdue by Days columns"
       ]
     }
   }
