@@ -2,13 +2,15 @@
   "schema": 2,
   "apps": {
     "takaregister-desktop": {
-      "version": "1.0.12",
+      "version": "1.0.13",
       "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister.exe",
       "whats_new": [
-        "Google Drive backups now live in a private, hidden folder that can't be seen or accidentally deleted",
-        "Order edits made on the mobile app now sync into the desktop correctly",
-        "Add Order: enter multiple design line-items under one party in a single go",
-        "Mobile order imports are now clearly labelled as new orders vs edits"
+        "Linking imported bills to orders no longer freezes the app — the window opens straight away, however many bills you import",
+        "Find an order by typing: search by order number, design, pieces or date instead of scrolling a long list",
+        "The same search now works from right-click → Link to order on a single bill",
+        "The bill list now shows the rate, with wider bill numbers and dates in one consistent format",
+        "Closing the app no longer freezes while the Google Drive backup finishes, and a stalled backup can't hold the app open",
+        "The app logo now appears in the window title bars, not just the taskbar"
       ]
     },
     "takaregister-mobile": {
