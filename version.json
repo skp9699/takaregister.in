@@ -19,23 +19,22 @@
       ]
     },
     "vyora-desktop": {
-      "version": "2.0.32",
+      "version": "2.0.33",
       "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/Vyora.exe",
       "whats_new": [
-        "General improvements and bug fixes."
+        "Each party's saved address and default credit period now sync to the phone, so they show on the ledger in the Vyora app"
       ]
     },
     "vyora-mobile": {
-      "version": "2.0.33",
+      "version": "2.0.35",
       "download_url": "https://www.takaregister.in/#vyora",
       "whats_new": [
-        "Outstanding bills now list oldest first, the way Tally shows them",
-        "Every bill shows its bill date, due date and days overdue — green while a bill still has time to run",
-        "Fixed garbled bill dates (bills that showed as \"26 Jan 2-Ma\")",
-        "Sharing a reminder opens your app picker — WhatsApp, SMS, mail, anything — instead of WhatsApp opening on its own",
-        "New Default message: type your reminder line once (⋮ → Default message) and every reminder carries it",
-        "Shorter reminder: the fixed \"Outstanding Bill wise details\" and duplicate date lines are gone",
-        "Shared text and PDF now fill in the Date, Due Date and Overdue by Days columns"
+        "Ledger details now show the party's address and default credit period as saved in Tally",
+        "Average pay cycle: see how many days a party actually takes to pay — on the Outstanding list and above their bills, alongside the oldest bill due",
+        "Mark a bill as received while your accountant is yet to enter it in Tally — it comes off your outstanding and stays out of reminders, then clears itself once the entry lands (switch it on in Settings)",
+        "Items Stock can now be shared as a PDF — everything in one go kept group-wise, or just the group you are viewing",
+        "The version shown on the dashboard now always matches the app you have installed",
+        "Address and credit period need the Vyora Sync desktop agent on 2.0.33 or newer"
       ]
     }
   }
