@@ -2,15 +2,16 @@
   "schema": 2,
   "apps": {
     "takaregister-desktop": {
-      "version": "1.0.13",
+      "version": "1.0.15",
       "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister.exe",
       "whats_new": [
-        "Linking imported bills to orders no longer freezes the app — the window opens straight away, however many bills you import",
-        "Find an order by typing: search by order number, design, pieces or date instead of scrolling a long list",
-        "The same search now works from right-click → Link to order on a single bill",
-        "The bill list now shows the rate, with wider bill numbers and dates in one consistent format",
-        "Closing the app no longer freezes while the Google Drive backup finishes, and a stalled backup can't hold the app open",
-        "The app logo now appears in the window title bars, not just the taskbar"
+        "Trader mode: choose which modules appear in the sidebar, with Trader / Manufacturer / Everything presets — one app for both trading and manufacturing",
+        "Brokers & brokerage: a Brokers / Agents master with brokerage on sales and purchases (% of bill, % of taxable, or a flat amount, and who bears it), pending-to-pay per agent, clear-till settlement, and a top-agent view",
+        "Grey in Dyeing: see greige still lying out at dyeing houses, with days-out ageing",
+        "Roll / Putha packing: cut bulk finished fabric into retail rolls, track them by location (also a new Roll/Putha tab in Fabric Stock), transfer rolls between locations, and dispatch on delivery challans that convert into bills",
+        "Trader Reports: quality-colour pivot, party-wise buy/sell, stock ageing with a dead-stock flag, and top agents",
+        "Purchase Order form: share a Purchase Order PDF with your supplier, just like the Sale Order form",
+        "New 'Harbour' colour theme — light screens with a deep navy sidebar"
       ]
     },
     "takaregister-mobile": {
