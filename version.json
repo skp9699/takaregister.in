@@ -2,9 +2,10 @@
   "schema": 2,
   "apps": {
     "takaregister-desktop": {
-      "version": "1.0.15",
+      "version": "1.0.16",
       "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister.exe",
       "whats_new": [
+        "Bug Fixes"
         "Trader mode: choose which modules appear in the sidebar, with Trader / Manufacturer / Everything presets — one app for both trading and manufacturing",
         "Brokers & brokerage: a Brokers / Agents master with brokerage on sales and purchases (% of bill, % of taxable, or a flat amount, and who bears it), pending-to-pay per agent, clear-till settlement, and a top-agent view",
         "Grey in Dyeing: see greige still lying out at dyeing houses, with days-out ageing",
