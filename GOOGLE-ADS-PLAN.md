@@ -48,9 +48,14 @@ mean anything. Concentration is the whole game at this budget.
 
 ## Business-specific notes
 
-- **Turn off the call button.** Support hours are Mon–Sat 3–8 PM. A missed call
-  is a lost lead; a WhatsApp message waits. If the call button stays, schedule
-  the call asset to 3–8 PM only.
+- **No ad scheduling restriction.** Reachable on WhatsApp most of the day, most
+  days. The site no longer publishes a clock-hours table — it says "most of the
+  day, Mon–Sat", which is both truer and doesn't put a "Closed" sign in front of
+  paid traffic. Run ads the full day; there is no dead zone to schedule around.
+- **The call button is optional, not harmful.** Earlier concern about missed
+  calls was based on a narrow 3–8 PM window that turned out not to reflect
+  reality. WhatsApp is still the better primary CTA because it is asynchronous
+  and leaves a written thread, but the call button can stay on.
 - **"Tally" is a trademark.** Fine as a keyword under Google's India policy;
   can be restricted in ad text if Tally Solutions has filed a complaint. If ads
   get disapproved, use the trademark-free headline swaps and keep "Tally" in
