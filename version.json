@@ -5,7 +5,7 @@
       "version": "1.0.16",
       "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister.exe",
       "whats_new": [
-        "Bug Fixes"
+        "Bug Fixes",
         "Trader mode: choose which modules appear in the sidebar, with Trader / Manufacturer / Everything presets — one app for both trading and manufacturing",
         "Brokers & brokerage: a Brokers / Agents master with brokerage on sales and purchases (% of bill, % of taxable, or a flat amount, and who bears it), pending-to-pay per agent, clear-till settlement, and a top-agent view",
         "Grey in Dyeing: see greige still lying out at dyeing houses, with days-out ageing",
@@ -30,9 +30,10 @@
       ]
     },
     "vyora-mobile": {
-      "version": "2.0.35",
+      "version": "2.0.39",
       "download_url": "https://www.takaregister.in/#vyora",
       "whats_new": [
+        "Long ledgers can print just their oldest bills — totals stay exact",
         "Ledger details now show the party's address and default credit period as saved in Tally",
         "Average pay cycle: see how many days a party actually takes to pay — on the Outstanding list and above their bills, alongside the oldest bill due",
         "Mark a bill as received while your accountant is yet to enter it in Tally — it comes off your outstanding and stays out of reminders, then clears itself once the entry lands (switch it on in Settings)",
