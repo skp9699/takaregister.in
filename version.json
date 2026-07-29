@@ -5,29 +5,7 @@
       "version": "1.0.18",
       "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister.exe",
       "whats_new": [
-        "Sizing Weaver: a new weaver type for a party who weaves on a beam you have sized. Their yarn now comes off stock as the TDS card's weft weight scaled to the taka's metres — a card reading 10.132 kg / 110m works out to 10.593 kg over 115 metres — instead of the whole taka weight being deducted",
-        "Every quality a Sizing Weaver weaves must have a TDS card of the same design name. The app says so when you pick the weaver, and stops the entry if the card is missing, so a taka can never be costed at nothing",
-        "The old \"Sizing\" party type is now called \"Sizers\" — the unit that sizes your beams — so it is never read as a Sizing Weaver. Open those parties in Masters once and re-pick the type",
-        "Fabric Qualities no longer asks for a warping method; the weaver's type decides how a taka is worked out. The window is now titled Add / Edit Fabric Quality (Warping Method)",
-        "Cards (TDS): a card now records the metres its weights are quoted for and shows them in a new TAPE column. Changing the tape lengths in Settings can no longer change what an already-saved card means — open and save each card once to stamp its own metres, marked with a \"?\" until you do",
-        "Cards (TDS) fix: typing a yarn name instead of picking it from the list was refused on save with \"Select a yarn for warp row 4\", even though the row was showing a weight",
-        "Assign Beams now looks at Weaver Warping and Sizing beams as well as Office. Beams the weaver had warped were invisible to it, so it reported \"Auto-assigned 0 entries\" against a register full of matching beams — and it now says why anything was left unassigned, naming the beams that carry that design on another loom",
-        "Production: right-click any taka to assign, change or clear its beam. The beam picker was only reachable if you knew to click the BEAM NO cell",
-        "Masters: \"Yarn Formulas\" is now \"Yarn Twister Formulas\"",
-        "Settings: the sizing metres setting is now \"Sizing Weaver — metres used\" and spells out what it changes",
-        "Cards (TDS): opening a card in “Enter Weight Directly” mode showed the calculated column headings (Total Ends / Wt / % of Warp) over the single weight box, and the warp/weft totals stayed at 0.000 however much weight was typed — both fixed",
-        "Production template: TARGET WT no longer shows 0.000 on every unused row",
-        "Office Stock: YARN NAME and MILL NAME no longer shrink to a sliver on smaller screens — they keep a readable width and the number columns scroll instead",
-        "Important fix: saving a Yarn Purchase, Paavti, Yarn Dyeing, Yarn Twister or Office Warping entry could fail with \"no such column: physical_session_id\". Saving works normally again — just install this update, nothing to do to your data",
-        "Fixed: saving a TDS card could fail the same way",
-        "Add/Edit Purchase Bill: the column headings now line up with the boxes below them on smaller screens, and the window opens wide enough to show every column",
-        "Trader mode: choose exactly which modules appear in the sidebar, with Trader / Manufacturer / Everything presets — one app for both trading and manufacturing",
-        "Brokers & brokerage: a Brokers/Agents master, brokerage on sales and purchases (% of bill, % of taxable using a tax %, or a flat amount, and who bears it), pending-to-pay per agent, clear-till-date settlement and a top-agent view",
-        "Grey in Dyeing: see greige still lying out at dyeing houses with days-out ageing",
-        "Trader Reports: quality-colour pivot, party buy/sell, stock ageing with a dead-stock flag, and top agents",
-        "Roll / Putha packing: cut bulk finish into retail rolls, track them by location (also shown as a Roll/Putha tab in Fabric Stock), transfer rolls between locations, and dispatch on delivery challans that convert into bills",
-        "Purchase Order form: share a Purchase Order PDF with your supplier, just like the Sale Order form",
-        "Fixes: roll transfers and delivery challans now pick from real stock (with an over-stock warning); deleting a sale reverts its delivery challan to pending billing; broker deletion is guarded across sales and purchases; new brokers typed on a bill are added to the master; brokerage on flat amounts no longer resets when you edit a bill"
+        "BUG FIXES"
       ]
     },
     "takaregister-mobile": {
