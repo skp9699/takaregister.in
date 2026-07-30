@@ -24,7 +24,7 @@
       ]
     },
     "vyora-desktop": {
-      "version": "2.0.33",
+      "version": "2.0.34",
       "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/Vyora.exe",
       "whats_new": [
         "Each party's saved address and default credit period now sync to the phone, so they show on the ledger in the Vyora app"
