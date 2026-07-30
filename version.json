@@ -2,10 +2,18 @@
   "schema": 2,
   "apps": {
     "takaregister-desktop": {
-      "version": "1.0.18",
+      "version": "1.0.19",
       "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister.exe",
       "whats_new": [
-        "BUG FIXES"
+        "A beam is now offered as finished when all its cuts have come back, not only when its metres match. Metres are the figure most often left blank, so a register full of finished beams was reporting nothing to close",
+        "Each beam on that list shows the WEIGHT received, and says whether short metres are really short or just takas nobody measured — \"only 1 of 8 takas measured\" instead of a beam reading 89% short",
+        "Colour coding on the list: green all cuts in, blue more takas than cuts, amber short, red short and gone quiet",
+        "Beams short on cuts are now put up for closing two ways: when the takas that would finish them are sitting unassigned, and when nothing has been booked against them for 30 days (set it in Settings — OFFER SHORT BEAMS QUIET FOR ≥)",
+        "Open any beam on that list to see its takas as a table — date, SR no., lason, act mtr, wvr mtr, taka wt, wvr wt — with totals underneath",
+        "Weaver Warping: click a beam to list the cuts booked against it, the way Office and Sizing already did. CUTS RECD. and METRES RECD. can finally be opened up",
+        "Right-click any beam in Office, Weaver or Sizing Warping to find loose takas that could be its own — matched on weaver and design, so a wrong loom number no longer hides them. A loom that differs is flagged",
+        "Production: Assign Beams (different loom) beside the existing button, for takas whose loom carries no beam while the weaver has one for that design on another loom",
+        "Assign Weaver / Assign Loom on all three warping registers, not just Sizing. Office sets weaver and loom; Weaver Warping sets the loom, since he warped the beam himself"
       ]
     },
     "takaregister-mobile": {
