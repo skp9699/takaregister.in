@@ -2,19 +2,15 @@
   "schema": 2,
   "apps": {
     "takaregister-desktop": {
-      "version": "1.0.19",
+      "version": "1.0.20",
       "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister.exe",
       "whats_new": [
-        "A beam is now offered as finished when all its cuts have come back, not only when its metres match. Metres are the figure most often left blank, so a register full of finished beams was reporting nothing to close",
-        "Each beam on that list shows the WEIGHT received, and says whether short metres are really short or just takas nobody measured — \"only 1 of 8 takas measured\" instead of a beam reading 89% short",
-        "Colour coding on the list: green all cuts in, blue more takas than cuts, amber short, red short and gone quiet",
-        "Beams short on cuts are now put up for closing two ways: when the takas that would finish them are sitting unassigned, and when nothing has been booked against them for 30 days (set it in Settings — OFFER SHORT BEAMS QUIET FOR ≥)",
-        "Open any beam on that list to see its takas as a table — date, SR no., lason, act mtr, wvr mtr, taka wt, wvr wt — with totals underneath",
-        "Weaver Warping: click a beam to list the cuts booked against it, the way Office and Sizing already did. CUTS RECD. and METRES RECD. can finally be opened up",
-        "Right-click any beam in Office, Weaver or Sizing Warping to find loose takas that could be its own — matched on weaver and design, so a wrong loom number no longer hides them. A loom that differs is flagged",
-        "Production: Assign Beams (different loom) beside the existing button, for takas whose loom carries no beam while the weaver has one for that design on another loom",
-        "Assign Weaver / Assign Loom on all three warping registers, not just Sizing. Office sets weaver and loom; Weaver Warping sets the loom, since he warped the beam himself"
-      ]
+        "Purchases now shows a DB ID for every line — the computer's own number for that purchase, to write beside it in your register. It never changes when you edit the bill, and a deleted one is never given to another purchase",
+        "Add Multiple Bills: enter several bills in one go, each row with its own date, supplier and bill no — for a stack of small bills that would otherwise be one dialog each",
+        "Purchases can be parked on DELIVERY PENDING when the bill is on file but the yarn has not come in. Those lines are shaded amber and count towards nobody's stock until you give them a real location",
+        "Awaiting Delivery button on the Purchases page answers \"what have I bought that hasn't turned up yet?\" in one click",
+        "New bills → picker beside Delete sets where every new purchase line starts. Park it on DELIVERY PENDING while entering bills for yarn in transit; the box turns amber so it cannot be left there by accident",
+        "Purchase lines take a DELIVERED ON date, and stock counts the yarn from that day rather than the bill date — so a bill entered today for yarn arriving next week no longer inflates today's stock. Leave it blank and the bill date is used, exactly as before"      ]
     },
     "takaregister-mobile": {
       "version": "1.0.12",
