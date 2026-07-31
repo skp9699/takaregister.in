@@ -1,5 +1,7 @@
-# Intermediates — rebuild with `node render.js` and `python3 build_audio.py`.
+# Intermediates — rebuild with `node render.js`, `build_audio.py`, `build_vo.py`.
 takaregister-ad-silent.mp4
 audio.wav
 bed.wav
 vo/
+vo_*/
+*-dry.mp3

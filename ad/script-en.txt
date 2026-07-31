@@ -1,0 +1,21 @@
+# Taka Register — English voiceover (female read)
+# Format: PAUSE_BEFORE_SECONDS | TEXT
+# Covers the full chain: yarn in → twisting/dyeing/sizing/warping → looms →
+# grey at the processor → finished rolls and challans → sale register → Vyora.
+# build_vo.py reads this at a natural pace and reports where each line lands,
+# so the video is cut to the voice rather than the voice squeezed into the video.
+#
+# For a ~45s short cut, drop lines 5, 6 and 9.
+
+0.5 | Still running the whole mill on registers? Yarn in one book, dyeing in another, takas in a third — and every month, the same headache.
+0.6 | And it isn't only yarn. Grey lying at the processor. Rolls going out on a loose slip. Your money standing still, where you cannot see it.
+0.7 | That is why we built Taka Register. One office for the whole mill — from the yarn you buy, to the roll you deliver.
+0.6 | Follow any lot: purchase, twisting, dyeing, sizing, warping. Every kilo stays on the books, under whichever unit is holding it.
+0.5 | Bill on file but goods not in? Mark it delivery pending — stock counts it from the day it lands.
+0.5 | On the floor, production loom by loom. TDS cards, warping, weaver stock, live as the day runs.
+0.6 | Then the grey comes in — where most registers give up. Every taka recorded, sent for dyeing, and what is lying with which processor, aged by the day.
+0.6 | Cut the finished bulk into rolls, raise delivery challans, post them to the sale register. From yarn in to roll out, nothing leaves unrecorded.
+0.5 | Weaver and dyeing bills, checked against your own rates. A figure, not an argument.
+0.6 | And Vyora carries your Tally books with you — outstanding, item stock, and how long each party really takes to pay.
+0.5 | It works offline, through any power cut. Your data stays on your machine and your own Drive. Never our servers.
+0.7 | Taka Register. Made in Bhiwandi, for India's powerloom belt.
