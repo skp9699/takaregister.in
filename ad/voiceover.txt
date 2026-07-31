@@ -1,0 +1,16 @@
+# Voiceover script — Taka Register 58s ad
+# Format: START_SECONDS | MAX_SECONDS | TEXT
+# START lines up with the scene table in ad.html (SC[]).
+# build_audio.py re-runs espeak faster until each clip fits MAX, so keep the
+# wording lean — commas rather than full stops, since a period makes espeak
+# insert a long pause and forces the whole line to be read faster to compensate.
+
+0.35  | 5.7 | Your yarn is at the twister, the dyer, the weaver — how much, and since when?
+6.85  | 6.0 | A bill booked for yarn still in transit, a weaver's bill nobody can check — sound familiar?
+13.70 | 3.8 | Taka Register — the office that runs your powerloom mill.
+18.25 | 7.5 | Track every kilo, from purchase through twisting, dyeing and sizing to the weaver — yarn that moves onward stays on the books.
+26.65 | 5.3 | Bill on file, goods not in? Park it on delivery pending — your stock stops lying.
+32.85 | 6.7 | Loom-wise production, weaver and dyeing bills checked to the paisa, grey at the dyer aged by the day.
+40.45 | 7.3 | And Vyora puts your Tally books in your pocket — outstanding, item stock, and how long each party really takes to pay.
+48.65 | 4.8 | Works through power cuts, and your data never leaves your device and your own Drive.
+54.15 | 3.8 | Taka Register — made in Bhiwandi, for India's powerloom belt.

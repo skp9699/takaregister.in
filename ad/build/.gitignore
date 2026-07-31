@@ -1,0 +1,5 @@
+# Intermediates — rebuild with `node render.js` and `python3 build_audio.py`.
+takaregister-ad-silent.mp4
+audio.wav
+bed.wav
+vo/
