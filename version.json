@@ -5,12 +5,15 @@
       "version": "1.0.20",
       "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister.exe",
       "whats_new": [
+        "Fixed: yarn a twister sends on to a dyeing unit now shows in that unit's Yarn Dyeing Stock. Only the twister who made it was ever credited, so doubled yarn delivered anywhere else simply vanished from stock",
         "Purchases now shows a DB ID for every line — the computer's own number for that purchase, to write beside it in your register. It never changes when you edit the bill, and a deleted one is never given to another purchase",
         "Add Multiple Bills: enter several bills in one go, each row with its own date, supplier and bill no — for a stack of small bills that would otherwise be one dialog each",
         "Purchases can be parked on DELIVERY PENDING when the bill is on file but the yarn has not come in. Those lines are shaded amber and count towards nobody's stock until you give them a real location",
         "Awaiting Delivery button on the Purchases page answers \"what have I bought that hasn't turned up yet?\" in one click",
         "New bills → picker beside Delete sets where every new purchase line starts. Park it on DELIVERY PENDING while entering bills for yarn in transit; the box turns amber so it cannot be left there by accident",
-        "Purchase lines take a DELIVERED ON date, and stock counts the yarn from that day rather than the bill date — so a bill entered today for yarn arriving next week no longer inflates today's stock. Leave it blank and the bill date is used, exactly as before"      ]
+        "Purchase lines take a DELIVERED ON date, and stock counts the yarn from that day rather than the bill date — so a bill entered today for yarn arriving next week no longer inflates today's stock. Leave it blank and the bill date is used, exactly as before",
+        "A dyeing unit or twister holding yarn only from a twisting delivery can now be picked in Job Stock Closures"
+      ]
     },
     "takaregister-mobile": {
       "version": "1.0.12",
