@@ -17,9 +17,14 @@ FFMPEG = os.environ.get("FFMPEG_PATH", f"{SCRATCH}/node_modules/ffmpeg-static/ff
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--script", required=True)
-ap.add_argument("--voice", default="en-gb-x-rp+Andrea")
+ap.add_argument("--voice", default="en-gb-x-rp+Andrea",
+                help="espeak voice name, or a path to a piper .onnx model")
+ap.add_argument("--speaker", type=int, default=None,
+                help="speaker id for a multi-speaker piper model")
+ap.add_argument("--length", type=float, default=1.0,
+                help="piper length_scale; >1 reads slower")
 ap.add_argument("--out", required=True)
-ap.add_argument("--wpm", type=int, default=150, help="natural reading pace")
+ap.add_argument("--wpm", type=int, default=150, help="natural reading pace (espeak)")
 ap.add_argument("--pitch", type=int, default=52)
 ap.add_argument("--warm", type=float, default=0.96,
                 help="<1 drops pitch and formants; keep near 1 for a female read")
@@ -57,17 +62,38 @@ for raw in open(A.script, encoding="utf-8"):
 
 # ---- synthesise each line at one steady pace --------------------------------
 clips, t, timeline = [], 0.0, []
+PIPER = A.voice.endswith(".onnx")
+
+
+def say(text, path):
+    """Synthesise one line. Piper is a neural model and needs no warming;
+    espeak is a formant synth and gets pitched down to take the edge off."""
+    if PIPER:
+        cmd = ["python3", "-m", "piper", "--model", A.voice,
+               "--length-scale", str(A.length), "--output-file", path]
+        if A.speaker is not None:
+            cmd += ["--speaker", str(A.speaker)]
+        p = subprocess.run(cmd, input=text, capture_output=True, text=True)
+        if p.returncode:
+            sys.exit(f"piper failed:\n{p.stderr[-1200:]}")
+    else:
+        run(["espeak-ng", "-v", A.voice, "-s", str(A.wpm), "-p", str(A.pitch),
+             "-g", "3", "-w", path, text])
+
+
 for i, (gap, text) in enumerate(lines):
     raw = f"{TMP}/raw{i}.wav"
-    run(["espeak-ng", "-v", A.voice, "-s", str(A.wpm), "-p", str(A.pitch), "-g", "3",
-         "-w", raw, text])
+    say(text, raw)
     dry = f"{TMP}/vo{i}.wav"
-    run([FFMPEG, "-y", "-i", raw, "-af",
-         f"asetrate=22050*{A.warm},aresample=48000,atempo=1/{A.warm},"
-         "highpass=f=100,lowpass=f=8200,"
-         "acompressor=threshold=-20dB:ratio=3:attack=8:release=180,"
-         "aecho=0.85:0.9:34:0.05,volume=2.2",
-         "-ar", "48000", "-ac", "1", dry])
+    # Piper already sounds like a person; only level it and give it a little room.
+    chain = ("highpass=f=80,"
+             "acompressor=threshold=-18dB:ratio=2.5:attack=10:release=200,"
+             "aecho=0.9:0.85:26:0.04,volume=1.6") if PIPER else (
+             f"asetrate=22050*{A.warm},aresample=48000,atempo=1/{A.warm},"
+             "highpass=f=100,lowpass=f=8200,"
+             "acompressor=threshold=-20dB:ratio=3:attack=8:release=180,"
+             "aecho=0.85:0.9:34:0.05,volume=2.2")
+    run([FFMPEG, "-y", "-i", raw, "-af", chain, "-ar", "48000", "-ac", "1", dry])
     d = wav_len(dry)
     t += gap
     timeline.append((i + 1, t, d, text))
