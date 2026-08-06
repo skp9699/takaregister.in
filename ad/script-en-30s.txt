@@ -1,0 +1,15 @@
+# Taka Register — English voiceover, SHORT CUT for paid placement
+# Format: PAUSE_BEFORE_SECONDS | TEXT
+#
+# Sized for Meta Reels: the hard cap is 90s but 15-30s is where they perform,
+# so this targets ~28s. The long script (script-en.txt, 85.6s) stays as the
+# website / WhatsApp / organic asset.
+#
+# Structure: two questions the viewer cannot answer, the answer, one proof
+# point, sign-off. Nothing else — a 30s ad gets one idea across, not eight.
+
+0.4 | Still keeping your yarn and fabric stock in handwritten books?
+0.5 | Can you say what is lying at yarn dyeing right now? Or at fabric dyeing?
+0.5 | Taka Register keeps every kilo and every metre on the books, under whichever unit is holding it.
+0.4 | What is at the dyer, how much, and how many days it has been sitting there.
+0.5 | Grey yarn to finished fabric. Taka Register. takaregister dot in.
