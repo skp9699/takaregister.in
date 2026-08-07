@@ -69,6 +69,8 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 .arw{flex:0 0 auto;color:var(--gold-dk);font-weight:700;line-height:1;display:flex;align-items:center}
 .step.end{background:rgba(26,122,110,.09);border-color:rgba(26,122,110,.4)}
 .step.end .n{color:var(--teal)}
+/* "or" rather than an arrow: a manufacturer weaves it, a trader buys it */
+.arw.alt{color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
 
 /* ── before / after ── */
 .vs{display:flex;gap:9px;align-items:stretch}
@@ -124,7 +126,7 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 #feed .chain-hd{margin-bottom:10px} #feed .chain-hd .l{font-size:9.5px} #feed .chain-hd .r{font-size:9.5px}
 #feed .row{margin-bottom:7px} #feed .row:last-child{margin-bottom:0}
 #feed .step{min-height:44px} #feed .step .n{font-size:8px} #feed .step .t{font-size:10px}
-#feed .arw{font-size:15px}
+#feed .arw.alt{font-size:8.5px} #feed .arw{font-size:15px}
 #feed .ticks{margin-bottom:12px} #feed .tick{padding:10px 9px}
 #feed .tick .ic{width:15px;height:15px} #feed .tick .ic svg{width:9px;height:9px}
 #feed .tick .tx{font-size:10.5px} #feed .tick .tx span{font-size:9px}
@@ -142,7 +144,7 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 #story .chain-hd{margin-bottom:9px} #story .chain-hd .l{font-size:9px} #story .chain-hd .r{font-size:9px}
 #story .row{margin-bottom:6px} #story .row:last-child{margin-bottom:0}
 #story .step{min-height:38px} #story .step .n{font-size:7.5px} #story .step .t{font-size:9.5px}
-#story .arw{font-size:14px}
+#story .arw.alt{font-size:8px} #story .arw{font-size:14px}
 #story .pane{padding:9px 11px 10px} #story .pane .ph{font-size:8.5px;margin-bottom:6px}
 #story .lr{font-size:10px;padding:3px 0} #story .pane.bad .lr .v{font-size:12px}
 #story .ticks{margin-bottom:8px} #story .tick{padding:8px 8px}
@@ -160,7 +162,7 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 #square .chain-hd{margin-bottom:8px} #square .chain-hd .l{font-size:8.5px} #square .chain-hd .r{font-size:8.5px}
 #square .row{margin-bottom:5px} #square .row:last-child{margin-bottom:0}
 #square .step{min-height:38px} #square .step .n{font-size:7px} #square .step .t{font-size:9px}
-#square .arw{font-size:13px}
+#square .arw.alt{font-size:7.5px} #square .arw{font-size:13px}
 #square .pane{padding:8px 10px 9px} #square .pane .ph{font-size:8px;margin-bottom:5px}
 #square .lr{font-size:9.5px;padding:2px 0} #square .pane.bad .lr .v{font-size:11px}
 #square .ticks{margin-bottom:10px} #square .tick{padding:9px 8px}
@@ -186,11 +188,11 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
       <div class="step"><span class="n">01</span><span class="t">Yarn<br>Purchase</span></div><span class="arw">›</span>
       <div class="step"><span class="n">02</span><span class="t">Yarn<br>Twisting</span></div><span class="arw">›</span>
       <div class="step"><span class="n">03</span><span class="t">Yarn<br>Dyeing</span></div><span class="arw">›</span>
-      <div class="step"><span class="n">04</span><span class="t">Warping</span></div>
+      <div class="step"><span class="n">04</span><span class="t">Warping<br>&amp; Sizing</span></div>
     </div>
     <div class="row">
-      <div class="step"><span class="n">05</span><span class="t">Sizing</span></div><span class="arw">›</span>
-      <div class="step"><span class="n">06</span><span class="t">Weaving<br>Looms</span></div><span class="arw">›</span>
+      <div class="step"><span class="n">05</span><span class="t">Weaving<br>Looms</span></div><span class="arw alt">or</span>
+      <div class="step"><span class="n">06</span><span class="t">Fabric<br>Purchase</span></div><span class="arw">›</span>
       <div class="step"><span class="n">07</span><span class="t">Fabric<br>Dyeing</span></div><span class="arw">›</span>
       <div class="step end"><span class="n">08</span><span class="t">Packing<br>&amp; Rolls</span></div>
     </div>
@@ -231,11 +233,11 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
         <div class="step"><span class="n">01</span><span class="t">Yarn<br>Purchase</span></div><span class="arw">›</span>
         <div class="step"><span class="n">02</span><span class="t">Yarn<br>Twisting</span></div><span class="arw">›</span>
         <div class="step"><span class="n">03</span><span class="t">Yarn<br>Dyeing</span></div><span class="arw">›</span>
-        <div class="step"><span class="n">04</span><span class="t">Warping</span></div>
+        <div class="step"><span class="n">04</span><span class="t">Warping<br>&amp; Sizing</span></div>
       </div>
       <div class="row">
-        <div class="step"><span class="n">05</span><span class="t">Sizing</span></div><span class="arw">›</span>
-        <div class="step"><span class="n">06</span><span class="t">Weaving<br>Looms</span></div><span class="arw">›</span>
+        <div class="step"><span class="n">05</span><span class="t">Weaving<br>Looms</span></div><span class="arw alt">or</span>
+        <div class="step"><span class="n">06</span><span class="t">Fabric<br>Purchase</span></div><span class="arw">›</span>
         <div class="step"><span class="n">07</span><span class="t">Fabric<br>Dyeing</span></div><span class="arw">›</span>
         <div class="step end"><span class="n">08</span><span class="t">Packing<br>&amp; Rolls</span></div>
       </div>
@@ -274,11 +276,11 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
       <div class="step"><span class="n">01</span><span class="t">Yarn<br>Purchase</span></div><span class="arw">›</span>
       <div class="step"><span class="n">02</span><span class="t">Yarn<br>Twisting</span></div><span class="arw">›</span>
       <div class="step"><span class="n">03</span><span class="t">Yarn<br>Dyeing</span></div><span class="arw">›</span>
-      <div class="step"><span class="n">04</span><span class="t">Warping</span></div>
+      <div class="step"><span class="n">04</span><span class="t">Warping<br>&amp; Sizing</span></div>
     </div>
     <div class="row">
-      <div class="step"><span class="n">05</span><span class="t">Sizing</span></div><span class="arw">›</span>
-      <div class="step"><span class="n">06</span><span class="t">Weaving<br>Looms</span></div><span class="arw">›</span>
+      <div class="step"><span class="n">05</span><span class="t">Weaving<br>Looms</span></div><span class="arw alt">or</span>
+      <div class="step"><span class="n">06</span><span class="t">Fabric<br>Purchase</span></div><span class="arw">›</span>
       <div class="step"><span class="n">07</span><span class="t">Fabric<br>Dyeing</span></div><span class="arw">›</span>
       <div class="step end"><span class="n">08</span><span class="t">Packing<br>&amp; Rolls</span></div>
     </div>
