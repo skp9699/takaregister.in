@@ -59,6 +59,9 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 .price .sep{width:1px;background:var(--line);flex:0 0 auto}
 .saveflag{display:inline-block;background:var(--ok);color:#fff;font-weight:700;
   letter-spacing:.06em;border-radius:20px}
+/* the catch on their side — loud enough to be read before the number is */
+.warnflag{display:inline-block;background:rgba(184,72,61,.13);color:#a8402f;
+  border:1.5px solid rgba(184,72,61,.5);font-weight:800;letter-spacing:.08em;border-radius:20px}
 
 .ticks{display:flex;gap:7px}
 .tick{flex:1;display:flex;align-items:flex-start;gap:6px;
@@ -95,7 +98,7 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 #feed .price{margin-bottom:13px} #feed .half{padding:13px 8px 12px}
 #feed .price .lbl{font-size:9px;margin-bottom:5px} #feed .price .amt{font-size:38px}
 #feed .price .per{font-size:10px;margin-top:3px}
-#feed .saveflag{font-size:9px;padding:3px 11px;margin-top:7px}
+#feed .warnflag{font-size:9px;padding:3px 11px;margin-top:7px} #feed .saveflag{font-size:9px;padding:3px 11px;margin-top:7px}
 #feed .ticks{margin-bottom:12px} #feed .tick{padding:10px 9px}
 #feed .tick .ic{width:15px;height:15px} #feed .tick .ic svg{width:9px;height:9px}
 #feed .tick .tx{font-size:10.5px} #feed .tick .tx span{font-size:9px}
@@ -110,7 +113,7 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 #story .price{margin-bottom:11px} #story .half{padding:11px 8px 10px}
 #story .price .lbl{font-size:8.5px;margin-bottom:4px} #story .price .amt{font-size:34px}
 #story .price .per{font-size:9.5px;margin-top:3px}
-#story .saveflag{font-size:8.5px;padding:3px 10px;margin-top:6px}
+#story .warnflag{font-size:8.5px;padding:3px 10px;margin-top:6px} #story .saveflag{font-size:8.5px;padding:3px 10px;margin-top:6px}
 #story .ticks{margin-bottom:10px} #story .tick{padding:8px 8px}
 #story .tick .ic{width:14px;height:14px} #story .tick .ic svg{width:8.5px;height:8.5px}
 #story .tick .tx{font-size:9.5px} #story .tick .tx span{font-size:8.5px}
@@ -125,7 +128,7 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 #square .price{margin-bottom:10px} #square .half{padding:10px 8px 9px}
 #square .price .lbl{font-size:8px;margin-bottom:4px} #square .price .amt{font-size:31px}
 #square .price .per{font-size:9px;margin-top:2px}
-#square .saveflag{font-size:8px;padding:2px 9px;margin-top:5px}
+#square .warnflag{font-size:8px;padding:2px 9px;margin-top:5px} #square .saveflag{font-size:8px;padding:2px 9px;margin-top:5px}
 #square .ticks{margin-bottom:9px} #square .tick{padding:8px 8px}
 #square .tick .ic{width:13px;height:13px} #square .tick .ic svg{width:8px;height:8px}
 #square .tick .tx{font-size:9px} #square .tick .tx span{font-size:8px}
@@ -144,11 +147,11 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
   <div class="sub">Party outstanding, item stock, ledgers and registers. Wherever you are, without waiting for the office to send a screenshot.</div>
 
   <div class="price">
-    <div class="half ours"><div class="lbl">Vyora</div><div class="amt">₹999</div><div class="per">per year</div>
-      <div class="saveflag">LESS THAN HALF</div></div>
+    <div class="half ours"><div class="lbl">Vyora</div><div class="amt">₹999</div><div class="per">a year, all inclusive</div>
+      <div class="saveflag">UP TO 2 DEVICES</div></div>
     <div class="sep"></div>
     <div class="half theirs"><div class="lbl">Other Tally apps</div><div class="amt">₹2,200</div><div class="per">a year and up, plus GST</div>
-      <div class="saveflag" style="background:transparent;color:var(--dim);font-weight:600">per device</div></div>
+      <div class="warnflag">× PER DEVICE</div></div>
   </div>
 
   <div class="ticks">
@@ -176,11 +179,11 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
     <div class="sub">Outstanding, item stock and ledgers, wherever you are.</div>
 
     <div class="price">
-      <div class="half ours"><div class="lbl">Vyora</div><div class="amt">₹999</div><div class="per">per year</div>
-        <div class="saveflag">LESS THAN HALF</div></div>
+      <div class="half ours"><div class="lbl">Vyora</div><div class="amt">₹999</div><div class="per">a year, all inclusive</div>
+        <div class="saveflag">UP TO 2 DEVICES</div></div>
       <div class="sep"></div>
       <div class="half theirs"><div class="lbl">Other Tally apps</div><div class="amt">₹2,200</div><div class="per">a year and up, plus GST</div>
-        <div class="saveflag" style="background:transparent;color:var(--dim);font-weight:600">per device</div></div>
+        <div class="warnflag">× PER DEVICE</div></div>
     </div>
 
     <div class="ticks">
@@ -208,11 +211,11 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
   <div class="sub">Outstanding, item stock, ledgers and registers — wherever you are.</div>
 
   <div class="price">
-    <div class="half ours"><div class="lbl">Vyora</div><div class="amt">₹999</div><div class="per">per year</div>
-      <div class="saveflag">LESS THAN HALF</div></div>
+    <div class="half ours"><div class="lbl">Vyora</div><div class="amt">₹999</div><div class="per">a year, all inclusive</div>
+      <div class="saveflag">UP TO 2 DEVICES</div></div>
     <div class="sep"></div>
     <div class="half theirs"><div class="lbl">Other Tally apps</div><div class="amt">₹2,200</div><div class="per">a year and up, plus GST</div>
-      <div class="saveflag" style="background:transparent;color:var(--dim);font-weight:600">per device</div></div>
+      <div class="warnflag">× PER DEVICE</div></div>
   </div>
 
   <div class="ticks">
