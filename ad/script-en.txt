@@ -8,12 +8,12 @@
 #
 # For a ~45s short cut, drop lines 5 and 8.
 
-0.5 | Are you tired of keeping your whole fabric business in handwritten books? Trader or manufacturer — the purchases, the dyeing, the takas, the outstanding, every bit of it on paper.
-0.6 | And somewhere in those books, your money is standing still. Grey lying at the processor. Rolls going out on a loose slip. Nobody counting the days.
+0.5 | Are you tired of keeping your whole fabric business in handwritten books and unsorted Excel files? Trader or manufacturer — the purchases, the dyeing, the takas, the outstanding, every bit of it on paper.
+0.6 | And somewhere in those books, your money is standing still. Grey sitting at the processor. Rolls going out on a loose slip. Nobody counting the days.
 0.7 | That is why we built Taka Register. From grey yarn all the way to finished fabric — and whether you trade, manufacture, or do both, it shows only the part you run.
 0.6 | Yarn purchase, twisting, dyeing. Warping, sizing, fabric dyeing, packing. Every kilo and every metre stays on the books, under whichever unit is holding it.
 0.6 | Consumption worked out for every quality — plain, dyed, anything you run. Enter the design card once, and check your own calculations against it.
-0.6 | Then the grey comes in — where most registers give up. Every taka recorded, sent for dyeing, and what is lying with which processor, aged by the day.
+0.6 | Then the grey comes in — where most registers give up. Every taka recorded, sent for dyeing, and what is present with which processor, aged by the day.
 0.6 | Cut the finished bulk into rolls, raise delivery challans, post them to the sale register. Nothing goes out unrecorded.
 0.5 | Weaver and dyeing bills, checked against your own rates. A figure, not an argument.
 0.6 | And Vyora carries your Tally books with you — outstanding, item stock, and how long each party really takes to pay.
