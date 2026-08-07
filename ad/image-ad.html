@@ -96,6 +96,18 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 .tick .tx{font-weight:600;color:var(--navy);line-height:1.3}
 .tick .tx span{display:block;font-weight:400;color:var(--muted);margin-top:1px;line-height:1.25}
 
+/* ── the money claim: stock that has stopped moving ── */
+.dead{display:flex;align-items:center;gap:11px;
+      background:linear-gradient(90deg,rgba(201,168,76,.20),rgba(201,168,76,.07));
+      border:1.5px solid rgba(201,168,76,.65);border-radius:10px}
+.dead .ic{flex:0 0 auto;border-radius:50%;background:var(--gold-dk);
+          display:flex;align-items:center;justify-content:center}
+.dead .ic svg{stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.dead .tx{line-height:1.32}
+.dead .tx b{display:block;font-family:'Playfair Display',serif;font-weight:900;
+            color:var(--navy);letter-spacing:-.005em}
+.dead .tx span{display:block;color:#4a5364;font-weight:500}
+
 .spacer{flex:1;min-height:6px}
 .cta{display:flex;align-items:center;justify-content:center;
      background:var(--navy);color:#fff;border-radius:8px;
@@ -118,18 +130,27 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 #feed .tick .tx{font-size:10.5px} #feed .tick .tx span{font-size:9px}
 #feed .pane{padding:9px 11px 10px} #feed .pane .ph{font-size:9px;margin-bottom:6px}
 #feed .lr{font-size:10.5px;padding:3px 0} #feed .pane.bad .lr .v{font-size:12px}
+#feed .dead{padding:12px 14px;gap:12px}
+#feed .dead .ic{width:26px;height:26px} #feed .dead .ic svg{width:15px;height:15px}
+#feed .dead .tx b{font-size:15px} #feed .dead .tx span{font-size:10.5px;margin-top:2px}
 #feed .cta{height:46px;font-size:16px;margin:11px 0 9px} #feed .qual{font-size:10px}
 
 #story .brand{margin-bottom:11px} #story .brand .wm{font-size:19px}
-#story h1{font-size:31px;margin-bottom:10px}
-#story .sub{font-size:13.5px;margin-bottom:14px}
-#story .chain{padding:13px 14px 11px;margin-bottom:12px}
+#story h1{font-size:31px;margin-bottom:7px}
+#story .sub{font-size:13.5px;margin-bottom:11px}
+#story .chain{padding:13px 14px 11px;margin-bottom:10px}
 #story .chain-hd{margin-bottom:9px} #story .chain-hd .l{font-size:9px} #story .chain-hd .r{font-size:9px}
 #story .row{margin-bottom:6px} #story .row:last-child{margin-bottom:0}
 #story .step{min-height:42px} #story .step .n{font-size:7.5px} #story .step .t{font-size:9.5px}
 #story .arw{font-size:14px}
 #story .pane{padding:9px 11px 10px} #story .pane .ph{font-size:8.5px;margin-bottom:6px}
 #story .lr{font-size:10px;padding:3px 0} #story .pane.bad .lr .v{font-size:12px}
+#story .ticks{margin-bottom:11px} #story .tick{padding:9px 8px}
+#story .tick .ic{width:14px;height:14px} #story .tick .ic svg{width:8.5px;height:8.5px}
+#story .tick .tx{font-size:9.5px} #story .tick .tx span{font-size:8.5px}
+#story .dead{padding:11px 13px;gap:11px}
+#story .dead .ic{width:24px;height:24px} #story .dead .ic svg{width:14px;height:14px}
+#story .dead .tx b{font-size:14px} #story .dead .tx span{font-size:10px;margin-top:2px}
 #story .cta{height:44px;font-size:15px;margin:10px 0 8px} #story .qual{font-size:9.5px}
 
 #square .brand{margin-bottom:9px} #square .brand .wm{font-size:17px}
@@ -145,6 +166,9 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 #square .ticks{margin-bottom:10px} #square .tick{padding:9px 8px}
 #square .tick .ic{width:14px;height:14px} #square .tick .ic svg{width:8.5px;height:8.5px}
 #square .tick .tx{font-size:9.5px} #square .tick .tx span{font-size:8.5px}
+#square .dead{padding:10px 12px;gap:10px}
+#square .dead .ic{width:23px;height:23px} #square .dead .ic svg{width:13px;height:13px}
+#square .dead .tx b{font-size:13px} #square .dead .tx span{font-size:9.5px;margin-top:2px}
 #square .cta{height:40px;font-size:14px;margin:9px 0 7px} #square .qual{font-size:9px}
 </style>
 </head>
@@ -154,7 +178,7 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 <div class="card" id="feed">
   <div class="brand"><span class="wm">Taka<em> Register</em></span><span class="by">Powerloom &amp; fabric ERP</span></div>
   <h1><span class="mark">From yarn to finish</span> —<br>every stage, on your books.</h1>
-  <div class="sub">Still keeping yarn and fabric stock in handwritten books? Can you say what is lying at <b>yarn dyeing</b> right now? Or at <b>fabric dyeing</b>?</div>
+  <div class="sub">Still keeping yarn and fabric stock in handwritten books? Can you say what is present at <b>yarn dyeing</b> right now? Or at <b>fabric dyeing</b>?</div>
 
   <div class="chain">
     <div class="chain-hd"><span class="l">Every stage covered</span><span class="r">kg &amp; metres · location-wise</span></div>
@@ -166,7 +190,7 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
     </div>
     <div class="row">
       <div class="step"><span class="n">05</span><span class="t">Sizing</span></div><span class="arw">›</span>
-      <div class="step"><span class="n">06</span><span class="t">Weaving</span></div><span class="arw">›</span>
+      <div class="step"><span class="n">06</span><span class="t">Weaving<br>Looms</span></div><span class="arw">›</span>
       <div class="step"><span class="n">07</span><span class="t">Fabric<br>Dyeing</span></div><span class="arw">›</span>
       <div class="step end"><span class="n">08</span><span class="t">Packing<br>&amp; Rolls</span></div>
     </div>
@@ -176,19 +200,16 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
     <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
       <div class="tx">Stock by unit<span>Who holds it, right now</span></div></div>
     <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
-      <div class="tx">Days at the dyer<span>How long it has been sitting</span></div></div>
+      <div class="tx">Loom-wise output<span>Per loom, TDS cards</span></div></div>
     <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
       <div class="tx">Works offline<span>Your data, your Drive</span></div></div>
   </div>
 
   <div class="spacer"></div>
-  <div class="vs">
-    <div class="pane bad"><div class="ph"><span class="d"></span>In the register</div>
-      <div class="lr"><span class="k">Yarn at dyeing</span><span class="v">?</span></div>
-      <div class="lr"><span class="k">Since when</span><span class="v">?</span></div></div>
-    <div class="pane good"><div class="ph"><span class="d"></span>In Taka Register</div>
-      <div class="lr"><span class="k">Sharda Dyeing</span><span class="v">860 kg</span></div>
-      <div class="lr"><span class="k">Out since 12 Jul</span><span class="v age">19 days</span></div></div>
+  <div class="dead">
+    <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 1.9"/></svg></div>
+    <div class="tx"><b>Find your dead stock and ageing stock</b>
+      <span>What has not moved, which unit is holding it, and for how many days.</span></div>
   </div>
   <div class="cta">Free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
   <div class="qual">For <b>weavers, traders and processors</b> &nbsp;·&nbsp; Bhiwandi &nbsp;·&nbsp; Ichalkaranji &nbsp;·&nbsp; Erode</div>
@@ -202,7 +223,7 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
   <div class="safe">
     <div class="brand"><span class="wm">Taka<em> Register</em></span><span class="by">Powerloom &amp; fabric ERP</span></div>
     <h1><span class="mark">From yarn to finish</span> —<br>every stage, on your books.</h1>
-    <div class="sub">Can you say what is lying at <b>yarn dyeing</b> right now? Or at <b>fabric dyeing</b>?</div>
+    <div class="sub">Can you say what is present at <b>yarn dyeing</b> right now? Or at <b>fabric dyeing</b>?</div>
 
     <div class="chain">
       <div class="chain-hd"><span class="l">Every stage covered</span><span class="r">kg &amp; metres</span></div>
@@ -214,23 +235,28 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
       </div>
       <div class="row">
         <div class="step"><span class="n">05</span><span class="t">Sizing</span></div><span class="arw">›</span>
-        <div class="step"><span class="n">06</span><span class="t">Weaving</span></div><span class="arw">›</span>
+        <div class="step"><span class="n">06</span><span class="t">Weaving<br>Looms</span></div><span class="arw">›</span>
         <div class="step"><span class="n">07</span><span class="t">Fabric<br>Dyeing</span></div><span class="arw">›</span>
         <div class="step end"><span class="n">08</span><span class="t">Packing<br>&amp; Rolls</span></div>
       </div>
     </div>
 
-    <div class="vs">
-      <div class="pane bad"><div class="ph"><span class="d"></span>In the register</div>
-        <div class="lr"><span class="k">Yarn at dyeing</span><span class="v">?</span></div>
-        <div class="lr"><span class="k">Since when</span><span class="v">?</span></div></div>
-      <div class="pane good"><div class="ph"><span class="d"></span>In Taka Register</div>
-        <div class="lr"><span class="k">Sharda Dyeing</span><span class="v">860 kg</span></div>
-        <div class="lr"><span class="k">Out since 12 Jul</span><span class="v age">19 days</span></div></div>
+        <div class="ticks">
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
+        <div class="tx">Stock by unit<span>Who holds it now</span></div></div>
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
+        <div class="tx">Loom-wise output<span>Per loom, TDS cards</span></div></div>
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
+        <div class="tx">Works offline<span>Your data, your Drive</span></div></div>
     </div>
 
     <div class="spacer"></div>
-    <div class="cta">Free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
+    <div class="dead">
+    <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 1.9"/></svg></div>
+    <div class="tx"><b>Find your dead stock and ageing stock</b>
+      <span>What has not moved, which unit is holding it, and for how many days.</span></div>
+  </div>
+  <div class="cta">Free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
     <div class="qual">For <b>weavers, traders and processors</b> &nbsp;·&nbsp; Bhiwandi · Ichalkaranji · Erode</div>
   </div>
 </div>
@@ -240,7 +266,7 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 <div class="card" id="square">
   <div class="brand"><span class="wm">Taka<em> Register</em></span><span class="by">Powerloom &amp; fabric ERP</span></div>
   <h1><span class="mark">From yarn to finish</span> —<br>every stage, on your books.</h1>
-  <div class="sub">Still keeping yarn and fabric stock in handwritten books? Can you say what is at <b>yarn dyeing</b> right now?</div>
+  <div class="sub">Still keeping yarn and fabric stock in handwritten books? Can you say what is present at <b>yarn dyeing</b> right now?</div>
 
   <div class="chain">
     <div class="chain-hd"><span class="l">Every stage covered</span><span class="r">kg &amp; metres · location-wise</span></div>
@@ -252,7 +278,7 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
     </div>
     <div class="row">
       <div class="step"><span class="n">05</span><span class="t">Sizing</span></div><span class="arw">›</span>
-      <div class="step"><span class="n">06</span><span class="t">Weaving</span></div><span class="arw">›</span>
+      <div class="step"><span class="n">06</span><span class="t">Weaving<br>Looms</span></div><span class="arw">›</span>
       <div class="step"><span class="n">07</span><span class="t">Fabric<br>Dyeing</span></div><span class="arw">›</span>
       <div class="step end"><span class="n">08</span><span class="t">Packing<br>&amp; Rolls</span></div>
     </div>
@@ -262,19 +288,16 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
     <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
       <div class="tx">Stock by unit<span>Who holds it, right now</span></div></div>
     <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
-      <div class="tx">Days at the dyer<span>How long it has been sitting</span></div></div>
+      <div class="tx">Loom-wise output<span>Per loom, TDS cards</span></div></div>
     <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
       <div class="tx">Works offline<span>Your data, your Drive</span></div></div>
   </div>
 
   <div class="spacer"></div>
-  <div class="vs">
-    <div class="pane bad"><div class="ph"><span class="d"></span>In the register</div>
-      <div class="lr"><span class="k">Yarn at dyeing</span><span class="v">?</span></div>
-      <div class="lr"><span class="k">Since when</span><span class="v">?</span></div></div>
-    <div class="pane good"><div class="ph"><span class="d"></span>In Taka Register</div>
-      <div class="lr"><span class="k">Sharda Dyeing</span><span class="v">860 kg</span></div>
-      <div class="lr"><span class="k">Out since 12 Jul</span><span class="v age">19 days</span></div></div>
+  <div class="dead">
+    <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 1.9"/></svg></div>
+    <div class="tx"><b>Find your dead stock and ageing stock</b>
+      <span>What has not moved, which unit is holding it, and for how many days.</span></div>
   </div>
   <div class="cta">Free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
   <div class="qual">For <b>weavers, traders and processors</b> &nbsp;·&nbsp; Bhiwandi · Ichalkaranji · Erode</div>
