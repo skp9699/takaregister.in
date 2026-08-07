@@ -21,14 +21,15 @@ FFMPEG = os.environ.get("FFMPEG_PATH", f"{SCRATCH}/node_modules/ffmpeg-static/ff
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--lang", default="en")
-ap.add_argument("--duration", type=float, default=28.0)
-ap.add_argument("--bed", type=float, default=0.16, help="bed level under the voice")
-ap.add_argument("--swell", default="10.8,25.2", help="seconds where the bed lifts")
+ap.add_argument("--duration", type=float, default=29.5)
+ap.add_argument("--bed", type=float, default=0.10,
+                help="bed level under the voice; kept very low by request")
+ap.add_argument("--swell", default="11.6,26.0", help="seconds where the bed lifts")
 A = ap.parse_args()
 
 VO      = f"{BUILD}/vo-{A.lang}-30s-dry.mp3"
 V_SUBS  = f"{BUILD}/reel-subs.mp4"
-V_PLAIN = f"{BUILD}/reel-nosubs.mp4"
+V_PLAIN = V_SUBS   # both cuts are subtitled
 D = A.duration
 
 
@@ -38,7 +39,7 @@ def run(cmd, what):
         sys.exit(f"FAILED ({what}):\n{r.stderr[-1800:]}")
 
 
-for f in (VO, V_SUBS, V_PLAIN):
+for f in (VO, V_SUBS):
     if not os.path.exists(f):
         sys.exit(f"missing {f} — render the video and build the voice first")
 
@@ -82,8 +83,8 @@ run([FFMPEG, "-y", "-i", voice, "-i", bed, "-filter_complex",
      "-map", "[o]", "-ar", "48000", "-ac", "2", "-t", str(D), mixed], "mix")
 
 # ---- mux -------------------------------------------------------------------
-out_plain = f"{BUILD}/takaregister-reel-{A.lang}.mp4"
-out_full  = f"{BUILD}/takaregister-reel-{A.lang}-music-subs.mp4"
+out_plain = f"{BUILD}/takaregister-reel-{A.lang}-subs.mp4"
+out_full  = f"{BUILD}/takaregister-reel-{A.lang}-subs-music.mp4"
 for video, audio, out in ((V_PLAIN, voice, out_plain), (V_SUBS, mixed, out_full)):
     run([FFMPEG, "-y", "-i", video, "-i", audio,
          "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",

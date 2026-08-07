@@ -18,7 +18,8 @@ FFMPEG = os.environ.get("FFMPEG_PATH", f"{SCRATCH}/node_modules/ffmpeg-static/ff
 ap = argparse.ArgumentParser()
 ap.add_argument("--script", required=True)
 ap.add_argument("--voice", default="en-gb-x-rp+Andrea",
-                help="espeak voice name, or a path to a piper .onnx model")
+                help="espeak voice name, a piper .onnx path, or kokoro:<voice>")
+ap.add_argument("--klang", default="en-us", help="language code for kokoro")
 ap.add_argument("--speaker", type=int, default=None,
                 help="speaker id for a multi-speaker piper model")
 ap.add_argument("--length", type=float, default=1.0,
@@ -62,13 +63,33 @@ for raw in open(A.script, encoding="utf-8"):
 
 # ---- synthesise each line at one steady pace --------------------------------
 clips, t, timeline = [], 0.0, []
-PIPER = A.voice.endswith(".onnx")
+PIPER  = A.voice.endswith(".onnx")
+KOKORO = A.voice.startswith("kokoro:")
+KDIR   = f"{SCRATCH}/kokoro"
+_kok = None
+
+
+def kokoro():
+    """Load the model once — it is 311 MB and reloading per line is minutes."""
+    global _kok
+    if _kok is None:
+        from kokoro_onnx import Kokoro
+        _kok = Kokoro(f"{KDIR}/kokoro-v1.0.onnx", f"{KDIR}/voices-v1.0.bin")
+    return _kok
 
 
 def say(text, path):
     """Synthesise one line. Piper is a neural model and needs no warming;
     espeak is a formant synth and gets pitched down to take the edge off."""
-    if PIPER:
+    if KOKORO:
+        import wave as _w, numpy as _np
+        samples, sr = kokoro().create(text, voice=A.voice.split(":", 1)[1],
+                                      speed=A.length and (1.0 / A.length) or 1.0,
+                                      lang=A.klang)
+        with _w.open(path, "wb") as wf:
+            wf.setnchannels(1); wf.setsampwidth(2); wf.setframerate(sr)
+            wf.writeframes((_np.clip(samples, -1, 1) * 32767).astype(_np.int16).tobytes())
+    elif PIPER:
         cmd = ["python3", "-m", "piper", "--model", A.voice,
                "--length-scale", str(A.length), "--output-file", path]
         if A.speaker is not None:
@@ -86,9 +107,9 @@ for i, (gap, text) in enumerate(lines):
     say(text, raw)
     dry = f"{TMP}/vo{i}.wav"
     # Piper already sounds like a person; only level it and give it a little room.
-    chain = ("highpass=f=80,"
-             "acompressor=threshold=-18dB:ratio=2.5:attack=10:release=200,"
-             "aecho=0.9:0.85:26:0.04,volume=1.6") if PIPER else (
+    chain = ("highpass=f=72,equalizer=f=170:t=q:w=1.1:g=1.6,"
+             "acompressor=threshold=-21dB:ratio=2:attack=22:release=260,"
+             "loudnorm=I=-16:TP=-2:LRA=11") if (PIPER or KOKORO) else (
              f"asetrate=22050*{A.warm},aresample=48000,atempo=1/{A.warm},"
              "highpass=f=100,lowpass=f=8200,"
              "acompressor=threshold=-20dB:ratio=3:attack=8:release=180,"

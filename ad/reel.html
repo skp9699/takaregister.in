@@ -224,7 +224,7 @@ body{font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
    offline renderer and live playback agree. Scene bounds are cut against the
    measured voiceover, not guessed.
    ========================================================================= */
-const DUR = 28.0;
+const DUR = 29.5;
 const SUBS_ON = !location.search.includes('nosubs');
 
 const cl=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -238,12 +238,12 @@ function rise(el,p,dy=20){ set(el,{opacity:eOut(p), transform:`translateY(${(1-e
 
 /* voiceover line starts, measured from build_vo.py */
 const SC=[
-  ['s1', 0.00, 5.30],
-  ['s2', 5.30, 5.05],
-  ['s3',10.35, 4.20],
-  ['s4',14.55, 5.05],
-  ['s5',19.60, 5.05],
-  ['s6',24.65, 3.35],
+  ['s1', 0.00, 5.85],
+  ['s2', 5.85, 5.25],
+  ['s3',11.10, 4.55],
+  ['s4',15.65, 5.30],
+  ['s5',20.95, 4.40],
+  ['s6',25.35, 4.15],
 ];
 const XF=0.36;
 
@@ -320,16 +320,16 @@ const R={
 
 /* ---- subtitles: chunked so no plate holds more than a glance ---- */
 const CUES=[
-  [0.40, 2.70, "Still keeping your yarn and fabric stock"],
-  [2.70, 4.98, "in handwritten books, and unsorted Excel files?"],
-  [5.48, 7.90, "Can you say what is present at your job locations,"],
-  [7.90,10.00, "and at your own units, right now?"],
-  [10.50,12.45,"From yarn to finished fabrics,"],
-  [12.45,14.32,"Taka Register covers every stage."],
-  [14.72,17.10,"Every kilo and every metre stays on the books,"],
-  [17.10,19.32,"under whichever unit is holding it."],
-  [19.72,21.90,"What is at the dyer, how much,"],
-  [21.90,24.30,"and how many days it has been sitting there."],
+  [0.40, 2.95, "Still keeping your yarn and fabric stock"],
+  [2.95, 5.69, "in handwritten books, and unsorted Excel files?"],
+  [6.19, 8.75, "Can you say what is present at your job locations,"],
+  [8.75,10.93, "and at your own units, right now?"],
+  [11.43,13.45,"From yarn to finished fabrics,"],
+  [13.45,15.53,"Taka Register covers every stage."],
+  [15.92,18.50,"Every kilo and every metre stays on the books,"],
+  [18.50,20.78,"under whichever unit is holding it."],
+  [21.19,23.25,"What is at the dyer, how much,"],
+  [23.25,25.12,"and how many days it has been sitting there."],
 ];
 
 function renderAt(t){
