@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Taka Register — Image Ad</title>
+<link rel="stylesheet" href="build/fonts.css">
+<style>
+:root{
+  --navy:#0f1f38; --teal:#1a7a6e; --gold:#c9a84c; --gold-dk:#a8862f;
+  --paper:#f7f5f0; --ink:#0f1f38; --muted:#6f7787; --line:#e2ddd1; --red:#b8483d;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:540px;background:#fff}
+body{font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+
+/* 1080x1350 at 2x — the 4:5 feed slot */
+.card{position:relative;width:540px;height:675px;background:var(--paper);
+      padding:30px 34px;display:flex;flex-direction:column;overflow:hidden}
+.card::before{content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent,transparent 22px,rgba(15,31,56,.022) 22px,rgba(15,31,56,.022) 23px)}
+.card > *{position:relative}
+
+.brand{display:flex;align-items:baseline;gap:7px;margin-bottom:13px}
+.brand .wm{font-family:'Playfair Display',serif;font-size:19px;font-weight:900;color:var(--navy);letter-spacing:.01em}
+.brand .wm em{font-style:normal;color:var(--gold-dk)}
+.brand .by{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+h1{font-family:'Playfair Display',serif;font-size:33px;font-weight:900;color:var(--ink);
+   line-height:1.14;letter-spacing:-.01em;margin-bottom:11px}
+/* Highlight only the words the reader must register, not the whole line.
+   Painted as a background gradient rather than a ::after — a negative z-index
+   would drop it behind the card itself and disappear. */
+.mark{background:linear-gradient(transparent 58%, rgba(201,168,76,.5) 58%, rgba(201,168,76,.5) 94%, transparent 94%)}
+
+.sub{font-size:14.5px;font-weight:400;color:#3d4757;line-height:1.5;margin-bottom:17px;max-width:452px}
+.sub b{font-weight:700;color:var(--navy)}
+
+/* ── the chain: the one thing this ad is really selling ── */
+.chain{background:#fff;border:1px solid var(--line);border-radius:11px;
+       padding:15px 16px 13px;margin-bottom:14px;
+       box-shadow:0 2px 10px rgba(15,31,56,.05)}
+.chain-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.chain-hd .l{font-size:9.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--teal)}
+.chain-hd .r{font-size:9.5px;font-weight:500;color:var(--muted)}
+/* stretch so a one-word step is the same height as a two-line one */
+.row{display:flex;align-items:stretch;gap:5px;margin-bottom:7px}
+.row:last-child{margin-bottom:0}
+.step{flex:1;min-height:46px;background:var(--paper);border:1px solid var(--line);border-radius:6px;
+      padding:6px 4px;text-align:center;
+      display:flex;flex-direction:column;align-items:center;justify-content:center}
+.step .n{font-size:8px;font-weight:700;color:var(--gold-dk);letter-spacing:.08em;display:block;margin-bottom:2px}
+.step .t{font-size:10px;font-weight:600;color:var(--navy);letter-spacing:.01em;line-height:1.2}
+.arw{flex:0 0 auto;color:var(--gold-dk);font-size:15px;font-weight:700;line-height:1;
+     display:flex;align-items:center}
+.step.end{background:rgba(26,122,110,.09);border-color:rgba(26,122,110,.4)}
+.step.end .n{color:var(--teal)}
+
+/* ── proof row ── */
+.ticks{display:flex;gap:7px;margin-bottom:15px}
+.tick{flex:1;display:flex;align-items:flex-start;gap:6px;
+      background:#fff;border:1px solid var(--line);border-radius:8px;padding:11px 9px}
+.tick .ic{flex:0 0 auto;width:15px;height:15px;border-radius:50%;background:var(--teal);
+          display:flex;align-items:center;justify-content:center;margin-top:1px}
+.tick .ic svg{width:9px;height:9px;stroke:#fff;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.tick .tx{font-size:10.5px;font-weight:600;color:var(--navy);line-height:1.3}
+.tick .tx span{display:block;font-size:9px;font-weight:400;color:var(--muted);margin-top:1px;line-height:1.25}
+
+/* ── before / after: the same question, answered two ways ── */
+.vs{display:flex;gap:9px;align-items:stretch}
+.pane{flex:1;border-radius:9px;padding:9px 11px 10px;border:1px solid var(--line);background:#fff}
+.pane.bad{background:#f2efe8;border-style:dashed}
+.pane .ph{display:flex;align-items:center;gap:5px;font-size:9px;font-weight:700;
+          letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+.pane.bad .ph{color:#9a8f7d}
+.pane.good .ph{color:var(--teal)}
+.pane .ph .d{width:5px;height:5px;border-radius:50%;background:currentColor}
+.lr{display:flex;justify-content:space-between;align-items:baseline;
+    font-size:10.5px;padding:3px 0;border-bottom:1px dotted var(--line)}
+.lr:last-child{border-bottom:0}
+.lr .k{color:#5b6474;font-weight:500}
+.lr .v{font-weight:700;color:var(--navy);font-variant-numeric:tabular-nums}
+.pane.bad .lr .v{color:var(--red);font-size:12px;letter-spacing:.06em}
+.lr .v.age{color:#a8740f}
+
+.spacer{flex:1;min-height:8px}
+
+.cta{display:flex;align-items:center;justify-content:center;gap:9px;
+     background:var(--navy);color:#fff;border-radius:8px;height:46px;flex:0 0 46px;
+     font-size:16px;font-weight:700;letter-spacing:.01em;margin:11px 0 9px}
+.cta .u{color:var(--gold)}
+.qual{text-align:center;font-size:10px;color:var(--muted);letter-spacing:.03em;line-height:1.45}
+.qual b{color:#4a5364;font-weight:600}
+</style>
+</head>
+<body>
+<div class="card" id="card">
+
+  <div class="brand">
+    <span class="wm">Taka<em> Register</em></span>
+    <span class="by">Powerloom &amp; fabric ERP</span>
+  </div>
+
+  <h1>Still keeping your yarn and&nbsp;fabric stock in <span class="mark">handwritten books</span>?</h1>
+
+  <div class="sub">Can you say what is lying at <b>yarn dyeing</b> right now? Or at <b>fabric dyeing</b>? <b>From yarn to finish, Taka Register covers every stage.</b></div>
+
+  <div class="chain">
+    <div class="chain-hd">
+      <span class="l">Every stage, on the books</span>
+      <span class="r">kg &amp; metres · location-wise</span>
+    </div>
+    <div class="row">
+      <div class="step"><span class="n">01</span><span class="t">Yarn<br>Purchase</span></div>
+      <span class="arw">›</span>
+      <div class="step"><span class="n">02</span><span class="t">Yarn<br>Twisting</span></div>
+      <span class="arw">›</span>
+      <div class="step"><span class="n">03</span><span class="t">Yarn<br>Dyeing</span></div>
+      <span class="arw">›</span>
+      <div class="step"><span class="n">04</span><span class="t">Warping</span></div>
+    </div>
+    <div class="row">
+      <div class="step"><span class="n">05</span><span class="t">Sizing</span></div>
+      <span class="arw">›</span>
+      <div class="step"><span class="n">06</span><span class="t">Weaving</span></div>
+      <span class="arw">›</span>
+      <div class="step"><span class="n">07</span><span class="t">Fabric<br>Dyeing</span></div>
+      <span class="arw">›</span>
+      <div class="step end"><span class="n">08</span><span class="t">Packing<br>&amp; Rolls</span></div>
+    </div>
+  </div>
+
+  <div class="ticks">
+    <div class="tick">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
+      <div class="tx">Stock by unit<span>Who holds it, right now</span></div>
+    </div>
+    <div class="tick">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
+      <div class="tx">Days at the dyer<span>How long it has been sitting</span></div>
+    </div>
+    <div class="tick">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
+      <div class="tx">Works offline<span>Your data, your Drive</span></div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="vs">
+    <div class="pane bad">
+      <div class="ph"><span class="d"></span>In the register</div>
+      <div class="lr"><span class="k">Yarn at dyeing</span><span class="v">?</span></div>
+      <div class="lr"><span class="k">Since when</span><span class="v">?</span></div>
+    </div>
+    <div class="pane good">
+      <div class="ph"><span class="d"></span>In Taka Register</div>
+      <div class="lr"><span class="k">Sharda Dyeing</span><span class="v">860 kg</span></div>
+      <div class="lr"><span class="k">Out since 12 Jul</span><span class="v age">19 days</span></div>
+    </div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="cta">Free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
+  <div class="qual">For <b>weavers, traders and processors</b> &nbsp;·&nbsp; Bhiwandi &nbsp;·&nbsp; Ichalkaranji &nbsp;·&nbsp; Erode</div>
+
+</div>
+</body>
+</html>
