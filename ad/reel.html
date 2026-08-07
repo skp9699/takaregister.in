@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Taka Register — Reel</title>
+<link rel="stylesheet" href="build/fonts.css">
+<style>
+:root{
+  --navy:#0f1f38; --teal:#1a7a6e; --gold:#c9a84c; --gold-dk:#a8862f;
+  --paper:#f7f5f0; --ink:#0f1f38; --muted:#6f7787; --line:#e2ddd1;
+  --red:#b8483d; --amber:#c9861f;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:540px;height:960px;overflow:hidden;background:#000}
+body{font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+
+#stage{position:relative;width:540px;height:960px;overflow:hidden;background:var(--paper)}
+.warp{position:absolute;inset:-140px 0;
+  background:repeating-linear-gradient(90deg,transparent,transparent 22px,rgba(15,31,56,.022) 22px,rgba(15,31,56,.022) 23px)}
+.topfade{position:absolute;top:0;left:0;right:0;height:125px;
+  background:linear-gradient(180deg,rgba(15,31,56,.06),transparent)}
+.botfade{position:absolute;bottom:0;left:0;right:0;height:400px;
+  background:linear-gradient(0deg,rgba(15,31,56,.14),rgba(15,31,56,.04) 55%,transparent)}
+.botmark{position:absolute;left:0;right:0;bottom:96px;text-align:center;
+  font-family:'Playfair Display',serif;font-size:38px;font-weight:900;
+  color:rgba(15,31,56,.06);letter-spacing:.02em;line-height:1}
+
+/* Meta covers the top 14% and bottom 35% of a 9:16 frame. Everything that
+   must be read lives between them; .safe is that band. */
+.safe{position:absolute;left:0;right:0;top:125px;height:499px;padding:0 30px}
+.scene{position:absolute;inset:0;opacity:0;will-change:opacity;transform:translateY(28px)}
+
+.kicker{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal)}
+.serif{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);line-height:1.12;letter-spacing:-.01em}
+.body{font-weight:400;color:#3d4757;line-height:1.5}
+.ctr{position:absolute;left:30px;right:30px}
+.mark{background:linear-gradient(transparent 56%, rgba(201,168,76,.5) 56%, rgba(201,168,76,.5) 93%, transparent 93%)}
+
+/* ── S1 books + excel ── */
+.doc{position:absolute;border-radius:8px;box-shadow:0 10px 26px rgba(15,31,56,.14);overflow:hidden}
+.ledger{width:206px;height:150px;background:#fdfcf8;border:1px solid var(--line)}
+.ledger .hd{height:19px;background:#efe9da;border-bottom:1px solid var(--line);
+  font-size:8px;font-weight:700;letter-spacing:.12em;color:#8a7c5c;display:flex;align-items:center;padding:0 8px}
+.scrawl{height:11px;margin:6px 8px 0;border-bottom:1px dotted #d8d2c2;position:relative}
+.scrawl::after{content:'';position:absolute;left:2px;top:3px;height:4px;border-radius:2px;
+  width:var(--w);background:rgba(15,31,56,.32)}
+.xl{width:214px;height:150px;background:#fff;border:1px solid var(--line)}
+.xl .hd{height:19px;background:#1d6b41;color:#fff;font-size:8px;font-weight:700;
+  letter-spacing:.1em;display:flex;align-items:center;padding:0 8px}
+.xlrow{display:flex;height:16px;border-bottom:1px solid #eee}
+.xlcell{flex:1;border-right:1px solid #eee;font-size:7.5px;color:#5b6474;
+  display:flex;align-items:center;padding-left:4px;font-variant-numeric:tabular-nums}
+.xlcell.q{color:var(--red);font-weight:700}
+.stamp{position:absolute;font-family:'Playfair Display',serif;font-weight:900;
+  color:var(--red);border:2.5px solid var(--red);border-radius:6px;padding:1px 9px;
+  font-size:24px;line-height:1.15;background:rgba(184,72,61,.07)}
+
+/* ── S2 locations ── */
+.loc{position:absolute;left:30px;right:30px;display:flex;justify-content:space-between;align-items:center;
+  background:#fff;border:1px solid var(--line);border-radius:9px;padding:11px 14px;
+  box-shadow:0 2px 8px rgba(15,31,56,.05)}
+.loc .n{font-size:12.5px;font-weight:600;color:var(--ink);letter-spacing:.02em}
+.loc .v{font-family:'Playfair Display',serif;font-size:19px;font-weight:900;color:var(--red)}
+
+/* ── S4 chain ── */
+.chain{position:absolute;left:30px;right:30px;background:#fff;border:1px solid var(--line);
+  border-radius:11px;padding:13px 14px 11px;box-shadow:0 2px 10px rgba(15,31,56,.05)}
+.chd{display:flex;justify-content:space-between;margin-bottom:9px}
+.chd .l{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--teal)}
+.chd .r{font-size:9px;font-weight:500;color:var(--muted)}
+.row{display:flex;align-items:stretch;gap:5px;margin-bottom:6px}
+.row:last-child{margin-bottom:0}
+.step{flex:1;min-height:40px;background:var(--paper);border:1px solid var(--line);border-radius:6px;
+  padding:5px 3px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.step .n{font-size:7.5px;font-weight:700;color:var(--gold-dk);letter-spacing:.08em;margin-bottom:2px}
+.step .t{font-size:9.5px;font-weight:600;color:var(--ink);line-height:1.2;text-align:center}
+.arw{flex:0 0 auto;display:flex;align-items:center;color:var(--gold-dk);font-weight:700;font-size:14px}
+.arw.alt{font-size:8.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+
+/* ── S5 ageing ── */
+.age{position:absolute;left:30px;right:30px;height:54px;background:#fff;border:1px solid var(--line);
+  border-radius:9px;padding:8px 12px 0;overflow:hidden}
+.age .top{display:flex;justify-content:space-between;align-items:baseline}
+.age .who{font-size:11.5px;font-weight:600;color:var(--ink)}
+.age .qty{font-size:11px;font-weight:700;color:#4a5364;font-variant-numeric:tabular-nums}
+.bar{height:7px;border-radius:4px;background:#efece4;overflow:hidden;position:absolute;left:12px;right:76px;bottom:13px}
+.bar .f{height:100%;border-radius:4px}
+.days{position:absolute;right:12px;bottom:7px;font-family:'Playfair Display',serif;
+  font-size:15px;font-weight:900;font-variant-numeric:tabular-nums}
+
+/* ── S6 cta ── */
+.cta{position:absolute;left:30px;right:30px;display:flex;align-items:center;justify-content:center;
+  background:var(--navy);color:#fff;border-radius:8px;height:46px;font-size:16px;font-weight:700}
+.cta .u{color:var(--gold)}
+/* both platforms, and what each one is for */
+.plat{position:absolute;left:30px;right:30px;display:flex;gap:8px}
+.plat .p{flex:1;display:flex;align-items:center;gap:7px;background:#fff;
+  border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+.plat .p svg{width:15px;height:15px;stroke:var(--gold-dk);fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.plat .p b{display:block;font-size:11px;font-weight:700;color:var(--ink);line-height:1.25}
+.plat .p span{display:block;font-size:9px;font-weight:400;color:var(--muted);line-height:1.25}
+
+/* ── subtitle plate (its own layer so it can be switched off) ── */
+/* Subtitles must sit INSIDE the safe band too — below y=624 they disappear
+   under Meta's caption and buttons. 960-615 = 345 from the bottom. */
+#subs{position:absolute;left:26px;right:26px;bottom:352px;text-align:center;opacity:0}
+#subs .t{display:inline-block;background:rgba(15,31,56,.93);color:#fff;
+  font-size:15px;font-weight:600;line-height:1.35;letter-spacing:.005em;
+  padding:8px 14px;border-radius:7px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="warp"></div>
+  <div class="topfade"></div>
+  <div class="botfade"></div>
+  <div class="botmark" id="botmark">Yarn&nbsp;→&nbsp;Fabric</div>
+
+  <div class="safe">
+
+    <!-- S1 · the books and the spreadsheet -->
+    <div class="scene" id="s1">
+      <div class="ctr serif" id="s1t" style="top:8px;font-size:27px">Still on handwritten books?</div>
+      <div class="doc ledger" id="lg" style="left:6px;top:118px">
+        <div class="hd">YARN REGISTER</div>
+        <div class="scrawl" style="--w:64%"></div><div class="scrawl" style="--w:80%"></div>
+        <div class="scrawl" style="--w:52%"></div><div class="scrawl" style="--w:73%"></div>
+        <div class="scrawl" style="--w:44%"></div><div class="scrawl" style="--w:68%"></div>
+        <div class="scrawl" style="--w:58%"></div>
+      </div>
+      <div class="doc xl" id="xl" style="right:6px;top:150px">
+        <div class="hd">STOCK_FINAL_v4.xlsx</div>
+        <div class="xlrow"><div class="xlcell">20/2 CD</div><div class="xlcell">1,200</div><div class="xlcell q">?</div></div>
+        <div class="xlrow"><div class="xlcell">30/1 PC</div><div class="xlcell q">?</div><div class="xlcell">840</div></div>
+        <div class="xlrow"><div class="xlcell">40/2 CM</div><div class="xlcell">610</div><div class="xlcell q">?</div></div>
+        <div class="xlrow"><div class="xlcell">2/60 PV</div><div class="xlcell q">?</div><div class="xlcell q">?</div></div>
+        <div class="xlrow"><div class="xlcell">GREY</div><div class="xlcell">—</div><div class="xlcell q">?</div></div>
+        <div class="xlrow"><div class="xlcell">FINISH</div><div class="xlcell q">?</div><div class="xlcell">—</div></div>
+      </div>
+      <div class="stamp" id="stmp" style="left:150px;top:236px">and Excel?</div>
+    </div>
+
+    <!-- S2 · where is it, right now -->
+    <div class="scene" id="s2">
+      <div class="ctr kicker" id="s2k" style="top:14px">The question nobody can answer</div>
+      <div class="ctr serif" id="s2t" style="top:36px;font-size:27px">What is present at your<br>job locations and own units?</div>
+      <div class="loc" id="l1" style="top:150px"><span class="n">Twister</span><span class="v">? kg</span></div>
+      <div class="loc" id="l2" style="top:206px"><span class="n">Yarn dyeing</span><span class="v">? kg</span></div>
+      <div class="loc" id="l3" style="top:262px"><span class="n">Fabric dyeing</span><span class="v">? m</span></div>
+      <div class="loc" id="l4" style="top:318px"><span class="n">Your own godown</span><span class="v">? m</span></div>
+    </div>
+
+    <!-- S3 · the promise -->
+    <div class="scene" id="s3">
+      <div class="ctr" id="s3b" style="top:96px;text-align:center">
+        <span style="font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:var(--ink)">Taka</span><span style="font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:var(--gold-dk)"> Register</span>
+        <div style="font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:3px">Powerloom &amp; fabric ERP</div>
+      </div>
+      <div class="ctr serif" id="s3t" style="top:188px;font-size:29px;text-align:center">
+        <span class="mark" id="s3m">From yarn to finished fabrics</span><br>— every stage, on your books.</div>
+    </div>
+
+    <!-- S4 · every stage -->
+    <div class="scene" id="s4">
+      <div class="ctr kicker" id="s4k" style="top:16px">Every kilo · every metre</div>
+      <div class="ctr serif" id="s4t" style="top:38px;font-size:23px">On the books, under whichever<br>unit is holding it.</div>
+      <div class="chain" id="s4c" style="top:132px">
+        <div class="chd"><span class="l">Every stage covered</span><span class="r">kg &amp; metres</span></div>
+        <div class="row">
+          <div class="step" id="p1"><span class="n">01</span><span class="t">Yarn<br>Purchase</span></div><span class="arw">›</span>
+          <div class="step" id="p2"><span class="n">02</span><span class="t">Twisting<br>&amp; Dyeing</span></div><span class="arw">›</span>
+          <div class="step" id="p3"><span class="n">03</span><span class="t">Warping<br>&amp; Sizing</span></div><span class="arw">›</span>
+          <div class="step" id="p4"><span class="n">04</span><span class="t">Weaving<br>Looms</span></div>
+        </div>
+        <div class="row">
+          <span class="arw alt">or</span>
+          <div class="step" id="p5"><span class="n">05</span><span class="t">Fabric<br>Purchase</span></div><span class="arw">›</span>
+          <div class="step" id="p6"><span class="n">06</span><span class="t">Fabric<br>Dyeing</span></div><span class="arw">›</span>
+          <div class="step" id="p7"><span class="n">07</span><span class="t">Packing<br>&amp; Rolls</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S5 · dead and ageing stock -->
+    <div class="scene" id="s5">
+      <div class="ctr kicker" id="s5k" style="top:16px" >What has stopped moving</div>
+      <div class="ctr serif" id="s5t" style="top:38px;font-size:25px">Dead stock and<br>ageing stock, by the day.</div>
+      <div class="age" id="a1" style="top:148px">
+        <div class="top"><span class="who">Yarn at dyeing unit</span><span class="qty">860 kg</span></div>
+        <div class="bar"><div class="f" id="f1"></div></div><div class="days" id="d1">0 d</div></div>
+      <div class="age" id="a2" style="top:222px">
+        <div class="top"><span class="who">Grey at processor</span><span class="qty">4,120 m</span></div>
+        <div class="bar"><div class="f" id="f2"></div></div><div class="days" id="d2">0 d</div></div>
+      <div class="age" id="a3" style="top:296px">
+        <div class="top"><span class="who">Yarn at twister</span><span class="qty">210 kg</span></div>
+        <div class="bar"><div class="f" id="f3"></div></div><div class="days" id="d3">0 d</div></div>
+    </div>
+
+    <!-- S6 · sign-off -->
+    <div class="scene" id="s6">
+      <div class="ctr" id="s6b" style="top:118px;text-align:center">
+        <span style="font-family:'Playfair Display',serif;font-size:34px;font-weight:900;color:var(--ink)">Taka</span><span style="font-family:'Playfair Display',serif;font-size:34px;font-weight:900;color:var(--gold-dk)"> Register</span></div>
+      <div class="ctr body" id="s6s" style="top:172px;text-align:center;font-size:13px">From yarn to finished fabrics — every stage, on your books.</div>
+      <div class="cta" id="s6c" style="top:222px">Free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
+      <div class="plat" id="s6p" style="top:284px">
+        <div class="p"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 9h18M8 21h8"/></svg>
+          <div><b>Windows</b><span>The full register</span></div></div>
+        <div class="p"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2"/><path d="M11 18.5h2"/></svg>
+          <div><b>Android app</b><span>See your books anywhere</span></div></div>
+      </div>
+      <div class="ctr body" id="s6q" style="top:344px;text-align:center;font-size:11px;color:var(--muted)">
+        For <b style="color:#4a5364">weavers and traders</b> &nbsp;·&nbsp; Bhiwandi · Ichalkaranji · Erode</div>
+    </div>
+
+  </div>
+
+  <div id="subs"><span class="t" id="subt"></span></div>
+</div>
+
+<script>
+/* =========================================================================
+   Deterministic timeline: renderAt(t) fully determines the frame, so the
+   offline renderer and live playback agree. Scene bounds are cut against the
+   measured voiceover, not guessed.
+   ========================================================================= */
+const DUR = 28.0;
+const SUBS_ON = !location.search.includes('nosubs');
+
+const cl=(v,a,b)=>Math.max(a,Math.min(b,v));
+const eOut=t=>1-Math.pow(1-cl(t,0,1),3);
+const eIO =t=>{t=cl(t,0,1);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2};
+const eBack=t=>{t=cl(t,0,1);const c=2.70158;return 1+c*Math.pow(t-1,3)+1.70158*Math.pow(t-1,2)};
+const pr=(x,s,d)=>cl((x-s)/d,0,1);
+const $=id=>document.getElementById(id);
+const set=(el,o)=>{for(const k in o) el.style[k]=o[k];};
+function rise(el,p,dy=20){ set(el,{opacity:eOut(p), transform:`translateY(${(1-eOut(p))*dy}px)`}); }
+
+/* voiceover line starts, measured from build_vo.py */
+const SC=[
+  ['s1', 0.00, 5.30],
+  ['s2', 5.30, 5.05],
+  ['s3',10.35, 4.20],
+  ['s4',14.55, 5.05],
+  ['s5',19.60, 5.05],
+  ['s6',24.65, 3.35],
+];
+const XF=0.36;
+
+const R={
+ s1(x){
+   rise($('s1t'),pr(x,.10,.7),16);
+   // the register lands first, the spreadsheet on top of it — same mess, twice
+   const a=pr(x,.55,.8);
+   set($('lg'),{opacity:eOut(a),transform:`translate(${(1-eOut(a))*-38}px,0) rotate(${-5+eOut(a)*1.6}deg)`});
+   const b=pr(x,1.35,.8);
+   set($('xl'),{opacity:eOut(b),transform:`translate(${(1-eOut(b))*38}px,0) rotate(${5-eOut(b)*1.8}deg)`});
+   // headline completes as the voice reaches Excel
+   $('s1t').innerHTML = x>1.5 ? 'Still on handwritten books<br>and unsorted Excel files?' : 'Still on handwritten books?';
+   const c=pr(x,2.5,.45);
+   set($('stmp'),{opacity:eOut(c),
+     transform:`scale(${cl(1+(1-eBack(c))*.9,1,3)}) rotate(${-9+(1-eOut(c))*10}deg)`});
+   $('stmp').textContent='?';
+   set($('stmp'),{fontSize:'34px',padding:'2px 15px'});
+ },
+ s2(x){
+   rise($('s2k'),pr(x,.05,.5),12); rise($('s2t'),pr(x,.15,.7),16);
+   [['l1',0],['l2',1],['l3',2],['l4',3]].forEach(([id,i])=>{
+     const p=pr(x,.75+i*.34,.55);
+     set($(id),{opacity:eOut(p),transform:`translateX(${(1-eOut(p))*-24}px)`});
+     // the marks keep flickering — that is the point, they never resolve
+     const on = x>1.0+i*.34 && (Math.floor((x-1.0)*6)%3!==0);
+     $(id).querySelector('.v').style.opacity = on?1:.25;
+   });
+ },
+ s3(x){
+   const p=pr(x,.10,.9);
+   set($('s3b'),{opacity:eOut(p),transform:`scale(${.93+eOut(p)*.07})`});
+   rise($('s3t'),pr(x,.65,.8),18);
+   // the marker sweeps under the phrase as it is spoken
+   const w=eIO(pr(x,1.15,1.0))*100;
+   set($('s3m'),{backgroundSize:`${w}% 100%`,backgroundRepeat:'no-repeat'});
+ },
+ s4(x){
+   rise($('s4k'),pr(x,.05,.5),12); rise($('s4t'),pr(x,.15,.7),16);
+   rise($('s4c'),pr(x,.5,.7),18);
+   for(let i=1;i<=7;i++){
+     const lit=pr(x,1.0+(i-1)*.42,.42), el=$('p'+i);
+     set(el,{borderColor:`rgba(201,168,76,${.12+lit*.7})`,
+             background:lit>.5?'rgba(201,168,76,.10)':'var(--paper)',
+             transform:`scale(${1+eOut(lit)*.03-(lit>.99?.03:0)})`});
+   }
+   // the last chip settles into the teal end-state
+   const done=pr(x,1.0+6*.42,.42);
+   if(done>.5) set($('p7'),{background:'rgba(26,122,110,.10)',borderColor:'rgba(26,122,110,.5)'});
+ },
+ s5(x){
+   rise($('s5k'),pr(x,.05,.5),12); rise($('s5t'),pr(x,.15,.7),16);
+   const ROWS=[['a1','f1','d1',19,.55],['a2','f2','d2',34,.92],['a3','f3','d3',6,.20]];
+   ROWS.forEach(([a,f,d,days,frac],i)=>{
+     const p=pr(x,.7+i*.3,.55);
+     set($(a),{opacity:eOut(p),transform:`translateY(${(1-eOut(p))*14}px)`});
+     const g=eIO(pr(x,1.15+i*.3,1.5));
+     const col = frac>.8?'var(--red)':(frac>.4?'var(--amber)':'var(--teal)');
+     set($(f),{width:(g*frac*100)+'%',background:col});
+     const n=Math.round(days*g);
+     $(d).textContent=n+' d';
+     set($(d),{color:col});
+   });
+ },
+ s6(x){
+   const p=pr(x,.05,.8);
+   set($('s6b'),{opacity:eOut(p),transform:`scale(${.94+eOut(p)*.06})`});
+   rise($('s6s'),pr(x,.45,.6),14);
+   rise($('s6c'),pr(x,.7,.6),14);
+   rise($('s6p'),pr(x,.95,.6),14);
+   rise($('s6q'),pr(x,1.25,.6),12);
+ }
+};
+
+/* ---- subtitles: chunked so no plate holds more than a glance ---- */
+const CUES=[
+  [0.40, 2.70, "Still keeping your yarn and fabric stock"],
+  [2.70, 4.98, "in handwritten books, and unsorted Excel files?"],
+  [5.48, 7.90, "Can you say what is present at your job locations,"],
+  [7.90,10.00, "and at your own units, right now?"],
+  [10.50,12.45,"From yarn to finished fabrics,"],
+  [12.45,14.32,"Taka Register covers every stage."],
+  [14.72,17.10,"Every kilo and every metre stays on the books,"],
+  [17.10,19.32,"under whichever unit is holding it."],
+  [19.72,21.90,"What is at the dyer, how much,"],
+  [21.90,24.30,"and how many days it has been sitting there."],
+];
+
+function renderAt(t){
+  t=cl(t,0,DUR);
+  for(const [id,s,d] of SC){
+    const el=$(id);
+    let a=0;
+    if(t>=s-XF && t<=s+d+XF){
+      a=cl(Math.min(pr(t,s-XF*0.5,XF), 1-pr(t,s+d-XF*0.5,XF)),0,1);
+    }
+    el.style.opacity=a;
+    el.style.display=a<=0.001?'none':'block';
+    if(a>0.001) R[id](t-s);
+  }
+  const box=$('subs');
+  if(!SUBS_ON){ box.style.opacity=0; return; }
+  const cue=CUES.find(c=>t>=c[0]&&t<c[1]);
+  if(cue){ $('subt').textContent=cue[2];
+           box.style.opacity=Math.min(pr(t,cue[0],.14), 1-pr(t,cue[1]-.12,.12)); }
+  else box.style.opacity=0;
+}
+window.renderAt=renderAt;
+window.AD_DURATION=DUR;
+
+let raf=null;
+window.playAd=function(){
+  const t0=performance.now();
+  (function loop(now){ const t=(now-t0)/1000; renderAt(t);
+    if(t<DUR) raf=requestAnimationFrame(loop); })(t0);
+};
+renderAt(0);
+if(!location.search.includes('render')) window.addEventListener('load',()=>setTimeout(window.playAd,250));
+</script>
+</body>
+</html>

@@ -117,6 +117,14 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
      background:var(--navy);color:#fff;border-radius:8px;
      font-weight:700;letter-spacing:.01em;flex:0 0 auto}
 .cta .u{color:var(--gold)}
+/* both platforms, and what each one is for */
+.plat{display:flex;gap:8px}
+.plat .p{flex:1;display:flex;align-items:center;gap:7px;background:#fff;
+  border:1px solid var(--line);border-radius:8px}
+.plat .p svg{stroke:var(--gold-dk);fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.plat .p b{display:block;font-weight:700;color:var(--ink);line-height:1.25}
+.plat .p span{display:block;font-weight:400;color:var(--muted);line-height:1.25}
 .qual{text-align:center;color:var(--muted);letter-spacing:.03em;line-height:1.45}
 .qual b{color:#4a5364;font-weight:600}
 
@@ -137,25 +145,31 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 #feed .dead{padding:12px 14px;gap:12px}
 #feed .dead .ic{width:26px;height:26px} #feed .dead .ic svg{width:15px;height:15px}
 #feed .dead .tx b{font-size:15px} #feed .dead .tx span{font-size:10.5px;margin-top:2px}
+#feed .plat{margin-bottom:10px} #feed .plat .p{padding:9px 10px}
+#feed .plat .p svg{width:15px;height:15px}
+#feed .plat .p b{font-size:10.5px} #feed .plat .p span{font-size:9px}
 #feed .cta{height:46px;font-size:16px;margin:11px 0 9px} #feed .qual{font-size:10px}
 
 #story .brand{margin-bottom:11px} #story .brand .wm{font-size:19px}
-#story h1{font-size:26px;margin-bottom:5px}
-#story .sub{font-size:13px;margin-bottom:7px}
-#story .chain{padding:11px 13px 9px;margin-bottom:7px}
+#story h1{font-size:26px;margin-bottom:3px}
+#story .sub{font-size:12.5px;margin-bottom:6px}
+#story .chain{padding:10px 12px 8px;margin-bottom:6px}
 #story .chain-hd{margin-bottom:9px} #story .chain-hd .l{font-size:9px} #story .chain-hd .r{font-size:9px}
 #story .row{margin-bottom:6px} #story .row:last-child{margin-bottom:0}
-#story .step{min-height:35px} #story .step .n{font-size:7.5px} #story .step .t{font-size:9.5px}
+#story .step{min-height:32px} #story .step .n{font-size:7.5px} #story .step .t{font-size:9.5px}
 #story .arw.alt{font-size:8px} #story .arw{font-size:14px}
 #story .pane{padding:9px 11px 10px} #story .pane .ph{font-size:8.5px;margin-bottom:6px}
 #story .lr{font-size:10px;padding:3px 0} #story .pane.bad .lr .v{font-size:12px}
-#story .ticks{margin-bottom:6px} #story .tick{padding:8px 8px}
+#story .ticks{margin-bottom:6px} #story .tick{padding:7px 8px}
 #story .tick .ic{width:14px;height:14px} #story .tick .ic svg{width:8.5px;height:8.5px}
 #story .tick .tx{font-size:9.5px} #story .tick .tx span{font-size:8.5px}
-#story .dead{padding:8px 12px;gap:10px}
+#story .dead{padding:7px 11px;gap:9px}
 #story .dead .ic{width:24px;height:24px} #story .dead .ic svg{width:14px;height:14px}
 #story .dead .tx b{font-size:14px} #story .dead .tx span{font-size:10px;margin-top:2px}
-#story .cta{height:42px;font-size:15px;margin:7px 0 5px} #story .qual{font-size:9.5px}
+#story .plat{margin-bottom:7px} #story .plat .p{padding:6px 9px}
+#story .plat .p svg{width:14px;height:14px}
+#story .plat .p b{font-size:10px} #story .plat .p span{font-size:8.5px}
+#story .cta{height:40px;font-size:14.5px;margin:6px 0 4px} #story .qual{font-size:9px}
 
 #square .brand{margin-bottom:9px} #square .brand .wm{font-size:17px}
 #square h1{font-size:23px;margin-bottom:8px}
@@ -173,6 +187,9 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 #square .dead{padding:10px 12px;gap:10px}
 #square .dead .ic{width:23px;height:23px} #square .dead .ic svg{width:13px;height:13px}
 #square .dead .tx b{font-size:13px} #square .dead .tx span{font-size:9.5px;margin-top:2px}
+#square .plat{margin-bottom:7px} #square .plat .p{padding:8px 9px}
+#square .plat .p svg{width:13px;height:13px}
+#square .plat .p b{font-size:9.5px} #square .plat .p span{font-size:8px}
 #square .cta{height:40px;font-size:14px;margin:9px 0 7px} #square .qual{font-size:9px}
 </style>
 </head>
@@ -214,6 +231,12 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
     <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 1.9"/></svg></div>
     <div class="tx"><b>Find your dead stock and ageing stock</b>
       <span>What has not moved, which unit is holding it, and for how many days.</span></div>
+  </div>
+  <div class="plat">
+    <div class="p"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 9h18M8 21h8"/></svg>
+      <div><b>Windows</b><span>The full register</span></div></div>
+    <div class="p"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2"/><path d="M11 18.5h2"/></svg>
+      <div><b>Android app</b><span>See your books anywhere</span></div></div>
   </div>
   <div class="cta">Free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
   <div class="qual">For <b>weavers and traders</b> &nbsp;·&nbsp; Bhiwandi &nbsp;·&nbsp; Ichalkaranji &nbsp;·&nbsp; Erode</div>
@@ -260,6 +283,12 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
     <div class="tx"><b>Find your dead stock and ageing stock</b>
       <span>What has not moved, which unit is holding it, and for how many days.</span></div>
   </div>
+  <div class="plat">
+    <div class="p"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 9h18M8 21h8"/></svg>
+      <div><b>Windows</b><span>The full register</span></div></div>
+    <div class="p"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2"/><path d="M11 18.5h2"/></svg>
+      <div><b>Android app</b><span>See your books anywhere</span></div></div>
+  </div>
   <div class="cta">Free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
     <div class="qual">For <b>weavers and traders</b> &nbsp;·&nbsp; Bhiwandi · Ichalkaranji · Erode</div>
   </div>
@@ -302,6 +331,12 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
     <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 1.9"/></svg></div>
     <div class="tx"><b>Find your dead stock and ageing stock</b>
       <span>What has not moved, which unit is holding it, and for how many days.</span></div>
+  </div>
+  <div class="plat">
+    <div class="p"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 9h18M8 21h8"/></svg>
+      <div><b>Windows</b><span>The full register</span></div></div>
+    <div class="p"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2"/><path d="M11 18.5h2"/></svg>
+      <div><b>Android app</b><span>See your books anywhere</span></div></div>
   </div>
   <div class="cta">Free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
   <div class="qual">For <b>weavers and traders</b> &nbsp;·&nbsp; Bhiwandi · Ichalkaranji · Erode</div>
