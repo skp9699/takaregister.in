@@ -63,8 +63,8 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 .warnflag{display:inline-block;background:rgba(184,72,61,.13);color:#a8402f;
   border:1.5px solid rgba(184,72,61,.5);font-weight:800;letter-spacing:.08em;border-radius:20px}
 
-.ticks{display:flex;gap:7px}
-.tick{flex:1;display:flex;align-items:flex-start;gap:6px;
+.ticks{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.tick{display:flex;align-items:flex-start;gap:6px;
       background:#fff;border:1px solid var(--line);border-radius:8px}
 .tick .ic{flex:0 0 auto;border-radius:50%;background:var(--ind);
           display:flex;align-items:center;justify-content:center;margin-top:1px}
@@ -144,7 +144,7 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 <div class="card" id="feed">
   <div class="brand"><span class="wm">Vyora</span><span class="by">by TakaRegister · Tally companion</span></div>
   <h1>Your Tally books, on your phone —<br>for <span class="mark">less than half the price</span>.</h1>
-  <div class="sub">Party outstanding, item stock, ledgers and registers. Wherever you are, without waiting for the office to send a screenshot.</div>
+  <div class="sub">Outstanding, item stock and ledgers — and chase your payments without waiting for the office to send a screenshot.</div>
 
   <div class="price">
     <div class="half ours"><div class="lbl">Vyora</div><div class="amt">₹999</div><div class="per">a year, all inclusive</div>
@@ -155,17 +155,15 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
   </div>
 
   <div class="ticks">
-    <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
-      <div class="tx">Outstanding<span>Party-wise, always current</span></div></div>
-    <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
-      <div class="tx">Item stock<span>Group-wise, share as PDF</span></div></div>
-    <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
-      <div class="tx">Avg pay cycle<span>Days each party really takes</span></div></div>
-  </div>
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div><div class="tx">Outstanding<span>Party-wise, always current</span></div></div>
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div><div class="tx">Payment reminders<span>Straight to WhatsApp or SMS</span></div></div>
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div><div class="tx">Invoices &amp; e-way bills<span>Share as PDF from the app</span></div></div>
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div><div class="tx">Avg pay cycle<span>Days each party really takes</span></div></div>
+    </div>
 
   <div class="spacer"></div>
   <div class="trust"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></div><div class="tx"><b>Your data never leaves your own account</b><span>Most Tally apps keep your books on their cloud. Vyora syncs only to <b style="display:inline;font-family:inherit;font-size:inherit">your own Google Drive</b> — never to our servers.</span></div></div>
-  <div class="cta">Free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
+  <div class="cta">7-day free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
   <div class="qual">Works with <b>Tally Prime &amp; ERP 9</b> &nbsp;·&nbsp; Windows sync agent + Android app</div>
 </div>
 
@@ -176,7 +174,7 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
   <div class="safe">
     <div class="brand"><span class="wm">Vyora</span><span class="by">by TakaRegister · Tally companion</span></div>
     <h1>Your Tally books, on your phone —<br>for <span class="mark">less than half the price</span>.</h1>
-    <div class="sub">Outstanding, item stock and ledgers, wherever you are.</div>
+    <div class="sub">See your books, and chase your payments, from anywhere.</div>
 
     <div class="price">
       <div class="half ours"><div class="lbl">Vyora</div><div class="amt">₹999</div><div class="per">a year, all inclusive</div>
@@ -187,18 +185,16 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
     </div>
 
     <div class="ticks">
-      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
-        <div class="tx">Outstanding<span>Party-wise</span></div></div>
-      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
-        <div class="tx">Item stock<span>Share as PDF</span></div></div>
-      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
-        <div class="tx">Avg pay cycle<span>Real days to pay</span></div></div>
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div><div class="tx">Outstanding<span>Party-wise, always current</span></div></div>
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div><div class="tx">Payment reminders<span>Straight to WhatsApp or SMS</span></div></div>
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div><div class="tx">Invoices &amp; e-way bills<span>Share as PDF from the app</span></div></div>
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div><div class="tx">Avg pay cycle<span>Days each party really takes</span></div></div>
     </div>
 
     <div class="trust"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></div><div class="tx"><b>Your data never leaves your own account</b><span>Others keep your books on their cloud. Vyora syncs only to your own Google Drive.</span></div></div>
 
     <div class="spacer"></div>
-    <div class="cta">Free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
+    <div class="cta">7-day free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
     <div class="qual">Works with <b>Tally Prime &amp; ERP 9</b> · Windows agent + Android app</div>
   </div>
 </div>
@@ -208,7 +204,7 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
 <div class="card" id="square">
   <div class="brand"><span class="wm">Vyora</span><span class="by">by TakaRegister · Tally companion</span></div>
   <h1>Your Tally books, on your phone —<br>for <span class="mark">less than half the price</span>.</h1>
-  <div class="sub">Outstanding, item stock, ledgers and registers — wherever you are.</div>
+  <div class="sub">See your books, and chase your payments, from anywhere.</div>
 
   <div class="price">
     <div class="half ours"><div class="lbl">Vyora</div><div class="amt">₹999</div><div class="per">a year, all inclusive</div>
@@ -219,17 +215,15 @@ h1{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);
   </div>
 
   <div class="ticks">
-    <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
-      <div class="tx">Outstanding<span>Party-wise</span></div></div>
-    <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
-      <div class="tx">Item stock<span>Share as PDF</span></div></div>
-    <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
-      <div class="tx">Avg pay cycle<span>Real days to pay</span></div></div>
-  </div>
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div><div class="tx">Outstanding<span>Party-wise, always current</span></div></div>
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div><div class="tx">Payment reminders<span>Straight to WhatsApp or SMS</span></div></div>
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div><div class="tx">Invoices &amp; e-way bills<span>Share as PDF from the app</span></div></div>
+      <div class="tick"><div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div><div class="tx">Avg pay cycle<span>Days each party really takes</span></div></div>
+    </div>
 
   <div class="spacer"></div>
   <div class="trust"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg></div><div class="tx"><b>Your data never leaves your own account</b><span>Others keep your books on their cloud. Vyora syncs only to your own Google Drive.</span></div></div>
-  <div class="cta">Free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
+  <div class="cta">7-day free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
   <div class="qual">Works with <b>Tally Prime &amp; ERP 9</b> · Windows agent + Android app</div>
 </div>
 
