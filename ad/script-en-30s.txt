@@ -10,7 +10,7 @@
 # across, not eight.
 
 0.4 | Still keeping your yarn and fabric stock in handwritten books, and unsorted Excel files?
-0.5 | Can you say what is present at yarn dyeing right now? Or at fabric dyeing?
+0.5 | Can you say what is present at your job locations, and at your own units, right now?
 0.5 | From yarn to finished fabrics, Taka Register covers every stage.
 0.4 | Every kilo and every metre stays on the books, under whichever unit is holding it.
 0.4 | What is at the dyer, how much, and how many days it has been sitting there.
