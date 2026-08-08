@@ -28,7 +28,7 @@ ap.add_argument("--swell", default="11.6,26.0", help="seconds where the bed lift
 A = ap.parse_args()
 
 VO      = f"{BUILD}/vo-{A.lang}-30s-dry.mp3"
-V_SUBS  = f"{BUILD}/reel-subs.mp4"
+V_SUBS  = f"{BUILD}/reel-subs.mp4" if A.lang == "en" else f"{BUILD}/reel-subs-{A.lang}.mp4"
 V_PLAIN = V_SUBS   # both cuts are subtitled
 D = A.duration
 

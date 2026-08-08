@@ -14,4 +14,5 @@
 0.5 | From yarn to finished fabrics, Taka Register covers every stage.
 0.4 | Every kilo and every metre stays on the books, under whichever unit is holding it.
 0.4 | What is at the dyer, how much, and how many days it has been sitting there.
+0.4 | Tell us what you need. We try to put it in the next update.
 0.5 | Taka Register. takaregister dot in.

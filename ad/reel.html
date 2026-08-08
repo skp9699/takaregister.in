@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <title>Taka Register — Reel</title>
 <link rel="stylesheet" href="build/fonts.css">
+<link rel="stylesheet" href="build/fonts-hi.css">
 <style>
 :root{
   --navy:#0f1f38; --teal:#1a7a6e; --gold:#c9a84c; --gold-dk:#a8862f;
@@ -12,7 +13,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{width:540px;height:960px;overflow:hidden;background:#000}
-body{font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;-webkit-font-smoothing:antialiased}
 
 #stage{position:relative;width:540px;height:960px;overflow:hidden;background:var(--paper)}
 .warp{position:absolute;inset:-140px 0;
@@ -22,7 +23,7 @@ body{font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
 .botfade{position:absolute;bottom:0;left:0;right:0;height:400px;
   background:linear-gradient(0deg,rgba(15,31,56,.14),rgba(15,31,56,.04) 55%,transparent)}
 .botmark{position:absolute;left:0;right:0;bottom:96px;text-align:center;
-  font-family:'Playfair Display',serif;font-size:38px;font-weight:900;
+  font-family:'Playfair Display','Noto Serif Devanagari',serif;font-size:38px;font-weight:900;
   color:rgba(15,31,56,.06);letter-spacing:.02em;line-height:1}
 
 /* Meta covers the top 14% and bottom 35% of a 9:16 frame. Everything that
@@ -31,10 +32,19 @@ body{font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
 .scene{position:absolute;inset:0;opacity:0;will-change:opacity;transform:translateY(28px)}
 
 .kicker{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal)}
-.serif{font-family:'Playfair Display',serif;font-weight:900;color:var(--ink);line-height:1.12;letter-spacing:-.01em}
+.serif{font-family:'Playfair Display','Noto Serif Devanagari',serif;font-weight:900;color:var(--ink);line-height:1.12;letter-spacing:-.01em}
 .body{font-weight:400;color:#3d4757;line-height:1.5}
 .ctr{position:absolute;left:30px;right:30px}
 .mark{background:linear-gradient(transparent 56%, rgba(201,168,76,.5) 56%, rgba(201,168,76,.5) 93%, transparent 93%)}
+
+:root[lang="hi"] .kicker,
+:root[lang="hi"] .bub .w,
+:root[lang="hi"] .chd .l,
+:root[lang="hi"] .chd .r,
+:root[lang="hi"] .step .n,
+:root[lang="hi"] .arw.alt,
+:root[lang="hi"] .plat .p b{letter-spacing:.01em}
+:root[lang="hi"] .serif{letter-spacing:0}
 
 /* ── S1 books + excel ── */
 .doc{position:absolute;border-radius:8px;box-shadow:0 10px 26px rgba(15,31,56,.14);overflow:hidden}
@@ -60,7 +70,7 @@ body{font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
   background:#fff;border:1px solid var(--line);border-radius:9px;padding:11px 14px;
   box-shadow:0 2px 8px rgba(15,31,56,.05)}
 .loc .n{font-size:12.5px;font-weight:600;color:var(--ink);letter-spacing:.02em}
-.loc .v{font-family:'Playfair Display',serif;font-size:19px;font-weight:900;color:var(--red)}
+.loc .v{font-family:'Playfair Display','Noto Serif Devanagari',serif;font-size:19px;font-weight:900;color:var(--red)}
 
 /* ── S4 chain ── */
 .chain{position:absolute;left:30px;right:30px;background:#fff;border:1px solid var(--line);
@@ -85,10 +95,28 @@ body{font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
 .age .qty{font-size:11px;font-weight:700;color:#4a5364;font-variant-numeric:tabular-nums}
 .bar{height:7px;border-radius:4px;background:#efece4;overflow:hidden;position:absolute;left:12px;right:76px;bottom:13px}
 .bar .f{height:100%;border-radius:4px}
-.days{position:absolute;right:12px;bottom:7px;font-family:'Playfair Display',serif;
+.days{position:absolute;right:12px;bottom:7px;font-family:'Playfair Display','Noto Serif Devanagari',serif;
   font-size:15px;font-weight:900;font-variant-numeric:tabular-nums}
 
-/* ── S6 cta ── */
+/* ── S6 feedback: a request becomes a feature ── */
+.bub{position:absolute;left:30px;right:30px;background:#fff;border:1px solid var(--line);
+  border-radius:12px;border-bottom-left-radius:3px;padding:12px 14px;
+  box-shadow:0 3px 12px rgba(15,31,56,.07)}
+.bub .q{font-size:13.5px;font-weight:500;color:var(--ink);line-height:1.4}
+.bub .w{display:block;font-size:9px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.arrowdn{position:absolute;left:0;right:0;text-align:center;color:var(--gold-dk);
+  font-size:20px;font-weight:700;line-height:1}
+.done{position:absolute;left:30px;right:30px;display:flex;align-items:center;gap:10px;
+  background:rgba(26,122,110,.10);border:1.5px solid rgba(26,122,110,.5);
+  border-radius:12px;border-bottom-right-radius:3px;padding:12px 14px}
+.done .ic{flex:0 0 auto;width:22px;height:22px;border-radius:50%;background:var(--teal);
+  display:flex;align-items:center;justify-content:center}
+.done .ic svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2.8;
+  stroke-linecap:round;stroke-linejoin:round}
+.done .t{font-size:13.5px;font-weight:700;color:var(--ink)}
+
+/* ── S7 cta ── */
 .cta{position:absolute;left:30px;right:30px;display:flex;align-items:center;justify-content:center;
   background:var(--navy);color:#fff;border-radius:8px;height:46px;font-size:16px;font-weight:700}
 .cta .u{color:var(--gold)}
@@ -145,20 +173,19 @@ body{font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
     <div class="scene" id="s2">
       <div class="ctr kicker" id="s2k" style="top:14px">The question nobody can answer</div>
       <div class="ctr serif" id="s2t" style="top:36px;font-size:27px">What is present at your<br>job locations and own units?</div>
-      <div class="loc" id="l1" style="top:150px"><span class="n">Twister</span><span class="v">? kg</span></div>
-      <div class="loc" id="l2" style="top:206px"><span class="n">Yarn dyeing</span><span class="v">? kg</span></div>
-      <div class="loc" id="l3" style="top:262px"><span class="n">Fabric dyeing</span><span class="v">? m</span></div>
-      <div class="loc" id="l4" style="top:318px"><span class="n">Your own godown</span><span class="v">? m</span></div>
+      <div class="loc" id="l1" style="top:150px"><span class="n" id="lo1">Twister</span><span class="v">? kg</span></div>
+      <div class="loc" id="l2" style="top:206px"><span class="n" id="lo2">Yarn dyeing</span><span class="v">? kg</span></div>
+      <div class="loc" id="l3" style="top:262px"><span class="n" id="lo3">Fabric dyeing</span><span class="v">? m</span></div>
+      <div class="loc" id="l4" style="top:318px"><span class="n" id="lo4">Your own godown</span><span class="v">? m</span></div>
     </div>
 
     <!-- S3 · the promise -->
     <div class="scene" id="s3">
-      <div class="ctr" id="s3b" style="top:96px;text-align:center">
-        <span style="font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:var(--ink)">Taka</span><span style="font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:var(--gold-dk)"> Register</span>
-        <div style="font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:3px">Powerloom &amp; fabric ERP</div>
+      <div class="ctr" id="s3b" style="top:96px;text-align:center"><span id="s3w1" style="font-family:'Playfair Display','Noto Serif Devanagari',serif;font-size:30px;font-weight:900;color:var(--ink)">Taka</span><span style="font-family:'Playfair Display','Noto Serif Devanagari',serif;font-size:30px;font-weight:900;color:var(--gold-dk)" id="s3w2"> Register</span>
+        <div id="s3sub" style="font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:3px">Powerloom &amp; fabric ERP</div>
       </div>
       <div class="ctr serif" id="s3t" style="top:188px;font-size:29px;text-align:center">
-        <span class="mark" id="s3m">From yarn to finished fabrics</span><br>— every stage, on your books.</div>
+        <span class="mark" id="s3m">From yarn to finished fabrics</span><br><span id="s3rest">— every stage, on your books.</span></div>
     </div>
 
     <!-- S4 · every stage -->
@@ -166,18 +193,18 @@ body{font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
       <div class="ctr kicker" id="s4k" style="top:16px">Every kilo · every metre</div>
       <div class="ctr serif" id="s4t" style="top:38px;font-size:23px">On the books, under whichever<br>unit is holding it.</div>
       <div class="chain" id="s4c" style="top:132px">
-        <div class="chd"><span class="l">Every stage covered</span><span class="r">kg &amp; metres</span></div>
+        <div class="chd"><span class="l" id="chl">Every stage covered</span><span class="r" id="chr">kg &amp; metres</span></div>
         <div class="row">
-          <div class="step" id="p1"><span class="n">01</span><span class="t">Yarn<br>Purchase</span></div><span class="arw">›</span>
-          <div class="step" id="p2"><span class="n">02</span><span class="t">Twisting<br>&amp; Dyeing</span></div><span class="arw">›</span>
-          <div class="step" id="p3"><span class="n">03</span><span class="t">Warping<br>&amp; Sizing</span></div><span class="arw">›</span>
-          <div class="step" id="p4"><span class="n">04</span><span class="t">Weaving<br>Looms</span></div>
+          <div class="step" id="p1"><span class="n">01</span><span class="t" id="pt1">Yarn<br>Purchase</span></div><span class="arw">›</span>
+          <div class="step" id="p2"><span class="n">02</span><span class="t" id="pt2">Twisting<br>&amp; Dyeing</span></div><span class="arw">›</span>
+          <div class="step" id="p3"><span class="n">03</span><span class="t" id="pt3">Warping<br>&amp; Sizing</span></div><span class="arw">›</span>
+          <div class="step" id="p4"><span class="n">04</span><span class="t" id="pt4">Weaving<br>Looms</span></div>
         </div>
         <div class="row">
-          <span class="arw alt">or</span>
-          <div class="step" id="p5"><span class="n">05</span><span class="t">Fabric<br>Purchase</span></div><span class="arw">›</span>
-          <div class="step" id="p6"><span class="n">06</span><span class="t">Fabric<br>Dyeing</span></div><span class="arw">›</span>
-          <div class="step" id="p7"><span class="n">07</span><span class="t">Packing<br>&amp; Rolls</span></div>
+          <span class="arw alt" id="orx">or</span>
+          <div class="step" id="p5"><span class="n">05</span><span class="t" id="pt5">Fabric<br>Purchase</span></div><span class="arw">›</span>
+          <div class="step" id="p6"><span class="n">06</span><span class="t" id="pt6">Fabric<br>Dyeing</span></div><span class="arw">›</span>
+          <div class="step" id="p7"><span class="n">07</span><span class="t" id="pt7">Packing<br>&amp; Rolls</span></div>
         </div>
       </div>
     </div>
@@ -187,29 +214,43 @@ body{font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
       <div class="ctr kicker" id="s5k" style="top:16px" >What has stopped moving</div>
       <div class="ctr serif" id="s5t" style="top:38px;font-size:25px">Dead stock and<br>ageing stock, by the day.</div>
       <div class="age" id="a1" style="top:148px">
-        <div class="top"><span class="who">Yarn at dyeing unit</span><span class="qty">860 kg</span></div>
+        <div class="top"><span class="who" id="aw1">Yarn at dyeing unit</span><span class="qty">860 kg</span></div>
         <div class="bar"><div class="f" id="f1"></div></div><div class="days" id="d1">0 d</div></div>
       <div class="age" id="a2" style="top:222px">
-        <div class="top"><span class="who">Grey at processor</span><span class="qty">4,120 m</span></div>
+        <div class="top"><span class="who" id="aw2">Grey at processor</span><span class="qty">4,120 m</span></div>
         <div class="bar"><div class="f" id="f2"></div></div><div class="days" id="d2">0 d</div></div>
       <div class="age" id="a3" style="top:296px">
-        <div class="top"><span class="who">Yarn at twister</span><span class="qty">210 kg</span></div>
+        <div class="top"><span class="who" id="aw3">Yarn at twister</span><span class="qty">210 kg</span></div>
         <div class="bar"><div class="f" id="f3"></div></div><div class="days" id="d3">0 d</div></div>
     </div>
 
-    <!-- S6 · sign-off -->
+    <!-- S6 · what you ask for gets built -->
     <div class="scene" id="s6">
-      <div class="ctr" id="s6b" style="top:118px;text-align:center">
-        <span style="font-family:'Playfair Display',serif;font-size:34px;font-weight:900;color:var(--ink)">Taka</span><span style="font-family:'Playfair Display',serif;font-size:34px;font-weight:900;color:var(--gold-dk)"> Register</span></div>
-      <div class="ctr body" id="s6s" style="top:172px;text-align:center;font-size:13px">From yarn to finished fabrics — every stage, on your books.</div>
-      <div class="cta" id="s6c" style="top:222px">Free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
-      <div class="plat" id="s6p" style="top:284px">
-        <div class="p"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 9h18M8 21h8"/></svg>
-          <div><b>Windows</b><span>The full register</span></div></div>
-        <div class="p"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2"/><path d="M11 18.5h2"/></svg>
-          <div><b>Android app</b><span>See your books anywhere</span></div></div>
+      <div class="ctr kicker" id="s6k" style="top:16px">What you ask for</div>
+      <div class="ctr serif" id="s6t" style="top:38px;font-size:25px">Tell us what you need.<br>It goes into the next update.</div>
+      <div class="bub" id="s6a" style="top:152px">
+        <span class="w" id="s6aw">From a weaver in Bhiwandi</span>
+        <span class="q" id="s6aq">“Can you show how many days the grey has been at the dyer?”</span>
       </div>
-      <div class="ctr body" id="s6q" style="top:344px;text-align:center;font-size:11px;color:var(--muted)">
+      <div class="arrowdn" id="s6ar" style="top:246px">↓</div>
+      <div class="done" id="s6d" style="top:280px">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
+        <div class="t" id="s6dt">Shipped in the next update</div>
+      </div>
+    </div>
+
+    <!-- S7 · sign-off -->
+    <div class="scene" id="s7">
+      <div class="ctr" id="s7b" style="top:118px;text-align:center"><span id="s7w1" style="font-family:'Playfair Display','Noto Serif Devanagari',serif;font-size:34px;font-weight:900;color:var(--ink)">Taka</span><span style="font-family:'Playfair Display','Noto Serif Devanagari',serif;font-size:34px;font-weight:900;color:var(--gold-dk)" id="s7w2"> Register</span></div>
+      <div class="ctr body" id="s7s" style="top:172px;text-align:center;font-size:13px">From yarn to finished fabrics — every stage, on your books.</div>
+      <div class="cta" id="s7c" style="top:222px">Free trial &nbsp;·&nbsp; <span class="u">takaregister.in</span></div>
+      <div class="plat" id="s7p" style="top:284px">
+        <div class="p"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 9h18M8 21h8"/></svg>
+          <div><b id="pw1">Windows</b><span id="pw2">The full register</span></div></div>
+        <div class="p"><svg viewBox="0 0 24 24"><rect x="6.5" y="2.5" width="11" height="19" rx="2"/><path d="M11 18.5h2"/></svg>
+          <div><b id="pa1">Android app</b><span id="pa2">See your books anywhere</span></div></div>
+      </div>
+      <div class="ctr body" id="s7q" style="top:344px;text-align:center;font-size:11px;color:var(--muted)">
         For <b style="color:#4a5364">weavers and traders</b> &nbsp;·&nbsp; Bhiwandi · Ichalkaranji · Erode</div>
     </div>
 
@@ -224,7 +265,6 @@ body{font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
    offline renderer and live playback agree. Scene bounds are cut against the
    measured voiceover, not guessed.
    ========================================================================= */
-const DUR = 29.5;
 const SUBS_ON = !location.search.includes('nosubs');
 
 const cl=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -236,15 +276,122 @@ const $=id=>document.getElementById(id);
 const set=(el,o)=>{for(const k in o) el.style[k]=o[k];};
 function rise(el,p,dy=20){ set(el,{opacity:eOut(p), transform:`translateY(${(1-eOut(p))*dy}px)`}); }
 
+
+/* ---- both languages from one file ---------------------------------------
+   The Devanagari faces carry a unicode-range, so the font stack resolves per
+   character and nothing needs switching beyond the strings and the timeline. */
+const L = (new URLSearchParams(location.search).get('lang') === 'hi') ? 'hi' : 'en';
+const T = {
+ en:{
+  dur:33.1,
+  sc:[['s1',0.00,5.79],['s2',5.79,5.34],['s3',11.13,4.49],['s4',15.62,5.27],
+      ['s5',20.89,4.32],['s6',25.21,3.66],['s7',28.87,4.23]],
+  cues:[[0.40,2.95,"Still keeping your yarn and fabric stock"],
+        [2.95,5.69,"in handwritten books, and unsorted Excel files?"],
+        [6.19,8.75,"Can you say what is present at your job locations,"],
+        [8.75,10.93,"and at your own units, right now?"],
+        [11.43,13.45,"From yarn to finished fabrics,"],
+        [13.45,15.53,"Taka Register covers every stage."],
+        [15.92,18.50,"Every kilo and every metre stays on the books,"],
+        [18.50,20.78,"under whichever unit is holding it."],
+        [21.19,23.25,"What is at the dyer, how much,"],
+        [23.25,25.12,"and how many days it has been sitting there."],
+        [25.51,28.67,"Tell us what you need — it goes into the next update."]],
+  s1a:"Still on handwritten books?", s1b:"Still on handwritten books<br>and unsorted Excel files?",
+  s2k:"The question nobody can answer",
+  s2t:"What is present at your<br>job locations and own units?",
+  lo1:"Twister", lo2:"Yarn dyeing", lo3:"Fabric dyeing", lo4:"Your own godown",
+  s3w1:"Taka", s3w2:" Register", s3sub:"Powerloom &amp; fabric ERP",
+  s3m:"From yarn to finished fabrics", s3rest:"— every stage, on your books.",
+  s4k:"Every kilo · every metre",
+  s4t:"On the books, under whichever<br>unit is holding it.",
+  chl:"Every stage covered", chr:"kg &amp; metres", orx:"or",
+  pt:["Yarn<br>Purchase","Twisting<br>&amp; Dyeing","Warping<br>&amp; Sizing","Weaving<br>Looms",
+      "Fabric<br>Purchase","Fabric<br>Dyeing","Packing<br>&amp; Rolls"],
+  s5k:"What has stopped moving",
+  s5t:"Dead stock and<br>ageing stock, by the day.",
+  aw:["Yarn at dyeing unit","Grey at processor","Yarn at twister"], dsuf:" d",
+  s6k:"What you ask for",
+  s6t:"Tell us what you need.<br>It goes into the next update.",
+  s6aw:"From a weaver in Bhiwandi",
+  s6aq:"“Can you show how many days the grey has been at the dyer?”",
+  s6dt:"Shipped in the next update",
+  s7w1:"Taka", s7w2:" Register",
+  s7s:"From yarn to finished fabrics — every stage, on your books.",
+  s7c:"Free trial &nbsp;·&nbsp; <span class=\"u\">takaregister.in</span>",
+  pw1:"Windows", pw2:"The full register",
+  pa1:"Android app", pa2:"See your books anywhere",
+  s7q:"For <b style=\"color:#4a5364\">weavers and traders</b> &nbsp;·&nbsp; Bhiwandi · Ichalkaranji · Erode",
+  bot:"Yarn&nbsp;→&nbsp;Fabric"
+ },
+ hi:{
+  dur:36.6,
+  sc:[['s1',0.00,6.45],['s2',6.45,5.30],['s3',11.75,5.35],['s4',17.10,6.05],
+      ['s5',23.15,4.00],['s6',27.15,5.40],['s7',32.55,4.05]],
+  cues:[[0.40,3.40,"अब भी सूत और कपड़े का स्टॉक हाथ से लिखी बहियों"],
+        [3.40,6.20,"और एक्सेल फाइलों में रखते हैं?"],
+        [6.70,9.20,"बता सकते हैं अभी जॉब लोकेशन और"],
+        [9.20,11.48,"अपनी यूनिटों में क्या पड़ा है?"],
+        [11.98,14.40,"सूत से लेकर तैयार कपड़े तक —"],
+        [14.40,16.93,"टका रजिस्टर हर स्टेज संभालता है।"],
+        [17.33,20.20,"हर किलो और हर मीटर किताब पर रहता है,"],
+        [20.20,22.94,"उसी यूनिट के नाम जिसके पास वो है।"],
+        [23.34,25.20,"डाइंग में क्या है, कितना है,"],
+        [25.20,26.95,"और कितने दिनों से पड़ा है।"],
+        [27.35,29.90,"आपको जो चाहिए बताइए —"],
+        [29.90,32.28,"अगले अपडेट में जोड़ने की कोशिश रहती है।"]],
+  s1a:"अब भी हाथ से लिखी बहियों में?", s1b:"अब भी हाथ से लिखी बहियों<br>और एक्सेल फाइलों में?",
+  s2k:"जिसका जवाब किसी के पास नहीं",
+  s2t:"जॉब लोकेशन और अपनी<br>यूनिटों में अभी क्या पड़ा है?",
+  lo1:"ट्विस्टर", lo2:"यार्न डाइंग", lo3:"फैब्रिक डाइंग", lo4:"अपना गोदाम",
+  s3w1:"टका", s3w2:" रजिस्टर", s3sub:"पावरलूम एवं फैब्रिक ईआरपी",
+  s3m:"सूत से लेकर तैयार कपड़े तक", s3rest:"— हर स्टेज, आपकी किताब पर।",
+  s4k:"हर किलो · हर मीटर",
+  s4t:"किताब पर, उसी यूनिट के नाम<br>जिसके पास वो माल है।",
+  chl:"हर स्टेज शामिल", chr:"किलो एवं मीटर", orx:"या",
+  pt:["सूत<br>खरीद","ट्विस्टिंग<br>एवं डाइंग","वार्पिंग<br>एवं साइजिंग","वीविंग<br>लूम",
+      "फैब्रिक<br>खरीद","फैब्रिक<br>डाइंग","पैकिंग<br>एवं थान"],
+  s5k:"जो माल रुका पड़ा है",
+  s5t:"डेड स्टॉक और एजिंग<br>स्टॉक, दिनों के हिसाब से।",
+  aw:["डाइंग यूनिट में सूत","प्रोसेसर के पास ग्रे","ट्विस्टर के पास सूत"], dsuf:" दिन",
+  s6k:"जो आप कहेंगे",
+  s6t:"आपको जो चाहिए बताइए।<br>अगले अपडेट में जुड़ता है।",
+  s6aw:"भिवंडी के एक वीवर से",
+  s6aq:"“ग्रे कितने दिनों से डाइंग में है, ये भी दिखा सकते हैं?”",
+  s6dt:"अगले अपडेट में जोड़ा गया",
+  s7w1:"टका", s7w2:" रजिस्टर",
+  s7s:"सूत से लेकर तैयार कपड़े तक — हर स्टेज, आपकी किताब पर।",
+  s7c:"फ्री ट्रायल &nbsp;·&nbsp; <span class=\"u\">takaregister.in</span>",
+  pw1:"विंडोज़", pw2:"पूरा रजिस्टर",
+  pa1:"एंड्रॉइड ऐप", pa2:"किताबें कहीं भी देखिए",
+  s7q:"<b style=\"color:#4a5364\">वीवर और ट्रेडर</b> के लिए &nbsp;·&nbsp; भिवंडी · इचलकरंजी · इरोड",
+  bot:"सूत&nbsp;→&nbsp;कपड़ा"
+ }
+};
+const D = T[L];
+const DUR = D.dur;
+
+function applyLang(){
+  document.documentElement.lang = L;
+  const set_=(id,html)=>{const e=$(id); if(e) e.innerHTML=html;};
+  set_('s2k',D.s2k); set_('s2t',D.s2t);
+  for(let i=1;i<=4;i++) set_('lo'+i,D['lo'+i]);
+  set_('s3w1',D.s3w1); set_('s3w2',D.s3w2); set_('s3sub',D.s3sub);
+  set_('s3m',D.s3m); set_('s3rest',D.s3rest);
+  set_('s4k',D.s4k); set_('s4t',D.s4t);
+  set_('chl',D.chl); set_('chr',D.chr); set_('orx',D.orx);
+  D.pt.forEach((t,i)=>set_('pt'+(i+1),t));
+  set_('s5k',D.s5k); set_('s5t',D.s5t);
+  D.aw.forEach((t,i)=>set_('aw'+(i+1),t));
+  set_('s6k',D.s6k); set_('s6t',D.s6t); set_('s6aw',D.s6aw);
+  set_('s6aq',D.s6aq); set_('s6dt',D.s6dt);
+  set_('s7w1',D.s7w1); set_('s7w2',D.s7w2); set_('s7s',D.s7s); set_('s7c',D.s7c);
+  set_('pw1',D.pw1); set_('pw2',D.pw2); set_('pa1',D.pa1); set_('pa2',D.pa2);
+  set_('s7q',D.s7q); set_('botmark',D.bot);
+}
+
 /* voiceover line starts, measured from build_vo.py */
-const SC=[
-  ['s1', 0.00, 5.85],
-  ['s2', 5.85, 5.25],
-  ['s3',11.10, 4.55],
-  ['s4',15.65, 5.30],
-  ['s5',20.95, 4.40],
-  ['s6',25.35, 4.15],
-];
+const SC=D.sc;
 const XF=0.36;
 
 const R={
@@ -256,7 +403,7 @@ const R={
    const b=pr(x,1.35,.8);
    set($('xl'),{opacity:eOut(b),transform:`translate(${(1-eOut(b))*38}px,0) rotate(${5-eOut(b)*1.8}deg)`});
    // headline completes as the voice reaches Excel
-   $('s1t').innerHTML = x>1.5 ? 'Still on handwritten books<br>and unsorted Excel files?' : 'Still on handwritten books?';
+   $('s1t').innerHTML = x>1.5 ? D.s1b : D.s1a;
    const c=pr(x,2.5,.45);
    set($('stmp'),{opacity:eOut(c),
      transform:`scale(${cl(1+(1-eBack(c))*.9,1,3)}) rotate(${-9+(1-eOut(c))*10}deg)`});
@@ -304,33 +451,30 @@ const R={
      const col = frac>.8?'var(--red)':(frac>.4?'var(--amber)':'var(--teal)');
      set($(f),{width:(g*frac*100)+'%',background:col});
      const n=Math.round(days*g);
-     $(d).textContent=n+' d';
+     $(d).textContent=n+D.dsuf;
      set($(d),{color:col});
    });
  },
  s6(x){
+   rise($('s6k'),pr(x,.05,.5),12); rise($('s6t'),pr(x,.15,.7),16);
+   const a=pr(x,.7,.6);
+   set($('s6a'),{opacity:eOut(a),transform:`translateX(${(1-eOut(a))*-22}px)`});
+   set($('s6ar'),{opacity:eOut(pr(x,1.5,.4))});
+   const d=pr(x,1.8,.6);
+   set($('s6d'),{opacity:eOut(d),transform:`translateX(${(1-eOut(d))*22}px)`});
+ },
+ s7(x){
    const p=pr(x,.05,.8);
-   set($('s6b'),{opacity:eOut(p),transform:`scale(${.94+eOut(p)*.06})`});
-   rise($('s6s'),pr(x,.45,.6),14);
-   rise($('s6c'),pr(x,.7,.6),14);
-   rise($('s6p'),pr(x,.95,.6),14);
-   rise($('s6q'),pr(x,1.25,.6),12);
+   set($('s7b'),{opacity:eOut(p),transform:`scale(${.94+eOut(p)*.06})`});
+   rise($('s7s'),pr(x,.45,.6),14);
+   rise($('s7c'),pr(x,.7,.6),14);
+   rise($('s7p'),pr(x,.95,.6),14);
+   rise($('s7q'),pr(x,1.25,.6),12);
  }
 };
 
 /* ---- subtitles: chunked so no plate holds more than a glance ---- */
-const CUES=[
-  [0.40, 2.95, "Still keeping your yarn and fabric stock"],
-  [2.95, 5.69, "in handwritten books, and unsorted Excel files?"],
-  [6.19, 8.75, "Can you say what is present at your job locations,"],
-  [8.75,10.93, "and at your own units, right now?"],
-  [11.43,13.45,"From yarn to finished fabrics,"],
-  [13.45,15.53,"Taka Register covers every stage."],
-  [15.92,18.50,"Every kilo and every metre stays on the books,"],
-  [18.50,20.78,"under whichever unit is holding it."],
-  [21.19,23.25,"What is at the dyer, how much,"],
-  [23.25,25.12,"and how many days it has been sitting there."],
-];
+const CUES=D.cues;
 
 function renderAt(t){
   t=cl(t,0,DUR);
@@ -360,6 +504,7 @@ window.playAd=function(){
   (function loop(now){ const t=(now-t0)/1000; renderAt(t);
     if(t<DUR) raf=requestAnimationFrame(loop); })(t0);
 };
+applyLang();
 renderAt(0);
 if(!location.search.includes('render')) window.addEventListener('load',()=>setTimeout(window.playAd,250));
 </script>

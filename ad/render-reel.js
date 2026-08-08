@@ -15,7 +15,9 @@ const FPS = +arg('fps', 30), SCALE = +arg('scale', 2), CRF = +arg('crf', 19);
 const OUT = path.resolve(arg('out', path.join(__dirname, 'build', 'reel-silent.mp4')));
 const FFMPEG = process.env.FFMPEG_PATH ||
   '/tmp/claude-0/-home-user-takaregister-in/ea668c35-4dd5-5cf7-ab4f-02856e1baa4b/scratchpad/node_modules/ffmpeg-static/ffmpeg';
-const PAGE = 'file://' + path.join(__dirname, 'reel.html') + '?render=1' + (has('nosubs') ? '&nosubs=1' : '');
+const LANG = arg('lang', 'en');
+const PAGE = 'file://' + path.join(__dirname, 'reel.html') + '?render=1&lang=' + LANG +
+  (has('nosubs') ? '&nosubs=1' : '');
 
 (async () => {
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
@@ -29,7 +31,7 @@ const PAGE = 'file://' + path.join(__dirname, 'reel.html') + '?render=1' + (has(
 
   const DUR = await page.evaluate(() => window.AD_DURATION);
   const TOTAL = Math.round(DUR * FPS);
-  console.log(`${DUR}s · ${FPS}fps · ${TOTAL} frames · ${540*SCALE}x${960*SCALE}${has('nosubs')?' · no subtitles':' · subtitled'}`);
+  console.log(`${DUR}s · ${FPS}fps · ${TOTAL} frames · ${540*SCALE}x${960*SCALE}${LANG}${has('nosubs')?' · no subtitles':' · subtitled'}`);
 
   const ff = spawn(FFMPEG, ['-y','-f','image2pipe','-framerate',String(FPS),'-i','-',
     '-c:v','libx264','-preset','slow','-crf',String(CRF),'-pix_fmt','yuv420p',
