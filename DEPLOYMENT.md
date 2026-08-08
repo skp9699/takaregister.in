@@ -10,9 +10,9 @@ App *source* lives in separate private repos; only the built binaries are publis
 | Piece | Repo | Visibility | Role |
 |-------|------|-----------|------|
 | Website (this repo) | `skp9699/takaregister.in` | public | GitHub Pages site at `www.takaregister.in` (`CNAME`). Hosts `index.html`, `version.json`, `faq/`. |
-| Windows app source | *(private)* | private | Builds `TakaRegister.exe`. |
+| Windows app source | *(private)* | private | Builds `TakaRegisterSetup.exe` (Inno Setup wrapper around the PyInstaller `--onedir` folder). |
 | Android app source | `skp9699/takaregister-mobile` | private | Flutter source. Builds `TakaRegister-mobile.apk`. |
-| **Downloads (all platforms)** | `skp9699/takaregister-downloads` | **public** | Release-only host. Each `vX.Y.Z` release carries both `TakaRegister.exe` and `TakaRegister-mobile.apk`. |
+| **Downloads (all platforms)** | `skp9699/takaregister-downloads` | **public** | Release-only host. Each `vX.Y.Z` release carries both `TakaRegisterSetup.exe` and `TakaRegister-mobile.apk`. |
 
 > Replaces the older per-platform host repo `taka-register` (EXE only), which can be deleted
 > once `takaregister-downloads` is publishing.
@@ -22,7 +22,7 @@ App *source* lives in separate private repos; only the built binaries are publis
 `index.html` points both download buttons at the public downloads repo using the
 `releases/latest/download/<asset>` URL, which always resolves to the newest published release:
 
-- Windows: `https://github.com/skp9699/takaregister-downloads/releases/latest/download/TakaRegister.exe`
+- Windows: `https://github.com/skp9699/takaregister-downloads/releases/latest/download/TakaRegisterSetup.exe`
 - Android: `https://github.com/skp9699/takaregister-downloads/releases/latest/download/TakaRegister-mobile.apk`
 
 > The downloads repo **must be public**, otherwise these URLs return 404 for anonymous visitors.
@@ -79,13 +79,20 @@ gh repo delete skp9699/taka-register   # optional; or archive it instead
 ## Publishing a release
 
 One release tag per version carries **both** assets. Asset filenames must stay exactly
-`TakaRegister.exe` and `TakaRegister-mobile.apk` to match the website links.
+`TakaRegisterSetup.exe` and `TakaRegister-mobile.apk` to match the website links.
+
+> The Windows asset is the **installer**, not a bare exe. The desktop build is
+> PyInstaller `--onedir`, so the product is a folder and a lone `TakaRegister.exe`
+> cannot start without the `_internal` folder beside it. `BUILD.bat /installer`
+> produces `TakaRegisterSetup.exe`; upload that. It keeps a fixed name on purpose,
+> so this link never has to change again — only `version` and `whats_new` in
+> `version.json` do.
 
 ### Manual
 
 ```bash
 # Create the release for this version (first asset creates it)...
-gh release create v1.0.11 ./TakaRegister.exe \
+gh release create v1.0.11 ./TakaRegisterSetup.exe \
   --repo skp9699/takaregister-downloads --title v1.0.11 --notes "What's new..."
 
 # ...then attach the other platform's asset to the same release.

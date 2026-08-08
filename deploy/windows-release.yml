@@ -7,7 +7,9 @@
 #
 # NOTE: the build step below is a placeholder — replace it with your actual
 # Windows build (PyInstaller / Electron / .NET / Inno Setup, etc.) so it
-# produces a file named TakaRegister.exe, which the website link expects.
+# produces a file named TakaRegisterSetup.exe, which the website link expects.
+# For this app that is `BUILD.bat /installer` — the build is PyInstaller --onedir,
+# so a bare TakaRegister.exe cannot run without the _internal folder beside it.
 
 name: Release Windows EXE
 
@@ -28,7 +30,7 @@ jobs:
       - name: Build release EXE
         run: |
           echo "TODO: replace with the real build for this app's toolchain."
-          echo "It must produce TakaRegister.exe in the working directory."
+          echo "It must produce TakaRegisterSetup.exe in the working directory."
         shell: bash
 
       - name: Publish to public downloads repo
@@ -41,4 +43,4 @@ jobs:
           # Create the release if it doesn't exist yet, then attach this asset.
           gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1 \
             || gh release create "$TAG" --repo "$REPO" --title "$TAG" --notes "Release $TAG"
-          gh release upload "$TAG" TakaRegister.exe --repo "$REPO" --clobber
+          gh release upload "$TAG" TakaRegisterSetup.exe --repo "$REPO" --clobber

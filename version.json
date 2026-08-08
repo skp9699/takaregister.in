@@ -3,7 +3,7 @@
   "apps": {
     "takaregister-desktop": {
       "version": "1.0.32",
-      "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister.exe",
+      "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegisterSetup.exe",
       "whats_new": [
         "BUG FIXES."
       ]
