@@ -36,7 +36,7 @@
     },
     "vyora-desktop-win7": {
       "version": "2.0.51",
-      "download_url": "https://github.com/skp9699/takaregister-mobile/releases/download/vyora-desktop-win7-latest/Vyora-Win7-Setup.exe",
+      "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/Vyora-Win7-Setup.exe",
       "whats_new": [
         "Vyora Sync now installs as a proper application — one setup file, and nothing loose to copy out by mistake",
         "Installs alongside the ordinary build rather than over it; your settings, sync state and Google sign-in are shared and untouched",
