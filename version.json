@@ -8,6 +8,18 @@
         "BUG FIXES."
       ]
     },
+    "takaregister-desktop-win7": {
+      "version": "1.0.36",
+      "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegisterSetup-Win7.exe",
+      "whats_new": [
+        "Yarn Consumption exports to PDF and Excel, summary or detailed",
+        "Click a yarn in Yarn Consumption to see the ledger behind it",
+        "Open a Weaver Pivot design to see the days behind it",
+        "Expected yarn now counts only open beams, so it matches the closure screen",
+        "Fixed: ticking a row on Weaver Stock, Paavti, Production or a closure could fail on this Windows 7 build",
+        "For Windows 7 SP1, 8 and 8.1. Needs the Universal C Runtime (KB2999226)."
+      ]
+    },
     "takaregister-mobile": {
       "version": "1.0.12",
       "download_url": "https://www.takaregister.in/#taka",
@@ -20,6 +32,15 @@
       "download_url": "https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/Vyora.exe",
       "whats_new": [
         "Each party's saved address and default credit period now sync to the phone, so they show on the ledger in the Vyora app"
+      ]
+    },
+    "vyora-desktop-win7": {
+      "version": "2.0.51",
+      "download_url": "https://github.com/skp9699/takaregister-mobile/releases/download/vyora-desktop-win7-latest/Vyora-Win7-Setup.exe",
+      "whats_new": [
+        "Vyora Sync now installs as a proper application — one setup file, and nothing loose to copy out by mistake",
+        "Installs alongside the ordinary build rather than over it; your settings, sync state and Google sign-in are shared and untouched",
+        "For Windows 7 SP1, 8 and 8.1. Needs the Universal C Runtime (KB2999226)."
       ]
     },
     "vyora-mobile": {
