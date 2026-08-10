@@ -257,7 +257,10 @@
       grid-template-columns: 1.05fr 0.95fr;
     }
 
-    .product-info { padding: 2.6rem 2.5rem; }
+    /* min-width:0 lets this grid item shrink past its content's min-content
+       width — without it the download grid can't fold to one column and
+       spills out of the card on narrow screens. */
+    .product-info { padding: 2.6rem 2.5rem; min-width: 0; }
     .product-side { padding: 2.6rem 2.5rem; }
 
     .product-kicker {
@@ -275,18 +278,32 @@
 
     .product-desc { font-size: 0.96rem; font-weight: 300; margin-bottom: 1.6rem; }
 
-    .dl-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    /* Three downloads per product now, so lay them on a grid — equal widths
+       beat a ragged flex row, and it folds to one column on narrow screens. */
+    .dl-row {
+      display: grid; gap: 12px; max-width: 520px;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    }
 
     .dl-note { font-size: 0.82rem; font-weight: 300; margin-top: 0.95rem; }
+    .dl-note + .dl-note { margin-top: 0.4rem; }
 
     .dl-btn {
       display: inline-flex; align-items: center; gap: 9px;
       font-size: 0.9rem; font-weight: 500;
-      padding: 12px 20px; border-radius: 4px; text-decoration: none;
+      padding: 9px 18px; border-radius: 4px; text-decoration: none;
       transition: transform 0.15s, background 0.2s, border-color 0.2s;
     }
     .dl-btn:hover { transform: translateY(-1px); }
-    .dl-btn svg { width: 17px; height: 17px; }
+    .dl-btn svg { width: 17px; height: 17px; flex-shrink: 0; }
+
+    /* Two Windows builds ship side by side, so each button names the platform
+       on top and carries the detail that decides it underneath. */
+    .dl-label {
+      display: flex; flex-direction: column; align-items: flex-start;
+      line-height: 1.25;
+    }
+    .dl-sub { font-size: 0.72rem; font-weight: 300; line-height: 1.35; opacity: 0.72; }
 
     .feat-list { list-style: none; display: grid; gap: 0.85rem; }
     .feat-list li {
@@ -674,14 +691,19 @@
         <div class="dl-row">
           <a href="https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegisterSetup.exe" class="dl-btn dl-gold" download rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Windows
+            <span class="dl-label">Windows 10 &amp; 11<span class="dl-sub">Recommended</span></span>
+          </a>
+          <a href="https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegisterSetup-Win7.exe" class="dl-btn dl-navy-ghost" download rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span class="dl-label">Windows 7, 8 &amp; 8.1<span class="dl-sub">Legacy build</span></span>
           </a>
           <a href="https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/TakaRegister-mobile.apk" class="dl-btn dl-navy-ghost js-apk" data-apk-name="Taka Register" download rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
-            Android
+            <span class="dl-label">Android<span class="dl-sub">APK download</span></span>
           </a>
         </div>
         <p class="dl-note">Windows: 8 GB RAM recommended for optimal performance.</p>
+        <p class="dl-note">On Windows 7 SP1, 8 or 8.1, pick the Windows 7 build — it also needs Microsoft's Universal C Runtime update (KB2999226).</p>
       </div>
       <div class="product-side">
         <h4>What it handles</h4>
@@ -705,14 +727,19 @@
         <div class="dl-row">
           <a href="https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/Vyora.exe" class="dl-btn dl-white" download rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Windows agent
+            <span class="dl-label">Windows 10 &amp; 11<span class="dl-sub">Sync agent · recommended</span></span>
+          </a>
+          <a href="https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/Vyora-Win7-Setup.exe" class="dl-btn dl-indigo-ghost" download rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span class="dl-label">Windows 7, 8 &amp; 8.1<span class="dl-sub">Sync agent · legacy build</span></span>
           </a>
           <a href="https://github.com/skp9699/takaregister-downloads/releases/download/vLatest/app-release.apk" class="dl-btn dl-indigo-ghost js-apk" data-apk-name="Vyora" download rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
-            Android
+            <span class="dl-label">Android<span class="dl-sub">APK download</span></span>
           </a>
         </div>
         <p class="dl-note">Windows: 4 GB RAM recommended for optimal performance.</p>
+        <p class="dl-note">On Windows 7 SP1, 8 or 8.1, pick the Windows 7 agent — it also needs Microsoft's Universal C Runtime update (KB2999226). It installs alongside the ordinary build and shares your settings and sign-in.</p>
       </div>
       <div class="product-side">
         <h4>Why teams use it</h4>
