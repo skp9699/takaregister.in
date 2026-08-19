@@ -40,8 +40,14 @@ in-house Kokoro build, for reference only — a different generator will differ:
 ```
 hi-89s   88.4s total   line starts 0.4 · 9.1 · 15.6 · 22.6 · 26.2 · 31.6 · 36.9
                                    41.3 · 49.1 · 56.0 · 62.3 · 68.9 · 72.0 · 76.5 · 82.5
-hi-36s   38.3s total   line starts 0.4 · 6.7 · 12.4 · 16.7 · 22.1 · 27.8 · 33.1
+hi-36s   41.0s total   line starts 0.4 · 6.7 · 14.8 · 19.1 · 25.8 · 30.6 · 35.9
 ```
+
+The short cut is 41s rather than 36s because its one concrete question has to
+name both trades. Asking only "kitna kilo yarn pada hai" speaks to weavers and
+says nothing to a fabric trader who buys no yarn at all, so line 2 asks about
+taake as well and line 4 names all three units — kilo, taake, metre. Those four
+seconds buy half the audience.
 
 Scene tables and subtitle cues live in `../reel.html` under `T.hi89` / `T.hi36`
 and get re-cut to whatever the new timings turn out to be.
