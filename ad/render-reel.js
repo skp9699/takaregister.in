@@ -3,7 +3,7 @@
  * Renders reel.html to MP4. Frames are driven by renderAt(t) and piped straight
  * into ffmpeg, so nothing touches disk. Pass --nosubs for the caption-free cut.
  *
- *   node render-reel.js --out build/reel-silent.mp4 [--nosubs]
+ *   node render-reel.js --v hi89 --out build/reel-subs-hi89.mp4 [--nosubs]
  */
 const { chromium } = require('playwright');
 const { spawn } = require('child_process');
@@ -15,8 +15,9 @@ const FPS = +arg('fps', 30), SCALE = +arg('scale', 2), CRF = +arg('crf', 19);
 const OUT = path.resolve(arg('out', path.join(__dirname, 'build', 'reel-silent.mp4')));
 const FFMPEG = process.env.FFMPEG_PATH ||
   '/tmp/claude-0/-home-user-takaregister-in/ea668c35-4dd5-5cf7-ab4f-02856e1baa4b/scratchpad/node_modules/ffmpeg-static/ffmpeg';
-const LANG = arg('lang', 'en');
-const PAGE = 'file://' + path.join(__dirname, 'reel.html') + '?render=1&lang=' + LANG +
+// variant: en | hi36 | hi89 — see the T table in reel.html
+const V = arg('v', arg('lang', 'en') === 'hi' ? 'hi36' : 'en');
+const PAGE = 'file://' + path.join(__dirname, 'reel.html') + '?render=1&v=' + V +
   (has('nosubs') ? '&nosubs=1' : '');
 
 (async () => {
@@ -31,7 +32,7 @@ const PAGE = 'file://' + path.join(__dirname, 'reel.html') + '?render=1&lang=' +
 
   const DUR = await page.evaluate(() => window.AD_DURATION);
   const TOTAL = Math.round(DUR * FPS);
-  console.log(`${DUR}s · ${FPS}fps · ${TOTAL} frames · ${540*SCALE}x${960*SCALE}${LANG}${has('nosubs')?' · no subtitles':' · subtitled'}`);
+  console.log(`${V} · ${DUR}s · ${FPS}fps · ${TOTAL} frames · ${540*SCALE}x${960*SCALE}${has('nosubs')?' · no subtitles':' · subtitled'}`);
 
   const ff = spawn(FFMPEG, ['-y','-f','image2pipe','-framerate',String(FPS),'-i','-',
     '-c:v','libx264','-preset','slow','-crf',String(CRF),'-pix_fmt','yuv420p',

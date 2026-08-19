@@ -43,6 +43,8 @@ body{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;-webkit-font-smooth
 :root[lang="hi"] .chd .r,
 :root[lang="hi"] .step .n,
 :root[lang="hi"] .arw.alt,
+:root[lang="hi"] .slip .hd,
+:root[lang="hi"] .devlbl,
 :root[lang="hi"] .plat .p b{letter-spacing:.01em}
 :root[lang="hi"] .serif{letter-spacing:0}
 
@@ -65,12 +67,47 @@ body{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;-webkit-font-smooth
   color:var(--red);border:2.5px solid var(--red);border-radius:6px;padding:1px 9px;
   font-size:24px;line-height:1.15;background:rgba(184,72,61,.07)}
 
+/* ── SM · everything funnels into one person ──
+   The risk is the arrangement, not the man — so the card is amber (caution),
+   never red (blame). This scene exists because the script names him. */
+.fchip{position:absolute;background:#fff;border:1px solid var(--line);border-radius:7px;
+  padding:8px 9px;font-size:10.5px;font-weight:600;color:#3d4757;line-height:1.25;
+  box-shadow:0 2px 8px rgba(15,31,56,.05);text-align:center;
+  display:flex;align-items:center;justify-content:center;height:46px}
+.fdrop{position:absolute;color:var(--gold-dk);font-size:15px;font-weight:700;line-height:1;text-align:center}
+.one{position:absolute;left:30px;right:30px;display:flex;align-items:center;gap:12px;
+  background:#fff;border:1.5px solid var(--amber);border-radius:11px;padding:12px 14px;
+  box-shadow:0 4px 16px rgba(201,134,31,.16)}
+.one .av{flex:0 0 auto;width:36px;height:36px;border-radius:50%;background:rgba(201,134,31,.14);
+  display:flex;align-items:center;justify-content:center}
+.one .av svg{width:20px;height:20px;stroke:var(--amber);fill:none;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+.one b{display:block;font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.3}
+.one span{display:block;font-size:10.5px;color:var(--muted);line-height:1.35;margin-top:1px}
+
 /* ── S2 locations ── */
 .loc{position:absolute;left:30px;right:30px;display:flex;justify-content:space-between;align-items:center;
   background:#fff;border:1px solid var(--line);border-radius:9px;padding:11px 14px;
   box-shadow:0 2px 8px rgba(15,31,56,.05)}
 .loc .n{font-size:12.5px;font-weight:600;color:var(--ink);letter-spacing:.02em}
 .loc .v{font-family:'Playfair Display','Noto Serif Devanagari',serif;font-size:19px;font-weight:900;color:var(--red)}
+
+/* ── SK · one wrong figure and the books stop matching ── */
+.slip{position:absolute;left:30px;right:30px;background:#fdfcf8;border:1px solid var(--line);
+  border-radius:10px;padding:11px 13px 12px;box-shadow:0 3px 12px rgba(15,31,56,.07)}
+.slip .hd{font-size:8.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:#8a7c5c;margin-bottom:6px}
+.srow{display:flex;justify-content:space-between;align-items:baseline;
+  padding:6px 0;border-bottom:1px dotted #ddd6c6;font-size:12px;color:#4a5364}
+.srow:last-child{border-bottom:0}
+.srow .q{font-weight:700;font-variant-numeric:lining-nums tabular-nums;color:#3d4757}
+.srow.bad .q{color:var(--red)}
+.gapbar{position:absolute;left:30px;right:30px;display:flex;align-items:center;
+  justify-content:space-between;background:rgba(184,72,61,.10);
+  border:1.5px solid rgba(184,72,61,.45);border-radius:10px;padding:11px 14px}
+.gapbar .k{font-size:12.5px;font-weight:600;color:#7d332b}
+.gapbar .v{font-family:'Playfair Display','Noto Serif Devanagari',serif;font-size:21px;
+  font-weight:900;color:var(--red);font-variant-numeric:lining-nums tabular-nums}
 
 /* ── S4 chain ── */
 .chain{position:absolute;left:30px;right:30px;background:#fff;border:1px solid var(--line);
@@ -87,6 +124,16 @@ body{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;-webkit-font-smooth
 .arw{flex:0 0 auto;display:flex;align-items:center;color:var(--gold-dk);font-weight:700;font-size:14px}
 .arw.alt{font-size:8.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
 
+/* ── ST · every total on one screen ── */
+.tot{position:absolute;left:30px;right:30px;background:#fff;border:1px solid var(--line);
+  border-radius:11px;padding:13px 15px;display:flex;align-items:baseline;justify-content:space-between;
+  box-shadow:0 2px 10px rgba(15,31,56,.05)}
+.tot .k{font-size:12.5px;font-weight:600;color:var(--ink)}
+.tot .v{font-family:'Playfair Display','Noto Serif Devanagari',serif;font-size:24px;font-weight:900;
+  color:var(--teal);font-variant-numeric:lining-nums tabular-nums;line-height:1}
+.tot .u{font-size:11px;font-weight:600;color:var(--muted);margin-left:5px;
+  font-family:'DM Sans','Noto Sans Devanagari',sans-serif}
+
 /* ── S5 ageing ── */
 .age{position:absolute;left:30px;right:30px;height:54px;background:#fff;border:1px solid var(--line);
   border-radius:9px;padding:8px 12px 0;overflow:hidden}
@@ -96,7 +143,21 @@ body{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;-webkit-font-smooth
 .bar{height:7px;border-radius:4px;background:#efece4;overflow:hidden;position:absolute;left:12px;right:76px;bottom:13px}
 .bar .f{height:100%;border-radius:4px}
 .days{position:absolute;right:12px;bottom:7px;font-family:'Playfair Display','Noto Serif Devanagari',serif;
-  font-size:15px;font-weight:900;font-variant-numeric:tabular-nums}
+  font-size:15px;font-weight:900;font-variant-numeric:lining-nums tabular-nums}
+
+/* ── SD · the same books on both screens ── */
+.dev{position:absolute;background:#fff;border:1.5px solid var(--navy);
+  box-shadow:0 6px 20px rgba(15,31,56,.13);overflow:hidden}
+.dev .tb{height:16px;background:var(--navy);display:flex;align-items:center;padding:0 7px;gap:3px}
+.dev .tb i{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.45)}
+.dev .ln{display:flex;justify-content:space-between;align-items:center;
+  padding:6px 9px;border-bottom:1px solid #f0ede4;font-size:8.5px;color:#5b6474}
+.dev .ln b{font-weight:700;color:var(--teal);font-variant-numeric:lining-nums tabular-nums}
+.dev.lap{width:252px;height:158px;border-radius:8px}
+.dev.ph{width:110px;height:190px;border-radius:14px}
+.dev.ph .ln{font-size:7.5px;padding:6px 7px}
+.devlbl{position:absolute;font-size:10px;font-weight:700;color:var(--muted);
+  letter-spacing:.06em;text-align:center}
 
 /* ── S6 feedback: a request becomes a feature ── */
 .bub{position:absolute;left:30px;right:30px;background:#fff;border:1px solid var(--line);
@@ -115,6 +176,12 @@ body{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;-webkit-font-smooth
 .done .ic svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2.8;
   stroke-linecap:round;stroke-linejoin:round}
 .done .t{font-size:13.5px;font-weight:700;color:var(--ink)}
+
+/* ── SG · the line the whole script is built on ── */
+.tag{position:absolute;left:30px;right:30px;text-align:center}
+.tag .big{font-family:'Playfair Display','Noto Serif Devanagari',serif;font-weight:900;
+  font-size:40px;line-height:1.18;color:var(--ink);letter-spacing:0}
+.tag .rule{height:4px;border-radius:2px;background:var(--gold);margin:18px auto 0;width:0}
 
 /* ── S7 cta ── */
 .cta{position:absolute;left:30px;right:30px;display:flex;align-items:center;justify-content:center;
@@ -151,7 +218,7 @@ body{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;-webkit-font-smooth
     <div class="scene" id="s1">
       <div class="ctr serif" id="s1t" style="top:8px;font-size:27px">Still on handwritten books?</div>
       <div class="doc ledger" id="lg" style="left:6px;top:118px">
-        <div class="hd">YARN REGISTER</div>
+        <div class="hd" id="lghd">YARN REGISTER</div>
         <div class="scrawl" style="--w:64%"></div><div class="scrawl" style="--w:80%"></div>
         <div class="scrawl" style="--w:52%"></div><div class="scrawl" style="--w:73%"></div>
         <div class="scrawl" style="--w:44%"></div><div class="scrawl" style="--w:68%"></div>
@@ -169,14 +236,44 @@ body{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;-webkit-font-smooth
       <div class="stamp" id="stmp" style="left:150px;top:236px">and Excel?</div>
     </div>
 
+    <!-- SM · the whole business runs on one person's memory -->
+    <div class="scene" id="sm">
+      <div class="ctr kicker" id="smk" style="top:16px">One man's memory</div>
+      <div class="ctr serif" id="smt" style="top:38px;font-size:24px">Not written down anywhere —<br>it is in somebody's head.</div>
+      <div class="fchip" id="fc1" style="left:30px;top:126px;width:228px">What is where</div>
+      <div class="fchip" id="fc2" style="right:30px;top:126px;width:228px">Who owes how much</div>
+      <div class="fchip" id="fc3" style="left:30px;top:180px;width:228px">Which rate was agreed</div>
+      <div class="fchip" id="fc4" style="right:30px;top:180px;width:228px">What went out, when</div>
+      <div class="fdrop" id="smar" style="left:30px;right:30px;top:240px">↓</div>
+      <div class="one" id="smone" style="top:266px">
+        <div class="av"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg></div>
+        <div><b id="smob">All of it with one person</b><span id="smos">Not in any book</span></div>
+      </div>
+    </div>
+
     <!-- S2 · where is it, right now -->
     <div class="scene" id="s2">
       <div class="ctr kicker" id="s2k" style="top:14px">The question nobody can answer</div>
       <div class="ctr serif" id="s2t" style="top:36px;font-size:27px">What is present at your<br>job locations and own units?</div>
-      <div class="loc" id="l1" style="top:150px"><span class="n" id="lo1">Twister</span><span class="v">? kg</span></div>
-      <div class="loc" id="l2" style="top:206px"><span class="n" id="lo2">Yarn dyeing</span><span class="v">? kg</span></div>
-      <div class="loc" id="l3" style="top:262px"><span class="n" id="lo3">Fabric dyeing</span><span class="v">? m</span></div>
-      <div class="loc" id="l4" style="top:318px"><span class="n" id="lo4">Your own godown</span><span class="v">? m</span></div>
+      <div class="loc" id="l1" style="top:150px"><span class="n" id="lo1">Twister</span><span class="v" id="lv1">? kg</span></div>
+      <div class="loc" id="l2" style="top:206px"><span class="n" id="lo2">Yarn dyeing</span><span class="v" id="lv2">? kg</span></div>
+      <div class="loc" id="l3" style="top:262px"><span class="n" id="lo3">Fabric dyeing</span><span class="v" id="lv3">? m</span></div>
+      <div class="loc" id="l4" style="top:318px"><span class="n" id="lo4">Your own godown</span><span class="v" id="lv4">? m</span></div>
+    </div>
+
+    <!-- SK · a small slip on paper, and the books stop matching -->
+    <div class="scene" id="sk">
+      <div class="ctr kicker" id="skk" style="top:16px">When it is all on paper</div>
+      <div class="ctr serif" id="skt" style="top:38px;font-size:25px">A small slip,<br>a big loss.</div>
+      <div class="slip" id="skc" style="top:120px">
+        <div class="hd" id="skch">One consignment to the dyer</div>
+        <div class="srow" id="sr1"><span id="skr1">Written in the book</span><span class="q">1,250</span></div>
+        <div class="srow bad" id="sr2"><span id="skr2">Actually sent</span><span class="q">1,590</span></div>
+        <div class="srow bad" id="sr3"><span id="skr3">Stock now shows</span><span class="q" id="skr3v">Wrong</span></div>
+      </div>
+      <div class="gapbar" id="skg" style="top:288px">
+        <span class="k" id="skgk">Difference</span><span class="v" id="skgv">0</span>
+      </div>
     </div>
 
     <!-- S3 · the promise -->
@@ -209,19 +306,50 @@ body{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;-webkit-font-smooth
       </div>
     </div>
 
+    <!-- ST · every total in one place -->
+    <div class="scene" id="st">
+      <div class="ctr kicker" id="stk" style="top:16px">All of it in one place</div>
+      <div class="ctr serif" id="stt" style="top:38px;font-size:25px">How much yarn, how many<br>rolls, how many metres.</div>
+      <div class="tot" id="tt1" style="top:134px"><span class="k" id="tk1">Yarn</span><span class="v" id="tv1">0</span></div>
+      <div class="tot" id="tt2" style="top:202px"><span class="k" id="tk2">Rolls</span><span class="v" id="tv2">0</span></div>
+      <div class="tot" id="tt3" style="top:270px"><span class="k" id="tk3">Fabric</span><span class="v" id="tv3">0</span></div>
+    </div>
+
     <!-- S5 · dead and ageing stock -->
     <div class="scene" id="s5">
       <div class="ctr kicker" id="s5k" style="top:16px" >What has stopped moving</div>
       <div class="ctr serif" id="s5t" style="top:38px;font-size:25px">Dead stock and<br>ageing stock, by the day.</div>
       <div class="age" id="a1" style="top:148px">
-        <div class="top"><span class="who" id="aw1">Yarn at dyeing unit</span><span class="qty">860 kg</span></div>
+        <div class="top"><span class="who" id="aw1">Yarn at dyeing unit</span><span class="qty" id="aq1">860 kg</span></div>
         <div class="bar"><div class="f" id="f1"></div></div><div class="days" id="d1">0 d</div></div>
       <div class="age" id="a2" style="top:222px">
-        <div class="top"><span class="who" id="aw2">Grey at processor</span><span class="qty">4,120 m</span></div>
+        <div class="top"><span class="who" id="aw2">Grey at processor</span><span class="qty" id="aq2">4,120 m</span></div>
         <div class="bar"><div class="f" id="f2"></div></div><div class="days" id="d2">0 d</div></div>
       <div class="age" id="a3" style="top:296px">
-        <div class="top"><span class="who" id="aw3">Yarn at twister</span><span class="qty">210 kg</span></div>
+        <div class="top"><span class="who" id="aw3">Yarn at twister</span><span class="qty" id="aq3">210 kg</span></div>
         <div class="bar"><div class="f" id="f3"></div></div><div class="days" id="d3">0 d</div></div>
+    </div>
+
+    <!-- SD · the same books on a computer and on a phone -->
+    <div class="scene" id="sd">
+      <div class="ctr kicker" id="sdk" style="top:16px">Windows and Android</div>
+      <div class="ctr serif" id="sdt" style="top:38px;font-size:24px">The stock gathering dust,<br>now on your screen.</div>
+      <div class="dev lap" id="dlap" style="left:30px;top:132px">
+        <div class="tb"><i></i><i></i><i></i></div>
+        <div class="ln"><span id="dr1">Yarn at dyeing unit</span><b>860</b></div>
+        <div class="ln"><span id="dr2">Grey at processor</span><b>4,120</b></div>
+        <div class="ln"><span id="dr3">Yarn at twister</span><b>210</b></div>
+        <div class="ln"><span id="dr4">Your own godown</span><b>9,340</b></div>
+      </div>
+      <div class="devlbl" id="dlapl" style="left:30px;width:252px;top:302px">WINDOWS</div>
+      <div class="dev ph" id="dph" style="right:30px;top:116px">
+        <div class="tb"><i></i></div>
+        <div class="ln"><span id="dr5">Dyeing</span><b>860</b></div>
+        <div class="ln"><span id="dr6">Processor</span><b>4,120</b></div>
+        <div class="ln"><span id="dr7">Twister</span><b>210</b></div>
+        <div class="ln"><span id="dr8">Godown</span><b>9,340</b></div>
+      </div>
+      <div class="devlbl" id="dphl" style="right:30px;width:110px;top:318px">ANDROID</div>
     </div>
 
     <!-- S6 · what you ask for gets built -->
@@ -236,6 +364,14 @@ body{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;-webkit-font-smooth
       <div class="done" id="s6d" style="top:280px">
         <div class="ic"><svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg></div>
         <div class="t" id="s6dt">Shipped in the next update</div>
+      </div>
+    </div>
+
+    <!-- SG · the tagline, alone on the screen -->
+    <div class="scene" id="sg">
+      <div class="tag" id="sgb" style="top:176px">
+        <div class="big" id="sgt">Stock right,<br>business right.</div>
+        <div class="rule" id="sgr"></div>
       </div>
     </div>
 
@@ -274,15 +410,24 @@ const eBack=t=>{t=cl(t,0,1);const c=2.70158;return 1+c*Math.pow(t-1,3)+1.70158*M
 const pr=(x,s,d)=>cl((x-s)/d,0,1);
 const $=id=>document.getElementById(id);
 const set=(el,o)=>{for(const k in o) el.style[k]=o[k];};
+const grp=n=>n.toLocaleString('en-IN');
 function rise(el,p,dy=20){ set(el,{opacity:eOut(p), transform:`translateY(${(1-eOut(p))*dy}px)`}); }
 
 
-/* ---- both languages from one file ---------------------------------------
+/* ---- one file, three cuts ------------------------------------------------
+   en    33.1s  English, 7 scenes
+   hi36  38.3s  Hindi paid cut, 7 scenes
+   hi89  88.4s  Hindi organic cut, 12 scenes — five of them (sm sk st sd sg)
+                exist only here, and simply never render in the shorter cuts
+                because they are absent from that cut's scene table.
    The Devanagari faces carry a unicode-range, so the font stack resolves per
-   character and nothing needs switching beyond the strings and the timeline. */
-const L = (new URLSearchParams(location.search).get('lang') === 'hi') ? 'hi' : 'en';
+   character and nothing switches beyond the strings and the timeline. */
+const Q = new URLSearchParams(location.search);
+const V = Q.get('v') || (Q.get('lang') === 'hi' ? 'hi36' : 'en');
+
 const T = {
  en:{
+  lang:'en',
   dur:33.1,
   sc:[['s1',0.00,5.79],['s2',5.79,5.34],['s3',11.13,4.49],['s4',15.62,5.27],
       ['s5',20.89,4.32],['s6',25.21,3.66],['s7',28.87,4.23]],
@@ -298,9 +443,11 @@ const T = {
         [23.25,25.12,"and how many days it has been sitting there."],
         [25.51,28.67,"Tell us what you need — it goes into the next update."]],
   s1a:"Still on handwritten books?", s1b:"Still on handwritten books<br>and unsorted Excel files?",
+  lghd:"YARN REGISTER",
   s2k:"The question nobody can answer",
   s2t:"What is present at your<br>job locations and own units?",
-  lo1:"Twister", lo2:"Yarn dyeing", lo3:"Fabric dyeing", lo4:"Your own godown",
+  lo:["Twister","Yarn dyeing","Fabric dyeing","Your own godown"],
+  lv:["? kg","? kg","? m","? m"],
   s3w1:"Taka", s3w2:" Register", s3sub:"Powerloom &amp; fabric ERP",
   s3m:"From yarn to finished fabrics", s3rest:"— every stage, on your books.",
   s4k:"Every kilo · every metre",
@@ -310,7 +457,8 @@ const T = {
       "Fabric<br>Purchase","Fabric<br>Dyeing","Packing<br>&amp; Rolls"],
   s5k:"What has stopped moving",
   s5t:"Dead stock and<br>ageing stock, by the day.",
-  aw:["Yarn at dyeing unit","Grey at processor","Yarn at twister"], dsuf:" d",
+  aw:["Yarn at dyeing unit","Grey at processor","Yarn at twister"],
+  aq:["860 kg","4,120 m","210 kg"], dsuf:" d",
   s6k:"What you ask for",
   s6t:"Tell us what you need.<br>It goes into the next update.",
   s6aw:"From a weaver in Bhiwandi",
@@ -323,71 +471,144 @@ const T = {
   pa1:"Android app", pa2:"See your books anywhere",
   s7q:"For <b style=\"color:#4a5364\">weavers and traders</b> &nbsp;·&nbsp; Bhiwandi · Ichalkaranji · Erode",
   bot:"Yarn&nbsp;→&nbsp;Fabric"
- },
- hi:{
-  dur:36.6,
-  sc:[['s1',0.00,6.45],['s2',6.45,5.30],['s3',11.75,5.35],['s4',17.10,6.05],
-      ['s5',23.15,4.00],['s6',27.15,5.40],['s7',32.55,4.05]],
-  cues:[[0.40,3.40,"अब भी सूत और कपड़े का स्टॉक हाथ से लिखी बहियों"],
-        [3.40,6.20,"और एक्सेल फाइलों में रखते हैं?"],
-        [6.70,9.20,"बता सकते हैं अभी जॉब लोकेशन और"],
-        [9.20,11.48,"अपनी यूनिटों में क्या पड़ा है?"],
-        [11.98,14.40,"सूत से लेकर तैयार कपड़े तक —"],
-        [14.40,16.93,"टका रजिस्टर हर स्टेज संभालता है।"],
-        [17.33,20.20,"हर किलो और हर मीटर किताब पर रहता है,"],
-        [20.20,22.94,"उसी यूनिट के नाम जिसके पास वो है।"],
-        [23.34,25.20,"डाइंग में क्या है, कितना है,"],
-        [25.20,26.95,"और कितने दिनों से पड़ा है।"],
-        [27.35,29.90,"आपको जो चाहिए बताइए —"],
-        [29.90,32.28,"अगले अपडेट में जोड़ने की कोशिश रहती है।"]],
-  s1a:"अब भी हाथ से लिखी बहियों में?", s1b:"अब भी हाथ से लिखी बहियों<br>और एक्सेल फाइलों में?",
-  s2k:"जिसका जवाब किसी के पास नहीं",
-  s2t:"जॉब लोकेशन और अपनी<br>यूनिटों में अभी क्या पड़ा है?",
-  lo1:"ट्विस्टर", lo2:"यार्न डाइंग", lo3:"फैब्रिक डाइंग", lo4:"अपना गोदाम",
+ }
+};
+
+/* ---- Hindi ---------------------------------------------------------------
+   Strings are the customer's own script, written in Devanagari. The wording is
+   theirs; only the script is converted, because a Hindi phonemiser reads
+   letters, not romanised words. Shared between both Hindi cuts, then each cut
+   adds its own duration, scene table and cues. */
+const HI = {
+  lang:'hi',
+  s1a:"अब भी नोटबुक में?", s1b:"अब भी नोटबुक और<br>पुराने रजिस्टरों में?",
+  lghd:"सूत रजिस्टर",
+  smk:"पूरा बिजनेस, एक ही आदमी के भरोसे",
+  smt:"ये हिसाब किसी किताब में नहीं —<br>किसी के दिमाग में है।",
+  fc:["कौन सा माल कहाँ है","किसका कितना बाकी","कौन सा रेट तय हुआ","कब क्या भेजा गया"],
+  smob:"सब कुछ एक ही आदमी के पास", smos:"किसी रिकॉर्ड में नहीं",
+  s2k:"बिना स्टाफ से पूछे",
+  s2t:"कौन से गोदाम में कितना किलो?<br>कौन सी डाइंग में कितने ताके?",
+  lo:["अपना गोदाम","यार्न डाइंग","फैब्रिक डाइंग","ट्विस्टर"],
+  lv:["? किलो","? किलो","? मीटर","? किलो"],
+  skk:"जब सारा हिसाब कागज पर हो",
+  skt:"छोटी सी चूक,<br>बड़ा नुकसान।",
+  skch:"डाइंग को गया एक लॉट",
+  skr:["बही में लिखा","असल में भेजा","अब स्टॉक दिखा रहा है"], skr3v:"गलत",
+  skgk:"एक एंट्री का फर्क", skgu:" किलो",
   s3w1:"टका", s3w2:" रजिस्टर", s3sub:"पावरलूम एवं फैब्रिक ईआरपी",
-  s3m:"सूत से लेकर तैयार कपड़े तक", s3rest:"— हर स्टेज, आपकी किताब पर।",
-  s4k:"हर किलो · हर मीटर",
-  s4t:"किताब पर, उसी यूनिट के नाम<br>जिसके पास वो माल है।",
+  s3m:"अब कपड़े का हिसाब स्क्रीन पर", s3rest:"— नोटबुक में नहीं।",
+  s4k:"खरीद से लेकर बिक्री तक",
+  s4t:"यार्न से फिनिश कपड़े तक —<br>हर स्टेज ट्रैक कीजिए।",
   chl:"हर स्टेज शामिल", chr:"किलो एवं मीटर", orx:"या",
   pt:["सूत<br>खरीद","ट्विस्टिंग<br>एवं डाइंग","वार्पिंग<br>एवं साइजिंग","वीविंग<br>लूम",
       "फैब्रिक<br>खरीद","फैब्रिक<br>डाइंग","पैकिंग<br>एवं थान"],
-  s5k:"जो माल रुका पड़ा है",
-  s5t:"डेड स्टॉक और एजिंग<br>स्टॉक, दिनों के हिसाब से।",
-  aw:["डाइंग यूनिट में सूत","प्रोसेसर के पास ग्रे","ट्विस्टर के पास सूत"], dsuf:" दिन",
+  stk:"सारा हिसाब, एक ही जगह",
+  stt:"कितना यार्न, कितने ताके,<br>कितने मीटर कपड़ा।",
+  tot:[["यार्न",12480,"किलो"],["ताके",318,""],["कपड़ा",46200,"मीटर"]],
+  s5k:"कितने दिनों से फंसा है",
+  s5t:"हर जगह का माल,<br>दिनों के हिसाब से।",
+  aw:["डाइंग में यार्न","प्रोसेसर के पास ग्रे","ट्विस्टर के पास यार्न"],
+  aq:["860 किलो","4,120 मीटर","210 किलो"], dsuf:" दिन",
+  sdk:"विंडोज और एंड्रॉइड",
+  sdt:"जो माल कोने में धूल खा रहा है,<br>वो अब स्क्रीन पर।",
+  dr:["डाइंग में यार्न","प्रोसेसर के पास ग्रे","ट्विस्टर के पास","अपना गोदाम",
+      "डाइंग","प्रोसेसर","ट्विस्टर","गोदाम"],
+  dlapl:"विंडोज", dphl:"एंड्रॉइड",
+  sgt:"स्टॉक सही,<br>तो बिजनेस सही।",
   s6k:"जो आप कहेंगे",
-  s6t:"आपको जो चाहिए बताइए।<br>अगले अपडेट में जुड़ता है।",
+  s6t:"आपको जो चाहिए बताइए।<br>जोड़ने की कोशिश करते हैं।",
   s6aw:"भिवंडी के एक वीवर से",
   s6aq:"“ग्रे कितने दिनों से डाइंग में है, ये भी दिखा सकते हैं?”",
   s6dt:"अगले अपडेट में जोड़ा गया",
   s7w1:"टका", s7w2:" रजिस्टर",
-  s7s:"सूत से लेकर तैयार कपड़े तक — हर स्टेज, आपकी किताब पर।",
-  s7c:"फ्री ट्रायल &nbsp;·&nbsp; <span class=\"u\">takaregister.in</span>",
+  s7s:"स्टॉक सही, तो बिजनेस सही।",
+  s7c:"फ्री डेमो &nbsp;·&nbsp; <span class=\"u\">WhatsApp</span> पर मैसेज कीजिए",
   pw1:"विंडोज़", pw2:"पूरा रजिस्टर",
   pa1:"एंड्रॉइड ऐप", pa2:"किताबें कहीं भी देखिए",
-  s7q:"<b style=\"color:#4a5364\">वीवर और ट्रेडर</b> के लिए &nbsp;·&nbsp; भिवंडी · इचलकरंजी · इरोड",
+  s7q:"<b style=\"color:#a8862f\">takaregister.in</b> &nbsp;·&nbsp; वीवर और ट्रेडर के लिए · भिवंडी",
   bot:"सूत&nbsp;→&nbsp;कपड़ा"
- }
 };
-const D = T[L];
+
+/* Paid cut — 7 lines, 7 scenes. Cut against build/vo-hi-36s.mp3. */
+T.hi36 = Object.assign({}, HI, {
+  dur:38.3,
+  sc:[['s1',0.00,6.45],['s2',6.45,5.67],['s3',12.12,4.38],['s4',16.50,5.36],
+      ['s5',21.86,5.73],['s6',27.59,5.28],['s7',32.87,5.43]],
+  cues:[[0.40, 3.30,"क्या आज भी कपड़े के काम का हिसाब"],
+        [3.30, 6.20,"नोटबुक और पुराने रजिस्टरों में रखते हो?"],
+        [6.70, 9.20,"एक क्लिक पर बता सकते हो"],
+        [9.20,11.86,"कि कौन से गोदाम में कितना किलो यार्न पड़ा है?"],
+        [12.37,14.40,"अब कपड़े का हिसाब नोटबुक में नहीं,"],
+        [14.40,16.30,"स्क्रीन पर होगा।"],
+        [16.69,19.30,"यार्न खरीदने से लेकर फिनिश कपड़ा बेचने तक,"],
+        [19.30,21.66,"हर चीज ट्रैक कीजिए।"],
+        [22.06,24.80,"कौन से गोदाम या डाइंग में माल"],
+        [24.80,27.39,"कितने दिनों से फंसा है, सब पता चलेगा।"],
+        [27.79,30.00,"आपको जो चाहिए बताइए —"],
+        [30.00,32.61,"अगले अपडेट में जोड़ने की कोशिश करते हैं।"],
+        [33.12,35.00,"स्टॉक सही, तो बिजनेस सही।"],
+        [35.00,36.98,"व्हाट्सएप पर मैसेज कीजिए।"]]
+});
+
+/* Organic cut — 15 lines, 12 scenes. Cut against build/vo-hi-89s.mp3. */
+T.hi89 = Object.assign({}, HI, {
+  dur:88.4,
+  sc:[['s1', 0.00, 8.88],['sm', 8.88, 6.36],['s2',15.24,10.69],['sk',25.93,10.59],
+      ['s3',36.52, 4.53],['s4',41.05, 7.82],['st',48.87, 6.74],['s5',55.61, 6.40],
+      ['sd',62.01, 6.59],['sg',68.60, 3.04],['s6',71.64,10.56],['s7',82.20, 6.20]],
+  cues:[[ 0.40, 3.20,"क्या आप आज के डिजिटल जमाने में भी"],
+        [ 3.20, 6.00,"अपने कपड़े के काम का हिसाब"],
+        [ 6.00, 8.63,"नोटबुक और पुराने रजिस्टरों में रख रहे हो?"],
+        [ 9.13,12.00,"क्या आपका पूरा बिजनेस सिर्फ एक मुनीम"],
+        [12.00,14.89,"या मेहता जी के भरोसे चल रहा है?"],
+        [15.59,18.30,"बिना स्टाफ से पूछे, एक क्लिक पर बता सकते हो"],
+        [18.30,22.22,"कि कौन से गोदाम में कितना किलो यार्न पड़ा है?"],
+        [22.63,25.68,"या कौन सी डाइंग में कितने ताके फंसे हैं?"],
+        [26.18,28.70,"गलती किसी से भी हो सकती है,"],
+        [28.70,31.07,"जब सारा हिसाब सिर्फ कागज पर हो।"],
+        [31.57,33.80,"और याद रखिए, छोटी सी चूक —"],
+        [33.80,36.18,"कपड़े के बिजनेस में बड़ा नुकसान।"],
+        [36.87,38.90,"अब कपड़े का हिसाब नोटबुक में नहीं,"],
+        [38.90,40.80,"स्क्रीन पर होगा।"],
+        [41.30,44.20,"हमारे सॉफ्टवेयर से आप यार्न खरीदने से लेकर"],
+        [44.20,46.60,"फिनिश कपड़ा बेचने तक,"],
+        [46.60,48.62,"हर चीज ट्रैक कर सकते हैं।"],
+        [49.12,51.60,"कितना किलो यार्न है, कितना ताका,"],
+        [51.60,53.60,"कितने मीटर कपड़ा बचा है —"],
+        [53.60,55.26,"सारा हिसाब एक ही जगह।"],
+        [55.96,59.00,"कौन से गोदाम या डाइंग में माल"],
+        [59.00,61.76,"कितने दिनों से फंसा पड़ा है, सब पता चलेगा।"],
+        [62.26,65.10,"जो माल किसी कोने में धूल खा रहा है,"],
+        [65.10,68.30,"उसे अब मोबाइल या कंप्यूटर स्क्रीन पर देखिए।"],
+        [68.90,71.29,"क्योंकि स्टॉक सही, तो बिजनेस सही।"],
+        [71.99,74.10,"आपके बिजनेस के लिए कोई खास"],
+        [74.10,76.04,"रिक्वेस्ट या फीचर चाहिए?"],
+        [76.54,79.00,"हमें बताइए। हम सुनते हैं,"],
+        [79.00,81.89,"और अगले अपडेट में जोड़ने की पूरी कोशिश करते हैं।"],
+        [82.50,84.70,"आज ही व्हाट्सएप पर मैसेज कीजिए,"],
+        [84.70,86.81,"और फ्री डेमो बुक कीजिए।"]]
+});
+
+const D = T[V] || T.en;
 const DUR = D.dur;
 
+/* Missing keys are skipped, not blanked: the shorter cuts carry no strings for
+   the five long-cut scenes, and those scenes never render anyway. */
 function applyLang(){
-  document.documentElement.lang = L;
-  const set_=(id,html)=>{const e=$(id); if(e) e.innerHTML=html;};
-  set_('s2k',D.s2k); set_('s2t',D.s2t);
-  for(let i=1;i<=4;i++) set_('lo'+i,D['lo'+i]);
-  set_('s3w1',D.s3w1); set_('s3w2',D.s3w2); set_('s3sub',D.s3sub);
-  set_('s3m',D.s3m); set_('s3rest',D.s3rest);
-  set_('s4k',D.s4k); set_('s4t',D.s4t);
-  set_('chl',D.chl); set_('chr',D.chr); set_('orx',D.orx);
-  D.pt.forEach((t,i)=>set_('pt'+(i+1),t));
-  set_('s5k',D.s5k); set_('s5t',D.s5t);
-  D.aw.forEach((t,i)=>set_('aw'+(i+1),t));
-  set_('s6k',D.s6k); set_('s6t',D.s6t); set_('s6aw',D.s6aw);
-  set_('s6aq',D.s6aq); set_('s6dt',D.s6dt);
-  set_('s7w1',D.s7w1); set_('s7w2',D.s7w2); set_('s7s',D.s7s); set_('s7c',D.s7c);
-  set_('pw1',D.pw1); set_('pw2',D.pw2); set_('pa1',D.pa1); set_('pa2',D.pa2);
-  set_('s7q',D.s7q); set_('botmark',D.bot);
+  document.documentElement.lang = D.lang;
+  const set_=(id,html)=>{ if(html===undefined) return;
+                          const e=$(id); if(e) e.innerHTML=html; };
+  const each=(arr,pfx)=>{ if(arr) arr.forEach((t,i)=>set_(pfx+(i+1),t)); };
+  ['lghd','s2k','s2t','s3w1','s3w2','s3sub','s3m','s3rest','s4k','s4t','chl','chr','orx',
+   's5k','s5t','s6k','s6t','s6aw','s6aq','s6dt','s7w1','s7w2','s7s','s7c',
+   'pw1','pw2','pa1','pa2','s7q',
+   'smk','smt','smob','smos','skk','skt','skch','skr3v','skgk',
+   'stk','stt','sdk','sdt','dlapl','dphl','sgt'].forEach(k=>set_(k,D[k]));
+  each(D.lo,'lo'); each(D.lv,'lv'); each(D.pt,'pt'); each(D.aw,'aw'); each(D.aq,'aq');
+  each(D.fc,'fc'); each(D.skr,'skr'); each(D.dr,'dr');
+  if(D.tot) D.tot.forEach(([k],i)=>set_('tk'+(i+1),k));
+  set_('botmark',D.bot);
 }
 
 /* voiceover line starts, measured from build_vo.py */
@@ -402,13 +623,24 @@ const R={
    set($('lg'),{opacity:eOut(a),transform:`translate(${(1-eOut(a))*-38}px,0) rotate(${-5+eOut(a)*1.6}deg)`});
    const b=pr(x,1.35,.8);
    set($('xl'),{opacity:eOut(b),transform:`translate(${(1-eOut(b))*38}px,0) rotate(${5-eOut(b)*1.8}deg)`});
-   // headline completes as the voice reaches Excel
+   // headline completes as the voice reaches the second pile
    $('s1t').innerHTML = x>1.5 ? D.s1b : D.s1a;
    const c=pr(x,2.5,.45);
    set($('stmp'),{opacity:eOut(c),
      transform:`scale(${cl(1+(1-eBack(c))*.9,1,3)}) rotate(${-9+(1-eOut(c))*10}deg)`});
    $('stmp').textContent='?';
    set($('stmp'),{fontSize:'34px',padding:'2px 15px'});
+ },
+ sm(x){
+   rise($('smk'),pr(x,.05,.5),12); rise($('smt'),pr(x,.15,.7),16);
+   // four things only he knows, dropping one by one into the same place
+   for(let i=1;i<=4;i++){
+     const p=pr(x,.55+(i-1)*.17,.45);
+     set($('fc'+i),{opacity:eOut(p),transform:`translateY(${(1-eOut(p))*-14}px)`});
+   }
+   set($('smar'),{opacity:eOut(pr(x,1.45,.4))});
+   const o=pr(x,1.70,.6);
+   set($('smone'),{opacity:eOut(o),transform:`scale(${.94+eOut(o)*.06})`});
  },
  s2(x){
    rise($('s2k'),pr(x,.05,.5),12); rise($('s2t'),pr(x,.15,.7),16);
@@ -419,6 +651,16 @@ const R={
      const on = x>1.0+i*.34 && (Math.floor((x-1.0)*6)%3!==0);
      $(id).querySelector('.v').style.opacity = on?1:.25;
    });
+ },
+ sk(x){
+   rise($('skk'),pr(x,.05,.5),12); rise($('skt'),pr(x,.15,.7),16);
+   rise($('skc'),pr(x,.55,.7),18);
+   for(let i=1;i<=3;i++) set($('sr'+i),{opacity:eOut(pr(x,1.1+(i-1)*.55,.5))});
+   const g=pr(x,3.1,.7);
+   set($('skg'),{opacity:eOut(g),transform:`translateY(${(1-eOut(g))*16}px)`});
+   // the gap counts up, so it registers as a quantity and not just a word
+   const n=eIO(pr(x,3.4,1.2));
+   $('skgv').textContent = grp(Math.round(340*n)) + (D.skgu||'');
  },
  s3(x){
    const p=pr(x,.10,.9);
@@ -441,6 +683,15 @@ const R={
    const done=pr(x,1.0+6*.42,.42);
    if(done>.5) set($('p7'),{background:'rgba(26,122,110,.10)',borderColor:'rgba(26,122,110,.5)'});
  },
+ st(x){
+   rise($('stk'),pr(x,.05,.5),12); rise($('stt'),pr(x,.15,.7),16);
+   (D.tot||[]).forEach(([k,v,u],i)=>{
+     const p=pr(x,.6+i*.32,.55);
+     set($('tt'+(i+1)),{opacity:eOut(p),transform:`translateY(${(1-eOut(p))*16}px)`});
+     const g=eIO(pr(x,.95+i*.32,1.3));
+     $('tv'+(i+1)).innerHTML = grp(Math.round(v*g)) + (u?`<span class="u">${u}</span>`:'');
+   });
+ },
  s5(x){
    rise($('s5k'),pr(x,.05,.5),12); rise($('s5t'),pr(x,.15,.7),16);
    const ROWS=[['a1','f1','d1',19,.55],['a2','f2','d2',34,.92],['a3','f3','d3',6,.20]];
@@ -454,6 +705,20 @@ const R={
      $(d).textContent=n+D.dsuf;
      set($(d),{color:col});
    });
+ },
+ sd(x){
+   rise($('sdk'),pr(x,.05,.5),12); rise($('sdt'),pr(x,.15,.7),16);
+   const a=pr(x,.60,.7);
+   set($('dlap'),{opacity:eOut(a),transform:`translateX(${(1-eOut(a))*-26}px)`});
+   set($('dlapl'),{opacity:eOut(pr(x,1.15,.4))});
+   const b=pr(x,1.00,.7);
+   set($('dph'),{opacity:eOut(b),transform:`translateX(${(1-eOut(b))*26}px)`});
+   set($('dphl'),{opacity:eOut(pr(x,1.55,.4))});
+ },
+ sg(x){
+   const p=pr(x,.08,.8);
+   set($('sgb'),{opacity:eOut(p),transform:`scale(${.92+eOut(p)*.08})`});
+   set($('sgr'),{width:(eIO(pr(x,.70,.9))*62)+'%'});
  },
  s6(x){
    rise($('s6k'),pr(x,.05,.5),12); rise($('s6t'),pr(x,.15,.7),16);
@@ -497,6 +762,8 @@ function renderAt(t){
 }
 window.renderAt=renderAt;
 window.AD_DURATION=DUR;
+window.AD_VARIANT=V;
+window.__SC=SC; window.__CUES=CUES;   // check-reel.js walks these
 
 let raf=null;
 window.playAd=function(){

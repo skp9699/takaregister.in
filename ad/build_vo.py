@@ -30,6 +30,8 @@ ap.add_argument("--pitch", type=int, default=52)
 ap.add_argument("--warm", type=float, default=0.96,
                 help="<1 drops pitch and formants; keep near 1 for a female read")
 ap.add_argument("--bed", type=float, default=0.20, help="music bed level, 0 to disable")
+ap.add_argument("--tail", type=float, default=1.2,
+                help="silence held after the last line, so the sign-off card can sit")
 ap.add_argument("--stems", action="store_true", help="also keep the dry voice-only track")
 A = ap.parse_args()
 
@@ -121,7 +123,7 @@ for i, (gap, text) in enumerate(lines):
     clips.append((t, dry))
     t += d
 
-TOTAL = t + 1.2
+TOTAL = t + A.tail
 print(f"\n  #   starts    runs   line")
 for n, start, d, text in timeline:
     print(f"  {n:2}  {start:6.2f}s  {d:5.2f}s  {text[:58]}{'…' if len(text) > 58 else ''}")

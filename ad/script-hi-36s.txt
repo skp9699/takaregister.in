@@ -1,0 +1,28 @@
+# टका रजिस्टर — SHORT CUT (~36s) for paid placement
+# Format: PAUSE_BEFORE_SECONDS | TEXT
+#
+# Same script as script-hi-89s.txt, cut to seven lines. Nothing new is written
+# here — every line is one of your own sentences, trimmed. Meta Reels caps at
+# 90s but paid views drop off long before that, so this is the one that goes
+# behind money and the 89s cut is the organic post.
+#
+# The strongest line in the whole script — "stock sahi, toh business sahi" —
+# moves to the sign-off, where it does the most work.
+#
+# 7 lines over 7 scenes.
+
+# Kya aaj bhi kapde ke kaam ka hisaab notebook aur purane registeron
+# mein rakhte ho?
+0.4 | क्या आज भी कपड़े के काम का हिसाब नोटबुक और पुराने रजिस्टरों में रखते हो?
+# Ek click par bata sakte ho ki kaunse godown mein kitna kilo yarn pada hai?
+0.5 | एक क्लिक पर बता सकते हो कि कौन से गोदाम में कितना किलो यार्न पड़ा है?
+# Ab kapde ka hisaab notebook mein nahi, screen par hoga.
+0.5 | अब कपड़े का हिसाब नोटबुक में नहीं, स्क्रीन पर होगा।
+# Yarn khareedne se lekar finish kapda bechne tak, har cheez track kijiye.
+0.4 | यार्न खरीदने से लेकर फिनिश कपड़ा बेचने तक, हर चीज ट्रैक कीजिए।
+# Kaunse godown ya dyeing mein maal kitne dino se phansa hai, sab pata chalega.
+0.4 | कौन से गोदाम या डाइंग में माल कितने दिनों से फंसा है, सब पता चलेगा।
+# Aapko jo chahiye bataiye, agle update mein jodne ki koshish karte hain.
+0.4 | आपको जो चाहिए बताइए, अगले अपडेट में जोड़ने की कोशिश करते हैं।
+# Stock sahi, toh business sahi. WhatsApp par message kijiye.
+0.5 | स्टॉक सही, तो बिजनेस सही। व्हाट्सएप पर मैसेज कीजिए।
