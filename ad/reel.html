@@ -552,7 +552,15 @@ T.hi36 = Object.assign({}, HI, {
         [37.80,39.73,"व्हाट्सएप पर मैसेज कीजिए।"]]
 });
 
-/* Organic cut — 15 lines, 12 scenes. Cut against build/vo-hi-89s.mp3. */
+/* Organic cut — 12 scenes.
+   STALE: cut against an earlier revision of script-hi-89s.txt. The script has
+   since gained the karigar question and the shortage/excess line, so these
+   cues no longer match the words — do not render hi89 until it is re-cut.
+   Re-cutting now would be wasted: the customer is generating the voice on a
+   different TTS, and every boundary below moves with it. What it needs when
+   those timings arrive is a 13th scene for the shortage/excess beat (an
+   analysis panel: sent vs received, and the gap), then scene bounds set to the
+   midpoint of each inter-line gap. hi36 below is current. */
 T.hi89 = Object.assign({}, HI, {
   dur:88.4,
   sc:[['s1', 0.00, 8.88],['sm', 8.88, 6.36],['s2',15.24,10.69],['sk',25.93,10.59],
