@@ -22,8 +22,8 @@ FFMPEG = os.environ.get("FFMPEG_PATH", f"{SCRATCH}/node_modules/ffmpeg-static/ff
 ap = argparse.ArgumentParser()
 ap.add_argument("--lang", default="en")
 ap.add_argument("--duration", type=float, default=29.5)
-ap.add_argument("--bed", type=float, default=0.10,
-                help="bed level under the voice; kept very low by request")
+ap.add_argument("--bed", type=float, default=0.75,
+                help="bed level. Measured in the speech gaps: 0.10 gave -48 dB (inaudible),\n0.34 gave -39 dB, 0.75 gives -33 dB — soft but actually present.")
 ap.add_argument("--swell", default="11.6,26.0", help="seconds where the bed lifts")
 A = ap.parse_args()
 
@@ -70,14 +70,14 @@ voice = f"{BUILD}/reel-voice-{A.lang}.wav"
 run([FFMPEG, "-y", "-i", VO,
      # pad to the full render length: amix ends with the last spoken line,
      # and -shortest would otherwise clip the hold on the sign-off
-     "-af", "loudnorm=I=-15:TP=-1.5:LRA=11,apad",
+     "-af", "loudnorm=I=-14:TP=-1.5:LRA=11,apad",
      "-ar", "48000", "-ac", "2", "-t", str(D), voice], "voice")
 
 # ---- voice over bed, with the bed ducking under speech ---------------------
 mixed = f"{BUILD}/reel-mixed-{A.lang}.wav"
 run([FFMPEG, "-y", "-i", voice, "-i", bed, "-filter_complex",
      "[0:a]asplit=2[v][key];"
-     "[1:a][key]sidechaincompress=threshold=0.045:ratio=6:attack=12:release=340[duck];"
+     "[1:a][key]sidechaincompress=threshold=0.10:ratio=3:attack=15:release=420[duck];"
      "[v][duck]amix=inputs=2:normalize=0[m];"
      "[m]alimiter=limit=0.96,loudnorm=I=-14:TP=-1.5:LRA=11[o]",
      "-map", "[o]", "-ar", "48000", "-ac", "2", "-t", str(D), mixed], "mix")
