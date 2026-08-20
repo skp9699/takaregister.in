@@ -113,3 +113,85 @@ Free demo · Bhiwandi
   the button already carries it.
 - Sample figures in the reel are illustrative. If a real party name ever appears
   in a screenshot, swap it before boosting.
+
+---
+
+# WhatsApp Business
+
+## Business profile description
+
+The text under the business name when someone opens the chat or taps the
+profile. **256 character limit** — both of these are inside it.
+
+Hinglish:
+
+```
+कपड़े के काम का पूरा हिसाब — यार्न से फिनिश कपड़े तक। कारीगर, डाइंग और गोदाम का स्टॉक, किलो/ताके/मीटर, सब एक जगह। Windows + Android. डेटा आपके ही Google Drive में। ऑफलाइन चलता है। फ्री डेमो के लिए मैसेज कीजिए।
+```
+
+English:
+
+```
+Fabric business software for weavers and traders. Yarn to finished cloth — karigar, dyeing and godown stock in kilos, taka and metres. Windows + Android. Your data stays in your own Google Drive. Works offline. Message us for a free demo.
+```
+
+## Click-to-WhatsApp ad — the Description field
+
+Ads Manager's Description is a short line under the headline, shown on some
+placements only. Keep it to a few words.
+
+```
+फ्री डेमो · भिवंडी
+Free demo · Bhiwandi
+```
+
+## Pre-filled message
+
+What the tap actually sends. Keep it in the buyer's voice, not yours — a
+message that reads like marketing gets deleted before it is sent.
+
+```
+नमस्ते, मुझे Taka Register का फ्री डेमो चाहिए।
+```
+
+## Greeting message
+
+Sent automatically the moment someone messages first — so on a click-to-WhatsApp
+ad this is the first thing every lead reads. It is worth more than the ad copy
+and is the piece most people never set.
+
+```
+नमस्ते! Taka Register में आपका स्वागत है। 🙏
+
+हम कपड़े के काम का पूरा हिसाब रखते हैं — यार्न खरीदने से लेकर फिनिश कपड़ा बेचने तक।
+कारीगर, डाइंग, गोदाम — किलो, ताके और मीटर, सब एक ही जगह।
+
+डेमो फिक्स करने के लिए बस दो बातें बताइए:
+1️⃣ आपका काम — वीविंग, ट्रेडिंग, या दोनों?
+2️⃣ आपका शहर?
+
+हम थोड़ी ही देर में जवाब देते हैं।
+```
+
+Two questions, not five. Every extra field loses people, and work-type plus city
+is enough to know whether to open the demo on looms or on trading.
+
+## Away message
+
+Outside working hours. Give a real time rather than "soon" — a specific promise
+is kept or broken, a vague one is only ever broken.
+
+```
+मैसेज के लिए शुक्रिया! अभी हम ऑफिस में नहीं हैं।
+कल सुबह 10 बजे तक जवाब देंगे।
+
+इतने में देख सकते हैं: takaregister.in
+```
+
+## Notes
+
+- Set the greeting before the ad goes live, not after. A lead who taps and gets
+  silence is gone, and that is the one moment the money has already been spent.
+- Catalogue: if Taka Register is listed as an item, use the profile description
+  as its description too — the buyer sees one or the other, rarely both, so they
+  should say the same thing.
