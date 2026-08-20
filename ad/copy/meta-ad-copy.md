@@ -195,3 +195,96 @@ is kept or broken, a vague one is only ever broken.
 - Catalogue: if Taka Register is listed as an item, use the profile description
   as its description too — the buyer sees one or the other, rarely both, so they
   should say the same thing.
+
+---
+
+# Detailed targeting
+
+Meta adds and removes these constantly, so treat the list as search terms — type
+each one, tick what appears, ignore what does not. Nothing here is guaranteed to
+exist in the picker on any given day.
+
+**Interest vs Demographic:** Interest is inferred from behaviour — pages liked,
+posts engaged with. Demographic is what someone typed into their own profile:
+job title, employer, industry. Demographic is the better signal in principle,
+but it depends on people filling in their work section, and most Bhiwandi owners
+never have. Expect that pool to be thin.
+
+**Selections inside one box are OR, not AND.** Ticking Manufacturing (Interest)
+and Manufacturing (Demographic) widens to "either", it does not narrow to
+"both". Narrowing needs the separate **Narrow audience** button.
+
+## Tier 1 — the trade itself
+
+Closest to the buyer. Start here.
+
+```
+Textile          Textile manufacturing        Textile industry
+Weaving          Loom                         Powerloom
+Yarn             Cotton                       Fabric
+Dyeing           Spinning                     Textile machinery
+```
+
+## Tier 2 — already buys software
+
+Warmer than the trade tags. Someone paying for Tally has already decided
+software is worth money; the only question left is which.
+
+```
+Tally Solutions      Tally.ERP 9        Accounting software
+Enterprise resource planning (ERP)      Inventory management
+Bookkeeping          Marg ERP           Busy Accounting Software
+```
+
+## Tier 3 — owner signals
+
+```
+Small business owners        Business owner (Demographic, job title)
+Entrepreneurship             Facebook Page admins (Behaviour)
+Proprietor                   Director
+```
+
+Facebook Page admins is the underrated one — a small business owner who runs
+his own page is demonstrably the decision maker, not an employee.
+
+## Tier 4 — B2B buying behaviour
+
+```
+IndiaMART        TradeIndia        Alibaba.com        Udyam        MSME
+```
+
+## Do not use
+
+| avoid | why |
+|---|---|
+| Manufacturing | includes pharma, auto parts, cement — nothing to do with cloth |
+| Garment / Clothing / Apparel | wrong trade. Stitching, not weaving — the same mistake the script had at "garment office" |
+| Fashion, Fashion design | consumer interest, not trade |
+| Shopping, Online shopping | buyers, not businesses |
+
+## Locations
+
+Worth more than any interest here. This buyer is geographically dense in a way
+almost no product is.
+
+```
+Bhiwandi · Malegaon · Ichalkaranji · Solapur · Burhanpur
+Surat · Erode · Tiruppur · Panipat · Ludhiana · Sircilla
+```
+
+Age 25–60. Languages: Hindi, Marathi, English.
+
+## How to actually run it
+
+1. **Ad set A: location only, no detailed targeting.** This is the control. For
+   an audience this specific, broad plus a self-selecting creative often beats
+   layered interests — the reel opens with "FOR WEAVERS & FABRIC TRADERS"
+   precisely so it filters on its own.
+2. **Ad set B: Tier 1 only.** Ad set C: Tier 2 only. One cluster each.
+3. Do not stack fifteen interests in one set. If it works you will not know
+   which part worked, and if it fails you will not know what to drop.
+4. Watch the audience-size meter. Under roughly 50,000 Meta cannot optimise and
+   costs climb — if the pool is that small, drop detailed targeting rather than
+   adding more.
+5. Turn **Advantage detailed targeting expansion** off for the first test.
+   It will spend outside your selections and make the comparison meaningless.
