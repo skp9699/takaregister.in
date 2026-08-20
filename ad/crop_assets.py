@@ -20,10 +20,11 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 SCRATCH = "/tmp/claude-0/-home-user-takaregister-in/ea668c35-4dd5-5cf7-ab4f-02856e1baa4b/scratchpad"
 
-# Assets whose own headline must not appear. m102's card reads "The whole mill
-# is on one screen" — "mill" is the word the customer struck out early on, so
-# the crop starts below it and shows only the device.
-FLOOR = {"m102_home_dashboard.png": "device"}
+# Every asset is a full editorial card: its own headline, an explainer, then the
+# thing worth showing — a navy list panel or a device screenshot. Ink density
+# alone always picks the headline, because type is the densest thing on the
+# card, so the reel ended up showing titles instead of screens. Crops start at
+# the content block wherever one exists.
 
 TARGET = {"t": 700, "w": 980}          # tight and wide variants
 
@@ -48,16 +49,21 @@ def profile(im):
     return rows, max(0, x0 - 14), min(W, x1 + 14)
 
 
-def device_top(im):
-    """First row of the dark device mock, so a crop can start at the screenshot
-    rather than at the card's own headline."""
+def content_top(im):
+    """First row of the card's content block — the navy list panel or the blue
+    app bar of a device shot. Returns None for a card that is only a statement,
+    which is a card that should be shown as type rather than as a picture."""
     W, H = im.size
     px = im.load()
-    dark = lambda c: c[0] < 70 and c[1] < 80 and c[2] < 110
+    xs = list(range(0, W, 4))
+    n = len(xs)
+    navy = lambda c: c[0] < 80 and c[1] < 90 and 40 < c[2] < 140 and (c[2] - c[0]) > 20
+    blue = lambda c: c[2] > 130 and (c[2] - c[0]) > 70 and c[1] < c[2]
     for y in range(0, H, 4):
-        if sum(dark(px[x, y]) for x in range(0, W, 4)) > (W / 4) * 0.35:
-            return max(0, y - 12)
-    return 0
+        row = [px[x, y] for x in xs]
+        if sum(navy(c) for c in row) > n * 0.55 or sum(blue(c) for c in row) > n * 0.55:
+            return max(0, y - 26)
+    return None
 
 
 def cut_lines(rows, H):
@@ -106,18 +112,24 @@ def best_crop(path, target, floor=0):
     return box or [x0, floor, x1 - x0, min(target, H - floor)]
 
 
-out = {}
+out, textonly = {}, []
 files = sorted(glob.glob(f"{HERE}/assets/shortlist/*.png")) + sorted(glob.glob(f"{HERE}/assets/screens-*.png"))
 for p in files:
     n = os.path.basename(p)
-    floor = 0
-    if FLOOR.get(n) == "device":
-        floor = device_top(Image.open(p).convert("RGB"))
-    out[n] = {k: best_crop(p, t, floor) for k, t in TARGET.items()}
+    top = content_top(Image.open(p).convert("RGB"))
+    if top is None:
+        textonly.append(n)
+    out[n] = {k: best_crop(p, t, top or 0) for k, t in TARGET.items()}
+    out[n]["text_only"] = top is None
 
 json.dump(out, open(f"{SCRATCH}/crops.json", "w"))
-print(f"{len(out)} assets cropped on whitespace boundaries")
-for k in ("m102_home_dashboard.png", "03_promise.png", "m130_sync.png",
-          "m106_weaver_stock.png", "screens-2649.png", "r03_stock_ageing.png"):
+print(f"{len(out)} assets cropped to their content block")
+print(f"\n  {len(textonly)} cards carry no content block — statement cards, not screens.")
+print("  Showing one of these under a headline prints two headlines on one frame:")
+for n in textonly:
+    print(f"    {n}")
+print()
+for k in ("m102_home_dashboard.png", "m130_sync.png", "m106_weaver_stock.png",
+          "screens-2649.png", "r03_stock_ageing.png", "r13_fabric_at_dyer.png"):
     if k in out:
         print(f"  {k:28} tight {out[k]['t']}")

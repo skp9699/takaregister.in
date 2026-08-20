@@ -18,27 +18,24 @@ TIMING = json.load(open(f"{SCRATCH}/timing.json"))
 CROPS = json.load(open(f"{SCRATCH}/crops.json"))
 LINES = [l.strip() for l in open(f"{HERE}/voiceover/hi-89s-devanagari.txt", encoding="utf-8") if l.strip()]
 DUR = TIMING["dur"]
-assert len(LINES) == 15 and len(TIMING["starts"]) == 15
 
 # ── beat table ───────────────────────────────────────────────────────────────
 # One beat per spoken line. `img` is the screenshot that carries it; None means
 # the beat is built rather than shown, because no asset makes that claim.
 BEATS = [
-    dict(img="01_hook_books.png",       k="आज भी कागज पर",        h="नोटबुक और पुराने<br>रजिस्टरों में?",   pain=True,
-         ke="STILL ON PAPER",          he="Notebooks and<br>old registers?"),
+    dict(img=None, t="type",            k="वीवर और फैब्रिक ट्रेडर के लिए", h="कपड़े का पूरा काम<br>नोटबुक में?",  pain=True,
+         ke="FOR WEAVERS &amp; FABRIC TRADERS", he="The whole cloth business<br>in notebooks?"),
     dict(img=None, t="type",            k="अगर वो न हों",          h="पूरा हिसाब<br>कहाँ से मिलेगा?",        pain=True,
          ke="IF HE IS AWAY",           he="Where do the<br>books come from?"),
     dict(img="m106_weaver_stock.png",   k="कारीगर के पास",        h="किस कारीगर के पास<br>कितना किलो यार्न?",
          ke="AT THE KARIGAR",          he="Which karigar holds<br>how many kilos?"),
-    dict(img="m107_yarn_stock.png",     k="गोदाम में",            h="कितना किलो<br>पड़ा है?",
-         ke="IN THE GODOWN",           he="How much is<br>lying there?"),
     dict(img="r13_fabric_at_dyer.png",  k="डाइंग में",            h="कितने ताके<br>फंसे हैं?",
          ke="AT THE DYER",             he="How many taka<br>are stuck?"),
-    dict(img="c01_book_vs_app.png",     k="जब हिसाब कागज पर हो",  h="छोटी सी चूक,<br>बड़ा नुकसान।",         pain=True,
+    dict(img=None, t="type",            k="जब हिसाब कागज पर हो",  h="छोटी सी चूक,<br>बड़ा नुकसान।",         pain=True,
          ke="WHEN IT IS ALL ON PAPER", he="A small slip,<br>a big loss."),
-    dict(img="03_promise.png",          k="अब",                   h="हिसाब स्क्रीन पर।",
+    dict(img="m103_drawer.png",         k="अब",                   h="हिसाब स्क्रीन पर।",
          ke="NOW",                     he="The books,<br>on a screen."),
-    dict(img="04_sidebar_full.png",     k="हर स्टेज",             h="यार्न से फिनिश<br>कपड़े तक।",
+    dict(img="screens-2649.png",        k="हर स्टेज",             h="यार्न से फिनिश<br>कपड़े तक।",
          ke="EVERY STAGE",             he="Yarn to<br>finished cloth."),
     dict(img="m102_home_dashboard.png", k="सारा हिसाब एक ही जगह", h="किलो, ताके, मीटर।",
          ke="ALL IN ONE PLACE",        he="Kilos, taka, metres."),
@@ -55,14 +52,22 @@ BEATS = [
     dict(img=None, t="cta",             k="",                     h="", ke="", he=""),
 ]
 
+assert len(LINES) == len(BEATS) == len(TIMING["starts"]), \
+    f"{len(LINES)} lines, {len(BEATS)} beats, {len(TIMING['starts'])} timed"
+
 # ── scene bounds: midpoint of each inter-line gap ────────────────────────────
 S, E = TIMING["starts"], TIMING["ends"]
-bounds = [0.0] + [(E[i] + S[i + 1]) / 2 for i in range(14)] + [DUR]
+bounds = [0.0] + [(E[i] + S[i + 1]) / 2 for i in range(len(BEATS) - 1)] + [DUR]
 for i, b in enumerate(BEATS):
     b["s"] = round(bounds[i], 2)
     b["d"] = round(bounds[i + 1] - bounds[i], 2)
     if b.get("img"):
-        b["crop"] = CROPS[b["img"]]["t"]
+        meta = CROPS[b["img"]]
+        assert not meta.get("text_only"), (
+            f'beat {i+1} shows {b["img"]}, which is a statement card with no screen on it. '
+            "Under a headline that is two headlines on one frame — give the beat a real "
+            "screen or set t='type'.")
+        b["crop"] = meta["t"]
 
 # ── subtitles: split each line into glanceable chunks ────────────────────────
 # Break on the punctuation the writer already put in; fall back to word count.
@@ -119,7 +124,7 @@ for i, line in enumerate(LINES):
 # Same 15 bounds, so nothing about the timeline moves.
 LINES_EN = [l.strip() for l in open(f"{HERE}/voiceover/hi-89s-english-subs.txt", encoding="utf-8")
             if l.strip() and not l.startswith("#")]
-assert len(LINES_EN) == 15, len(LINES_EN)
+assert len(LINES_EN) == len(LINES), len(LINES_EN)
 CUES_EN = []
 for i, line in enumerate(LINES_EN):
     CUES_EN += chunks(line, S[i], E[i])
