@@ -211,6 +211,8 @@ body{{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;-webkit-font-smoot
 .cta{{position:absolute;left:30px;right:30px;display:flex;align-items:center;justify-content:center;
   background:var(--navy);color:#fff;border-radius:9px;height:50px;font-size:16px;font-weight:700}}
 .cta u{{text-decoration:none;color:var(--gold)}}
+.cta .wa{{width:19px;height:19px;fill:#25D366;vertical-align:-4px;margin-right:5px}}
+.cta .wa .hs{{fill:var(--navy)}}
 .sub{{position:absolute;left:30px;right:30px;text-align:center;font-size:13px;color:#3d4757}}
 .contact{{position:absolute;left:30px;right:30px;display:flex;flex-direction:column;gap:7px}}
 .contact div{{display:flex;align-items:center;gap:9px;font-size:12.5px;color:#3d4757;
@@ -244,6 +246,10 @@ const SUBS_ON=!Q.get('nosubs');
 const BEATS={js(BEATS)};
 const CUES=EN?{js(CUES_EN)}:{js(CUES)};
 const DUR={DUR};
+const WA='<svg class="wa" viewBox="0 0 24 24" aria-hidden="true">'+
+  '<path d="M12 2a10 10 0 0 0-8.6 15.1L2 22.5l5.6-1.4A10 10 0 1 0 12 2z"/>'+
+  '<path class="hs" d="M16.7 14.3c-.3-.2-1.7-.9-1.9-1-.3-.1-.4-.1-.6.1l-.7.9c-.1.2-.3.2-.5.1a8 8 0 0 1-3.5-3.1c-.1-.2 0-.4.1-.5l.5-.6c.2-.2.2-.3.1-.5l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.7 1.2 2.9c.1.2 2 3.2 5 4.4 2.4 1 2.9.8 3.4.7.6 0 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4z"/>'+
+  '</svg>';
 const K=b=>EN?(b.ke!==undefined?b.ke:b.k):b.k;
 const H=b=>EN?(b.he!==undefined?b.he:b.h):b.h;
 const TXT=EN?{{
@@ -252,7 +258,7 @@ const TXT=EN?{{
   kg:' kg', m:' m',
   vfoot:'The gap shows up before the payment goes out.',
   brand:'Taka <i>Register</i>', tag:'Fabric stock right. Business right. Better margins.',
-  cta:'Free demo &nbsp;·&nbsp; message us on&nbsp;<u>WhatsApp</u>',
+  cta:'Free demo &nbsp;·&nbsp; message us on&nbsp;'+WA+'<u>WhatsApp</u>',
   place:'Bhiwandi, Maharashtra',
   foot:'<b style="color:#a8862f">takaregister.in</b> &nbsp;·&nbsp; for weavers &amp; fabric traders · Bhiwandi'
 }}:{{
@@ -261,7 +267,7 @@ const TXT=EN?{{
   kg:' किलो', m:' मी',
   vfoot:'फर्क तुरंत सामने — पेमेंट जाने से पहले।',
   brand:'टका <i>रजिस्टर</i>', tag:'फैब्रिक स्टॉक सही। बिजनेस सही। मार्जिन बेहतर।',
-  cta:'फ्री डेमो &nbsp;·&nbsp; <u>WhatsApp</u>&nbsp;पर मैसेज कीजिए',
+  cta:'फ्री डेमो &nbsp;·&nbsp; '+WA+'<u>WhatsApp</u>&nbsp;पर मैसेज कीजिए',
   place:'भिवंडी, महाराष्ट्र',
   foot:'<b style="color:#a8862f">takaregister.in</b> &nbsp;·&nbsp; वीवर और ट्रेडर के लिए · भिवंडी'
 }};
