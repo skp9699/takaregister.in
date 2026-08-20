@@ -26,8 +26,8 @@ assert len(LINES) == 15 and len(TIMING["starts"]) == 15
 BEATS = [
     dict(img="01_hook_books.png",       k="आज भी कागज पर",        h="नोटबुक और पुराने<br>रजिस्टरों में?",   pain=True,
          ke="STILL ON PAPER",          he="Notebooks and<br>old registers?"),
-    dict(img=None, t="type",            k="एक ही आदमी के भरोसे",  h="सिर्फ एक मुनीम<br>के भरोसे?",          pain=True,
-         ke="ONE MAN'S MEMORY",        he="All of it on<br>one munim?"),
+    dict(img=None, t="type",            k="अगर वो न हों",          h="पूरा हिसाब<br>कहाँ से मिलेगा?",        pain=True,
+         ke="IF HE IS AWAY",           he="Where do the<br>books come from?"),
     dict(img="m106_weaver_stock.png",   k="कारीगर के पास",        h="किस कारीगर के पास<br>कितना किलो यार्न?",
          ke="AT THE KARIGAR",          he="Which karigar holds<br>how many kilos?"),
     dict(img="m107_yarn_stock.png",     k="गोदाम में",            h="कितना किलो<br>पड़ा है?",
