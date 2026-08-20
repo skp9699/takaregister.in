@@ -37,9 +37,10 @@ const {{ chromium }} = require('playwright');
   const p = await b.newPage({{ viewport:{{width:540,height:960}}, deviceScaleFactor:2 }});
   await p.goto('file://{HERE}/reel2.html?render=1&v={variant}',{{waitUntil:'load'}});
   await p.evaluate(()=>document.fonts.ready); await p.evaluate(()=>window.__imagesReady);
-  for (const t of {json.dumps(times)}) {{
-    await p.evaluate(x=>window.renderAt(x), t);
-    await p.screenshot({{ path:`{TMP}/ref-${{t}}.png` }});
+  const ts = {json.dumps(times)};
+  for (let i=0;i<ts.length;i++) {{
+    await p.evaluate(x=>window.renderAt(x), ts[i]);
+    await p.screenshot({{ path:`{TMP}/ref-${{String(i).padStart(2,'0')}}.png` }});
   }}
   await b.close();
 }})();
@@ -54,12 +55,12 @@ print(f"\n  {os.path.basename(mp4)}  vs  reel2.html?v={variant}   ({dur}s, {len(
 print(f"  {'beat':>4} {'t':>7}  {'diff':>6}   verdict")
 bad, prev = 0, None
 for i, (t, b) in enumerate(zip(times, beats)):
-    got = f"{TMP}/got-{t}.png"
+    got = f"{TMP}/got-{i:02d}.png"
     subprocess.run([FFMPEG, "-y", "-ss", str(t), "-i", mp4, "-frames:v", "1", got],
                    capture_output=True)
     if not os.path.exists(got):
         print(f"  {i+1:>4} {t:7.2f}       -   NO FRAME"); bad += 1; continue
-    a = Image.open(f"{TMP}/ref-{t}.png").convert("RGB")
+    a = Image.open(f"{TMP}/ref-{i:02d}.png").convert("RGB")
     c = Image.open(got).convert("RGB").resize(a.size)
     diff = ImageStat.Stat(ImageChops.difference(a, c)).mean
     d = sum(diff) / 3
