@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<title>Taka Register — Reel</title>
+<link rel="stylesheet" href="build/fonts.css">
+<link rel="stylesheet" href="build/fonts-hi.css">
+<style>
+:root{
+  --navy:#0f1f38; --teal:#1a7a6e; --gold:#c9a84c; --gold-dk:#a8862f;
+  --paper:#f4f2ec; --ink:#0f1f38; --muted:#6f7787; --line:#e2ddd1;
+  --red:#b8483d; --amber:#c9861f;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:540px;height:960px;overflow:hidden;background:#000}
+body{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;-webkit-font-smoothing:antialiased}
+#stage{position:relative;width:540px;height:960px;overflow:hidden;background:var(--paper)}
+.warp{position:absolute;inset:0;
+  background:repeating-linear-gradient(90deg,transparent,transparent 22px,rgba(15,31,56,.022) 22px,rgba(15,31,56,.022) 23px)}
+
+/* Meta covers the top 14% and bottom 35% of a 9:16 frame. Everything that has
+   to be read lives between them. */
+.safe{position:absolute;left:0;right:0;top:125px;height:499px}
+.beat{position:absolute;inset:0;opacity:0;will-change:opacity}
+.ctr{position:absolute;left:30px;right:30px}
+
+.kick{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--teal);
+  text-transform:uppercase;letter-spacing:.02em}
+.head{font-family:'Playfair Display','Noto Serif Devanagari',serif;font-weight:900;
+  color:var(--ink);line-height:1.16;letter-spacing:0}
+
+/* screenshot, cropped to its densest region and scaled near 1:1 so the type
+   inside it survives a phone screen */
+.shot{position:absolute;overflow:hidden;border-radius:10px;
+  box-shadow:0 14px 40px rgba(15,31,56,.20);border:1px solid rgba(15,31,56,.10)}
+.shot img{position:absolute;display:block;image-rendering:auto}
+.bg{position:absolute;inset:0;overflow:hidden}
+.bg img{position:absolute;display:block;filter:saturate(.55)}
+.bg::after{content:'';position:absolute;inset:0;background:rgba(244,242,236,.86)}
+.rail{position:absolute;left:26px;width:4px;height:74px;border-radius:2px;background:var(--gold)}
+.trule{position:absolute;left:50%;top:300px;height:4px;border-radius:2px;background:var(--gold);width:0;transform:translateX(-50%)}
+
+/* ── variance panel: the one claim no screenshot makes ── */
+.vp{position:absolute;left:30px;right:30px;background:#fff;border:1px solid var(--line);
+  border-radius:12px;padding:13px 15px;box-shadow:0 4px 16px rgba(15,31,56,.08)}
+.vh{display:flex;justify-content:space-between;font-size:9.5px;font-weight:700;
+  letter-spacing:.10em;color:var(--muted);text-transform:uppercase;
+  padding-bottom:8px;border-bottom:1px solid var(--line)}
+.vr{display:flex;align-items:baseline;justify-content:space-between;padding:16px 0 14px;
+  border-bottom:1px dotted #e0dacb}
+.vr:last-child{border-bottom:0;padding-bottom:2px}
+.vr .lb{font-size:12px;font-weight:700;color:var(--ink);flex:0 0 62px}
+.vr .cell{text-align:right;flex:1}
+.vr .cap{display:block;font-size:9px;color:var(--muted);letter-spacing:.02em}
+.vr .num{display:block;font-family:'Playfair Display','Noto Serif Devanagari',serif;
+  font-size:22px;font-weight:900;color:#3d4757;font-variant-numeric:lining-nums tabular-nums;line-height:1.1}
+.vr .gap{flex:0 0 84px;text-align:right}
+.vr .gap .num{font-size:26px}
+.up .gap .num{color:var(--red)}
+.dn .gap .num{color:var(--amber)}
+.vfoot{position:absolute;left:30px;right:30px;display:flex;align-items:center;gap:9px;
+  background:rgba(26,122,110,.10);border:1.5px solid rgba(26,122,110,.45);
+  border-radius:10px;padding:11px 13px}
+.vfoot svg{flex:0 0 auto;width:17px;height:17px;stroke:var(--teal);fill:none;stroke-width:2.6;
+  stroke-linecap:round;stroke-linejoin:round}
+.vfoot span{font-size:12.5px;font-weight:700;color:var(--ink)}
+
+/* ── tagline + sign-off ── */
+.tag{position:absolute;left:30px;right:30px;text-align:center}
+.tag .big{font-family:'Playfair Display','Noto Serif Devanagari',serif;font-weight:900;
+  font-size:42px;line-height:1.16;color:var(--ink)}
+.tag .rule{height:5px;border-radius:3px;background:var(--gold);margin:20px auto 0;width:0}
+.brand{position:absolute;left:30px;right:30px;text-align:center;
+  font-family:'Playfair Display','Noto Serif Devanagari',serif;font-size:36px;font-weight:900;color:var(--ink)}
+.brand i{font-style:normal;color:var(--gold-dk)}
+.cta{position:absolute;left:30px;right:30px;display:flex;align-items:center;justify-content:center;
+  background:var(--navy);color:#fff;border-radius:9px;height:50px;font-size:16px;font-weight:700}
+.cta u{text-decoration:none;color:var(--gold)}
+.sub{position:absolute;left:30px;right:30px;text-align:center;font-size:13px;color:#3d4757}
+.contact{position:absolute;left:30px;right:30px;display:flex;flex-direction:column;gap:7px}
+.contact div{display:flex;align-items:center;gap:9px;font-size:12.5px;color:#3d4757;
+  background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:8px;padding:8px 11px}
+.contact svg{flex:0 0 auto;width:14px;height:14px;stroke:var(--gold-dk);fill:none;stroke-width:1.9;
+  stroke-linecap:round;stroke-linejoin:round}
+.contact b{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* ── subtitles, held inside the safe band ── */
+#subs{position:absolute;left:24px;right:24px;bottom:352px;text-align:center;opacity:0}
+#subs .t{display:inline-block;background:rgba(15,31,56,.94);color:#fff;
+  font-size:15.5px;font-weight:600;line-height:1.36;padding:8px 14px;border-radius:8px;
+  box-shadow:0 5px 16px rgba(0,0,0,.22)}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="warp"></div>
+  <div class="bg" id="bg"><img id="bgimg" alt=""></div>
+  <div class="safe" id="safe"></div>
+  <div id="subs"><span class="t" id="subt"></span></div>
+</div>
+<script>
+const Q=new URLSearchParams(location.search);
+const STYLE=Q.get('v')||'screens';           // screens | type | split | mixed
+const SUBS_ON=!Q.get('nosubs');
+const BEATS=[{"img": "01_hook_books.png", "k": "आज भी कागज पर", "h": "नोटबुक और पुराने<br>रजिस्टरों में?", "pain": true, "s": 0.0, "d": 8.12, "crop": [26, 224, 912, 700]}, {"img": null, "t": "type", "k": "एक ही आदमी के भरोसे", "h": "सिर्फ एक मुनीम<br>के भरोसे?", "pain": true, "s": 8.12, "d": 4.64}, {"img": "m106_weaver_stock.png", "k": "कारीगर के पास", "h": "किस कारीगर के पास<br>कितना किलो यार्न?", "s": 12.76, "d": 6.5, "crop": [22, 340, 1040, 700]}, {"img": "m107_yarn_stock.png", "k": "गोदाम में", "h": "कितना किलो<br>पड़ा है?", "s": 19.26, "d": 2.59, "crop": [22, 340, 1040, 700]}, {"img": "r13_fabric_at_dyer.png", "k": "डाइंग में", "h": "कितने ताके<br>फंसे हैं?", "s": 21.85, "d": 2.62, "crop": [22, 340, 1040, 700]}, {"img": "c01_book_vs_app.png", "k": "जब हिसाब कागज पर हो", "h": "छोटी सी चूक,<br>बड़ा नुकसान।", "pain": true, "s": 24.46, "d": 8.51, "crop": [26, 800, 1032, 700]}, {"img": "03_promise.png", "k": "अब", "h": "हिसाब स्क्रीन पर।", "s": 32.97, "d": 3.98, "crop": [26, 172, 988, 700]}, {"img": "04_sidebar_full.png", "k": "हर स्टेज", "h": "यार्न से फिनिश<br>कपड़े तक।", "s": 36.95, "d": 5.1, "crop": [6, 576, 1072, 700]}, {"img": "m102_home_dashboard.png", "k": "सारा हिसाब एक ही जगह", "h": "किलो, ताके, मीटर।", "s": 42.06, "d": 6.9, "crop": [22, 76, 1040, 700]}, {"img": null, "t": "variance", "k": "भेजा और आया", "h": "फर्क तुरंत सामने।", "s": 48.95, "d": 9.34}, {"img": "r03_stock_ageing.png", "k": "कितने दिनों से", "h": "माल वहीं फंसा<br>पड़ा है।", "s": 58.29, "d": 4.1, "crop": [22, 340, 1040, 700]}, {"img": "m130_sync.png", "k": "विंडोज और एंड्रॉइड", "h": "मोबाइल या<br>कंप्यूटर पर।", "s": 62.4, "d": 5.63, "crop": [22, 76, 1040, 700]}, {"img": null, "t": "tagline", "k": "", "h": "स्टॉक सही,<br>तो बिजनेस सही।", "s": 68.02, "d": 2.54}, {"img": null, "t": "type", "k": "जो आप कहेंगे", "h": "अगले अपडेट में<br>जोड़ने की कोशिश।", "s": 70.57, "d": 6.21}, {"img": null, "t": "cta", "k": "", "h": "", "s": 76.78, "d": 4.25}];
+const CUES=[[0.3, 2.47, "क्या आप आज के डिजिटल जमाने"], [2.47, 5.01, "में भी कपड़े के काम का हिसाब"], [5.01, 7.55, "नोटबुक और पुराने रजिस्टरों में रख रहे"], [7.55, 7.91, "हो?"], [8.33, 9.6, "क्या आपका पूरा बिजनेस सिर्फ"], [9.6, 10.88, "एक मुनीम या मेहता जी"], [10.88, 12.15, "के भरोसे चल रहा है?"], [13.36, 14.47, "बिना स्टाफ से पूछे,"], [14.47, 16.14, "एक क्लिक पर बता सकते हो"], [16.14, 17.81, "कि कौन से कारीगर के पास"], [17.81, 18.92, "कितना किलो यार्न है?"], [19.6, 21.42, "कौन से गोदाम में कितना किलो पड़ा"], [21.42, 21.69, "है?"], [22.01, 22.9, "या कौन सी डाइंग"], [22.9, 24.02, "में कितने ताके फंसे हैं?"], [24.9, 27.1, "गलती किसी से भी हो सकती है,"], [27.1, 29.3, "जब सारा हिसाब कागज पर हो —"], [29.3, 30.55, "और छोटी सी चूक,"], [30.55, 32.43, "कपड़े के बिजनेस में बड़ा नुकसान।"], [33.51, 35.58, "अब कपड़े का हिसाब नोटबुक में नहीं,"], [35.58, 36.47, "स्क्रीन पर होगा।"], [37.44, 38.64, "यार्न खरीदने से लेकर"], [38.64, 39.85, "फिनिश कपड़ा बेचने तक,"], [39.85, 41.65, "हर चीज ट्रैक कर सकते हैं।"], [42.46, 44.74, "कितना किलो यार्न है, कितना ताका,"], [44.74, 46.63, "कितने मीटर कपड़ा बचा है,"], [46.63, 48.53, "सारा हिसाब एक ही जगह।"], [49.37, 50.66, "500 किलो की जगह"], [50.66, 52.26, "600 किलो यार्न चला गया,"], [52.26, 53.87, "या डाइंग से 1000 मीटर"], [53.87, 56.12, "की जगह 950 मीटर ही आया —"], [56.12, 58.04, "ये फर्क तुरंत सामने आ जाएगा।"], [58.55, 59.68, "और माल कितने दिनों"], [59.68, 61.09, "से वहीं फंसा पड़ा है,"], [61.09, 61.94, "सब पता चलेगा।"], [62.85, 64.01, "जो माल किसी कोने"], [64.01, 65.46, "में धूल खा रहा है,"], [65.46, 67.2, "उसे अब मोबाइल या कंप्यूटर स्क्रीन"], [67.2, 67.78, "पर देखिए।"], [68.27, 70.27, "क्योंकि स्टॉक सही, तो बिजनेस सही।"], [70.86, 72.37, "आपको जो चाहिए बताइए —"], [72.37, 73.27, "हम सुनते हैं,"], [73.27, 74.78, "और अगले अपडेट में जोड़ने"], [74.78, 76.29, "की पूरी कोशिश करते हैं।"], [77.27, 79.13, "आज ही WhatsApp पर मैसेज कीजिए,"], [79.13, 80.69, "और फ्री डेमो बुक कीजिए।"]];
+const DUR=81.03;
+
+const cl=(v,a,b)=>Math.max(a,Math.min(b,v));
+const eOut=t=>1-Math.pow(1-cl(t,0,1),3);
+const eIO=t=>{t=cl(t,0,1);return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2};
+const pr=(x,s,d)=>cl((x-s)/d,0,1);
+const $=id=>document.getElementById(id);
+const set=(el,o)=>{for(const k in o) el.style[k]=o[k];}
+const grp=n=>n.toLocaleString('en-IN');
+
+// Which treatment a beat gets. Built beats (variance, tagline, cta) ignore the
+// style; picture beats follow it. `mixed` shows the product for anything that
+// proves a claim and drops to type for the beats that only accuse.
+function treat(b){
+  if(b.t) return b.t;
+  if(STYLE==='type') return 'type';
+  if(STYLE==='mixed') return b.pain ? 'type' : 'shot';
+  return 'shot';
+}
+
+const SAFE_W=540, BAND_H=499;
+function shotBox(crop, maxW, maxH){
+  const [,,cw,ch]=crop, s=Math.min(maxW/cw, maxH/ch);
+  return {w:Math.round(cw*s), h:Math.round(ch*s), s};
+}
+function mountShot(el, img, crop, box){
+  const [cx,cy,,]=crop;
+  el.style.width=box.w+'px'; el.style.height=box.h+'px';
+  const im=el.querySelector('img');
+  im.style.width=Math.round(1080*box.s)+'px';
+  im.style.left=Math.round(-cx*box.s)+'px';
+  im.style.top =Math.round(-cy*box.s)+'px';
+}
+
+const svgTick='<svg viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></svg>';
+const ICON={
+  ph:'<svg viewBox="0 0 24 24"><path d="M4 5c0 9 6 15 15 15l2-3-4-2-2 2a12 12 0 0 1-6-6l2-2-2-4z"/></svg>',
+  web:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18"/></svg>',
+  pin:'<svg viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>'
+};
+
+// ── build the DOM once; renderAt only animates ───────────────────────────────
+const safe=$('safe');
+BEATS.forEach((b,i)=>{
+  const d=document.createElement('div');
+  d.className='beat'; d.id='b'+i;
+  const tr=treat(b);
+  if(tr==='shot'){
+    // `split` gives the words the room and the picture the supporting role;
+    // `screens` does the reverse. Same beat, opposite emphasis.
+    const wide = STYLE!=='split';
+    const box=shotBox(b.crop, wide?480:404, wide?330:276);
+    const hx = wide ? 30 : 44, hs = wide ? 25 : 31;
+    d.innerHTML=
+      (wide?'':`<div class="rail" style="top:26px"></div>`)+
+      `<div class="ctr kick" style="top:12px${wide?'':';left:44px'}">${b.k}</div>`+
+      `<div class="ctr head" style="top:${hx}px;font-size:${hs}px${wide?'':';left:44px'}">${b.h}</div>`+
+      `<div class="shot" style="left:${Math.round((SAFE_W-box.w)/2)}px;top:${BAND_H-box.h-64}px">`+
+        `<img src="assets/shortlist/${b.img}" alt=""></div>`;
+    mountShot(d.querySelector('.shot'), b.img, b.crop, box);
+  } else if(tr==='type'){
+    d.innerHTML=
+      (b.k?`<div class="ctr kick" style="top:138px;text-align:center">${b.k}</div>`:'')+
+      `<div class="ctr head" style="top:168px;font-size:44px;text-align:center">${b.h}</div>`+
+      `<div class="trule"></div>`;
+  } else if(tr==='variance'){
+    d.innerHTML=
+      `<div class="ctr kick" style="top:12px">${b.k}</div>`+
+      `<div class="ctr head" style="top:30px;font-size:25px">${b.h}</div>`+
+      `<div class="vp" style="top:118px">`+
+        `<div class="vh"><span>माल</span><span>भेजा → आया</span><span>फर्क</span></div>`+
+        `<div class="vr up"><span class="lb">यार्न</span>`+
+          `<span class="cell"><span class="cap">भेजा</span><span class="num" data-n="500" data-u=" किलो">0</span></span>`+
+          `<span class="cell"><span class="cap">गया</span><span class="num" data-n="600" data-u=" किलो">0</span></span>`+
+          `<span class="gap"><span class="cap">ज्यादा</span><span class="num" data-n="100" data-p="+">0</span></span></div>`+
+        `<div class="vr dn"><span class="lb">कपड़ा</span>`+
+          `<span class="cell"><span class="cap">भेजा</span><span class="num" data-n="1000" data-u=" मी">0</span></span>`+
+          `<span class="cell"><span class="cap">आया</span><span class="num" data-n="950" data-u=" मी">0</span></span>`+
+          `<span class="gap"><span class="cap">कम</span><span class="num" data-n="50" data-p="−">0</span></span></div>`+
+      `</div>`+
+      `<div class="vfoot" style="top:334px">${svgTick}<span>फर्क तुरंत सामने — पेमेंट जाने से पहले।</span></div>`;
+  } else if(tr==='tagline'){
+    d.innerHTML=`<div class="tag" style="top:170px"><div class="big">${b.h}</div><div class="rule"></div></div>`;
+  } else if(tr==='cta'){
+    const contacts = (STYLE==='split');
+    d.innerHTML=
+      `<div class="brand" style="top:${contacts?70:104}px">टका <i>रजिस्टर</i></div>`+
+      `<div class="sub" style="top:${contacts?120:154}px">स्टॉक सही, तो बिजनेस सही।</div>`+
+      `<div class="cta" style="top:${contacts?160:196}px">फ्री डेमो &nbsp;·&nbsp; <u>WhatsApp</u> पर मैसेज कीजिए</div>`+
+      (contacts
+        ? `<div class="contact" style="top:228px">`+
+            `<div>${ICON.ph}<b>+91 78209 86133</b></div>`+
+            `<div>${ICON.web}<span>www.takaregister.in</span></div>`+
+            `<div>${ICON.pin}<span>भिवंडी, महाराष्ट्र</span></div>`+
+          `</div>`
+        : `<div class="sub" style="top:266px;font-size:12px;color:#6f7787">`+
+            `<b style="color:#a8862f">takaregister.in</b> &nbsp;·&nbsp; वीवर और ट्रेडर के लिए · भिवंडी</div>`);
+  }
+  safe.appendChild(d);
+});
+
+// No backdrop in any style. The assets are text graphics; dimmed behind a
+// headline they read as a smudge, and their English shows through a Hindi cut.
+$('bg').style.display='none';
+
+function renderAt(t){
+  t=cl(t,0,DUR);
+  let active=null;
+  BEATS.forEach((b,i)=>{
+    const el=$('b'+i), XF=0.34;
+    let a=0;
+    if(t>=b.s-XF && t<=b.s+b.d+XF)
+      a=cl(Math.min(pr(t,b.s-XF*.5,XF), 1-pr(t,b.s+b.d-XF*.5,XF)),0,1);
+    el.style.opacity=a;
+    el.style.display=a<=0.002?'none':'block';
+    if(a>0.002){ anim(el,b,t-b.s); if(!active||a>0.5) active=b; }
+  });
+  const box=$('subs');
+  if(!SUBS_ON){ box.style.opacity=0; return; }
+  const c=CUES.find(c=>t>=c[0]&&t<c[1]);
+  if(c){ $('subt').textContent=c[2];
+          box.style.opacity=Math.min(pr(t,c[0],.13), 1-pr(t,c[1]-.11,.11)); }
+  else box.style.opacity=0;
+}
+
+function anim(el,b,x){
+  const tr=treat(b);
+  const k=el.querySelector('.kick'), h=el.querySelector('.head');
+  if(k) set(k,{opacity:eOut(pr(x,.05,.45)),transform:`translateY(${(1-eOut(pr(x,.05,.45)))*10}px)`});
+  if(h) set(h,{opacity:eOut(pr(x,.14,.6)),transform:`translateY(${(1-eOut(pr(x,.14,.6)))*16}px)`});
+  if(tr==='shot'){
+    const s=el.querySelector('.shot'), p=pr(x,.34,.75);
+    set(s,{opacity:eOut(p),transform:`translateY(${(1-eOut(p))*26}px) scale(${.975+eOut(p)*.025})`});
+  } else if(tr==='type'){
+    const r=el.querySelector('.trule');
+    if(r) r.style.width=(eIO(pr(x,.55,.85))*116)+'px';
+  } else if(tr==='variance'){
+    const p=pr(x,.45,.7);
+    set(el.querySelector('.vp'),{opacity:eOut(p),transform:`translateY(${(1-eOut(p))*18}px)`});
+    // the two rows count up in turn, so the gap reads as a number and not a word
+    el.querySelectorAll('.vr').forEach((row,ri)=>{
+      const g=eIO(pr(x,1.0+ri*.95,1.15));
+      set(row,{opacity:eOut(pr(x,.85+ri*.95,.5))});
+      row.querySelectorAll('.num').forEach(n=>{
+        const v=Math.round(+n.dataset.n*g);
+        n.textContent=(n.dataset.p||'')+grp(v)+(n.dataset.u||'');
+      });
+    });
+    const f=pr(x,3.3,.6);
+    set(el.querySelector('.vfoot'),{opacity:eOut(f),transform:`translateY(${(1-eOut(f))*14}px)`});
+  } else if(tr==='tagline'){
+    const p=pr(x,.06,.7);
+    set(el.querySelector('.tag'),{opacity:eOut(p),transform:`scale(${.93+eOut(p)*.07})`});
+    el.querySelector('.rule').style.width=(eIO(pr(x,.6,.8))*58)+'%';
+  } else if(tr==='cta'){
+    const q=[['.brand',.05],['.sub',.35],['.cta',.6],['.contact',.9],['.sub:last-of-type',.9]];
+    el.querySelectorAll('.brand,.sub,.cta,.contact').forEach((n,i)=>{
+      const p=pr(x,.05+i*.26,.6);
+      set(n,{opacity:eOut(p),transform:`translateY(${(1-eOut(p))*14}px)`});
+    });
+  }
+}
+
+window.renderAt=renderAt;
+window.AD_DURATION=DUR;
+window.__SC=BEATS.map(b=>[('b'+BEATS.indexOf(b)),b.s,b.d]);
+window.__CUES=CUES;
+window.__imagesReady=Promise.all(
+  [...document.images].map(i=>i.complete?Promise.resolve():new Promise(r=>{i.onload=i.onerror=r;})));
+renderAt(0);
+if(!location.search.includes('render'))
+  window.addEventListener('load',()=>{const t0=performance.now();
+    (function l(n){const t=(n-t0)/1000;renderAt(t);if(t<DUR)requestAnimationFrame(l);})(t0);});
+</script>
+</body>
+</html>

@@ -12,7 +12,8 @@ const path = require('path');
 const arg = (k, d) => { const i = process.argv.indexOf('--' + k); return i > -1 ? process.argv[i+1] : d; };
 
 const V = arg('v', 'hi89');
-const PAGE = 'file://' + path.join(__dirname, 'reel.html') + '?render=1&v=' + V;
+const SRC = arg('page', /^(screens|type|split|mixed)$/.test(V) ? 'reel2.html' : 'reel.html');
+const PAGE = 'file://' + path.join(__dirname, SRC) + '?render=1&v=' + V;
 
 (async () => {
   const browser = await chromium.launch({
@@ -24,6 +25,7 @@ const PAGE = 'file://' + path.join(__dirname, 'reel.html') + '?render=1&v=' + V;
   page.on('console', m => { if (m.type() === 'error') errs.push(m.text()); });
   await page.goto(PAGE, { waitUntil: 'load' });
   await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => window.__imagesReady || Promise.resolve());
 
   const rows = await page.evaluate(() => {
     const band = document.querySelector('.safe').getBoundingClientRect();
@@ -35,9 +37,18 @@ const PAGE = 'file://' + path.join(__dirname, 'reel.html') + '?render=1&v=' + V;
       const sc = document.getElementById(id);
       let top = Infinity, bot = -Infinity;          // all ink, for the safe band
       let tl = Infinity, tr = -Infinity;            // text only, for side clipping
+      // An element inside an overflow:hidden box is clipped to it, so its own
+      // rect lies about where ink lands — a 900px screenshot inside a 320px
+      // window is not a 900px overflow. The clipping box is measured instead.
+      const clipped = el => {
+        for (let p = el.parentElement; p && p !== sc; p = p.parentElement)
+          if (getComputedStyle(p).overflow !== 'visible') return true;
+        return false;
+      };
       for (const el of sc.querySelectorAll('*')) {
         const cs = getComputedStyle(el);
         if (cs.display === 'none' || +cs.opacity < 0.02) continue;
+        if (clipped(el)) continue;
         const b = el.getBoundingClientRect();
         if (b.width && b.height) { top = Math.min(top, b.top); bot = Math.max(bot, b.bottom); }
         for (const n of el.childNodes) {

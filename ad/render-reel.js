@@ -15,9 +15,10 @@ const FPS = +arg('fps', 30), SCALE = +arg('scale', 2), CRF = +arg('crf', 19);
 const OUT = path.resolve(arg('out', path.join(__dirname, 'build', 'reel-silent.mp4')));
 const FFMPEG = process.env.FFMPEG_PATH ||
   '/tmp/claude-0/-home-user-takaregister-in/ea668c35-4dd5-5cf7-ab4f-02856e1baa4b/scratchpad/node_modules/ffmpeg-static/ffmpeg';
-// variant: en | hi36 | hi89 — see the T table in reel.html
+// variant: en | hi36 | hi89 in reel.html; screens | type | split | mixed in reel2.html
 const V = arg('v', arg('lang', 'en') === 'hi' ? 'hi36' : 'en');
-const PAGE = 'file://' + path.join(__dirname, 'reel.html') + '?render=1&v=' + V +
+const SRC = arg('page', /^(screens|type|split|mixed)$/.test(V) ? 'reel2.html' : 'reel.html');
+const PAGE = 'file://' + path.join(__dirname, SRC) + '?render=1&v=' + V +
   (has('nosubs') ? '&nosubs=1' : '');
 
 (async () => {
@@ -28,6 +29,9 @@ const PAGE = 'file://' + path.join(__dirname, 'reel.html') + '?render=1&v=' + V 
   const page = await browser.newPage({ viewport: { width: 540, height: 960 }, deviceScaleFactor: SCALE });
   await page.goto(PAGE, { waitUntil: 'load' });
   await page.evaluate(() => document.fonts.ready);
+  // screenshots are half the frame in reel2; a frame rendered before they decode
+  // is a blank card that no later frame corrects
+  await page.evaluate(() => window.__imagesReady || Promise.resolve());
   await page.waitForTimeout(400);
 
   const DUR = await page.evaluate(() => window.AD_DURATION);
