@@ -220,6 +220,14 @@ body{{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;-webkit-font-smoot
 .contact svg{{flex:0 0 auto;width:14px;height:14px;stroke:var(--gold-dk);fill:none;stroke-width:1.9;
   stroke-linecap:round;stroke-linejoin:round}}
 .contact b{{font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums}}
+/* the one claim a competitor cannot copy, so it gets its own colour rather than
+   sitting in the grey run of contact rows */
+.note{{position:absolute;left:30px;right:30px;display:flex;align-items:center;gap:9px;
+  background:rgba(26,122,110,.09);border:1px solid rgba(26,122,110,.32);
+  border-radius:8px;padding:9px 11px}}
+.note svg{{flex:0 0 auto;width:15px;height:15px;stroke:var(--teal);fill:none;stroke-width:1.9;
+  stroke-linecap:round;stroke-linejoin:round}}
+.note span{{font-size:11.5px;font-weight:600;color:#1f5f57;line-height:1.35}}
 
 /* ── subtitles, held inside the safe band ── */
 #subs{{position:absolute;left:24px;right:24px;bottom:352px;text-align:center;opacity:0}}
@@ -260,6 +268,7 @@ const TXT=EN?{{
   brand:'Taka <i>Register</i>', tag:'Fabric stock right. Business right. Better margins.',
   cta:'Free demo &nbsp;·&nbsp; message us on&nbsp;'+WA+'<u>WhatsApp</u>',
   place:'Bhiwandi, Maharashtra',
+  drive:'Your data stays in your own Google Drive — never on our server.',
   foot:'<b style="color:#a8862f">takaregister.in</b> &nbsp;·&nbsp; for weavers &amp; fabric traders · Bhiwandi'
 }}:{{
   vh:['माल','भेजा → आया','फर्क'], yarn:'यार्न', cloth:'कपड़ा',
@@ -269,6 +278,7 @@ const TXT=EN?{{
   brand:'टका <i>रजिस्टर</i>', tag:'फैब्रिक स्टॉक सही। बिजनेस सही। मार्जिन बेहतर।',
   cta:'फ्री डेमो &nbsp;·&nbsp; '+WA+'<u>WhatsApp</u>&nbsp;पर मैसेज कीजिए',
   place:'भिवंडी, महाराष्ट्र',
+  drive:'आपका डेटा आपके ही Google Drive में रहता है — हमारे सर्वर पर नहीं।',
   foot:'<b style="color:#a8862f">takaregister.in</b> &nbsp;·&nbsp; वीवर और ट्रेडर के लिए · भिवंडी'
 }};
 
@@ -364,7 +374,10 @@ BEATS.forEach((b,i)=>{{
             `<div>${{ICON.ph}}<b>+91 78209 86133</b></div>`+
             `<div>${{ICON.web}}<span>www.takaregister.in</span></div>`+
             `<div>${{ICON.pin}}<span>${{TXT.place}}</span></div>`+
-          `</div>`
+          `</div>`+
+          `<div class="note" style="top:360px">`+
+            `<svg viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.3-3 8-7 9.5-4-1.5-7-5.2-7-9.5V6l7-3z"/>`+
+            `<path d="m9 12 2 2 4-4"/></svg><span>${{TXT.drive}}</span></div>`
         : `<div class="sub" style="top:266px;font-size:12px;color:#6f7787">${{TXT.foot}}</div>`);
   }}
   safe.appendChild(d);
@@ -425,7 +438,7 @@ function anim(el,b,x){{
     el.querySelector('.rule').style.width=(eIO(pr(x,.6,.8))*58)+'%';
   }} else if(tr==='cta'){{
     const q=[['.brand',.05],['.sub',.35],['.cta',.6],['.contact',.9],['.sub:last-of-type',.9]];
-    el.querySelectorAll('.brand,.sub,.cta,.contact').forEach((n,i)=>{{
+    el.querySelectorAll('.brand,.sub,.cta,.contact,.note').forEach((n,i)=>{{
       const p=pr(x,.05+i*.26,.6);
       set(n,{{opacity:eOut(p),transform:`translateY(${{(1-eOut(p))*14}}px)`}});
     }});
