@@ -268,7 +268,8 @@ const TXT=EN?{{
   brand:'Taka <i>Register</i>', tag:'Fabric stock right. Business right. Better margins.',
   cta:'Free demo &nbsp;·&nbsp; message us on&nbsp;'+WA+'<u>WhatsApp</u>',
   place:'Bhiwandi, Maharashtra',
-  drive:'Your data stays in your own Google Drive — never on our server.',
+  offline:'Works offline — internet only to sync.',
+  drive:'Your data stays in your own Google Drive, never on our server.',
   foot:'<b style="color:#a8862f">takaregister.in</b> &nbsp;·&nbsp; for weavers &amp; fabric traders · Bhiwandi'
 }}:{{
   vh:['माल','भेजा → आया','फर्क'], yarn:'यार्न', cloth:'कपड़ा',
@@ -278,7 +279,8 @@ const TXT=EN?{{
   brand:'टका <i>रजिस्टर</i>', tag:'फैब्रिक स्टॉक सही। बिजनेस सही। मार्जिन बेहतर।',
   cta:'फ्री डेमो &nbsp;·&nbsp; '+WA+'<u>WhatsApp</u>&nbsp;पर मैसेज कीजिए',
   place:'भिवंडी, महाराष्ट्र',
-  drive:'आपका डेटा आपके ही Google Drive में रहता है — हमारे सर्वर पर नहीं।',
+  offline:'ऑफलाइन चलता है — इंटरनेट सिर्फ सिंक के लिए।',
+  drive:'आपका डेटा आपके ही Google Drive में रहता है, हमारे सर्वर पर नहीं।',
   foot:'<b style="color:#a8862f">takaregister.in</b> &nbsp;·&nbsp; वीवर और ट्रेडर के लिए · भिवंडी'
 }};
 
@@ -375,7 +377,10 @@ BEATS.forEach((b,i)=>{{
             `<div>${{ICON.web}}<span>www.takaregister.in</span></div>`+
             `<div>${{ICON.pin}}<span>${{TXT.place}}</span></div>`+
           `</div>`+
-          `<div class="note" style="top:360px">`+
+          `<div class="note" style="top:358px">`+
+            `<svg viewBox="0 0 24 24"><path d="M7.5 18.5h9a4 4 0 0 0 .7-7.9A6 6 0 0 0 8 7.6"/>`+
+            `<path d="M3 3.5l18 18"/></svg><span>${{TXT.offline}}</span></div>`+
+          `<div class="note" style="top:401px">`+
             `<svg viewBox="0 0 24 24"><path d="M12 3l7 3v5.5c0 4.3-3 8-7 9.5-4-1.5-7-5.2-7-9.5V6l7-3z"/>`+
             `<path d="m9 12 2 2 4-4"/></svg><span>${{TXT.drive}}</span></div>`
         : `<div class="sub" style="top:266px;font-size:12px;color:#6f7787">${{TXT.foot}}</div>`);
