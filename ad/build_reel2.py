@@ -17,7 +17,8 @@ SCRATCH = "/tmp/claude-0/-home-user-takaregister-in/ea668c35-4dd5-5cf7-ab4f-0285
 TIMING = json.load(open(f"{SCRATCH}/timing.json"))
 CROPS = json.load(open(f"{SCRATCH}/crops.json"))
 LINES = [l.strip() for l in open(f"{HERE}/voiceover/hi-89s-devanagari.txt", encoding="utf-8") if l.strip()]
-DUR = TIMING["dur"]
+HOLD = 3.8                      # seconds the sign-off stays up after the voice ends
+DUR = round(TIMING["dur"] + HOLD, 2)
 
 # ── beat table ───────────────────────────────────────────────────────────────
 # One beat per spoken line. `img` is the screenshot that carries it; None means
@@ -58,6 +59,7 @@ assert len(LINES) == len(BEATS) == len(TIMING["starts"]), \
 # ── scene bounds: midpoint of each inter-line gap ────────────────────────────
 S, E = TIMING["starts"], TIMING["ends"]
 bounds = [0.0] + [(E[i] + S[i + 1]) / 2 for i in range(len(BEATS) - 1)] + [DUR]
+# the last beat absorbs the hold; every other bound is the voice
 for i, b in enumerate(BEATS):
     b["s"] = round(bounds[i], 2)
     b["d"] = round(bounds[i + 1] - bounds[i], 2)
@@ -249,8 +251,8 @@ const TXT=EN?{{
   sent:'sent', went:'went', came:'came', more:'over', less:'short',
   kg:' kg', m:' m',
   vfoot:'The gap shows up before the payment goes out.',
-  brand:'Taka <i>Register</i>', tag:'Stock right, business right.',
-  cta:'Free demo &nbsp;·&nbsp; message us on <u>WhatsApp</u>',
+  brand:'Taka <i>Register</i>', tag:'Fabric stock right. Business right. Better margins.',
+  cta:'Free demo &nbsp;·&nbsp; message us on&nbsp;<u>WhatsApp</u>',
   place:'Bhiwandi, Maharashtra',
   foot:'<b style="color:#a8862f">takaregister.in</b> &nbsp;·&nbsp; for weavers &amp; fabric traders · Bhiwandi'
 }}:{{
@@ -258,8 +260,8 @@ const TXT=EN?{{
   sent:'भेजा', went:'गया', came:'आया', more:'ज्यादा', less:'कम',
   kg:' किलो', m:' मी',
   vfoot:'फर्क तुरंत सामने — पेमेंट जाने से पहले।',
-  brand:'टका <i>रजिस्टर</i>', tag:'स्टॉक सही, तो बिजनेस सही।',
-  cta:'फ्री डेमो &nbsp;·&nbsp; <u>WhatsApp</u> पर मैसेज कीजिए',
+  brand:'टका <i>रजिस्टर</i>', tag:'फैब्रिक स्टॉक सही। बिजनेस सही। मार्जिन बेहतर।',
+  cta:'फ्री डेमो &nbsp;·&nbsp; <u>WhatsApp</u>&nbsp;पर मैसेज कीजिए',
   place:'भिवंडी, महाराष्ट्र',
   foot:'<b style="color:#a8862f">takaregister.in</b> &nbsp;·&nbsp; वीवर और ट्रेडर के लिए · भिवंडी'
 }};
@@ -349,7 +351,7 @@ BEATS.forEach((b,i)=>{{
     const contacts = (STYLE==='split');
     d.innerHTML=
       `<div class="brand" style="top:${{contacts?70:104}}px">${{TXT.brand}}</div>`+
-      `<div class="sub" style="top:${{contacts?120:154}}px">${{TXT.tag}}</div>`+
+      `<div class="sub" style="top:${{contacts?118:154}}px;font-size:12.5px">${{TXT.tag}}</div>`+
       `<div class="cta" style="top:${{contacts?160:196}}px">${{TXT.cta}}</div>`+
       (contacts
         ? `<div class="contact" style="top:228px">`+

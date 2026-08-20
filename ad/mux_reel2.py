@@ -17,8 +17,8 @@ B = os.path.join(HERE, "build")
 SCRATCH = "/tmp/claude-0/-home-user-takaregister-in/ea668c35-4dd5-5cf7-ab4f-02856e1baa4b/scratchpad"
 FFMPEG = os.environ.get("FFMPEG_PATH", f"{SCRATCH}/node_modules/ffmpeg-static/ffmpeg")
 VO = os.path.join(HERE, "assets", "vo-hi-final.mp3")
-DUR = 81.03
-SWELL = (33.5, 68.5, 77.5)          # brand beat, tagline, sign-off
+DUR = 79.53          # 75.73s of voice plus a 3.8s hold on the sign-off
+SWELL = (31.5, 64.5, 72.5)          # brand beat, tagline, sign-off
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--styles", default="screens,type,split,mixed,screens-en,type-en,split-en,mixed-en")
@@ -59,8 +59,8 @@ for style in A.styles.split(","):
         print(f"  skip {style} — not rendered"); continue
     out = f"{B}/takaregister-reel-{style}.mp4"
     run([FFMPEG, "-y", "-i", src, "-i", VO,
-         "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
-         "-movflags", "+faststart", "-shortest", out], style)
+         "-af", "apad", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
+         "-movflags", "+faststart", "-t", str(DUR), out], style)
     print(f"  {os.path.basename(out):40} {os.path.getsize(out)/1048576:5.2f} MB")
 
 if A.music:
