@@ -12,7 +12,7 @@ const path = require('path');
 const arg = (k, d) => { const i = process.argv.indexOf('--' + k); return i > -1 ? process.argv[i+1] : d; };
 
 const V = arg('v', 'hi89');
-const SRC = arg('page', /^(screens|type|split|mixed)$/.test(V) ? 'reel2.html' : 'reel.html');
+const SRC = arg('page', /^(screens|type|split|mixed)(-en)?$/.test(V) ? 'reel2.html' : 'reel.html');
 const PAGE = 'file://' + path.join(__dirname, SRC) + '?render=1&v=' + V;
 
 (async () => {

@@ -24,21 +24,35 @@ assert len(LINES) == 15 and len(TIMING["starts"]) == 15
 # One beat per spoken line. `img` is the screenshot that carries it; None means
 # the beat is built rather than shown, because no asset makes that claim.
 BEATS = [
-    dict(img="01_hook_books.png",       k="आज भी कागज पर",        h="नोटबुक और पुराने<br>रजिस्टरों में?",   pain=True),
-    dict(img=None, t="type",            k="एक ही आदमी के भरोसे",  h="सिर्फ एक मुनीम<br>के भरोसे?",          pain=True),
-    dict(img="m106_weaver_stock.png",   k="कारीगर के पास",        h="किस कारीगर के पास<br>कितना किलो यार्न?"),
-    dict(img="m107_yarn_stock.png",     k="गोदाम में",            h="कितना किलो<br>पड़ा है?"),
-    dict(img="r13_fabric_at_dyer.png",  k="डाइंग में",            h="कितने ताके<br>फंसे हैं?"),
-    dict(img="c01_book_vs_app.png",     k="जब हिसाब कागज पर हो",  h="छोटी सी चूक,<br>बड़ा नुकसान।",         pain=True),
-    dict(img="03_promise.png",          k="अब",                   h="हिसाब स्क्रीन पर।"),
-    dict(img="04_sidebar_full.png",     k="हर स्टेज",             h="यार्न से फिनिश<br>कपड़े तक।"),
-    dict(img="m102_home_dashboard.png", k="सारा हिसाब एक ही जगह", h="किलो, ताके, मीटर।"),
-    dict(img=None, t="variance",        k="भेजा और आया",          h="फर्क तुरंत सामने।"),
-    dict(img="r03_stock_ageing.png",    k="कितने दिनों से",       h="माल वहीं फंसा<br>पड़ा है।"),
-    dict(img="m130_sync.png",           k="विंडोज और एंड्रॉइड",   h="मोबाइल या<br>कंप्यूटर पर।"),
-    dict(img=None, t="tagline",         k="",                     h="स्टॉक सही,<br>तो बिजनेस सही।"),
-    dict(img=None, t="type",            k="जो आप कहेंगे",         h="अगले अपडेट में<br>जोड़ने की कोशिश।"),
-    dict(img=None, t="cta",             k="",                     h=""),
+    dict(img="01_hook_books.png",       k="आज भी कागज पर",        h="नोटबुक और पुराने<br>रजिस्टरों में?",   pain=True,
+         ke="STILL ON PAPER",          he="Notebooks and<br>old registers?"),
+    dict(img=None, t="type",            k="एक ही आदमी के भरोसे",  h="सिर्फ एक मुनीम<br>के भरोसे?",          pain=True,
+         ke="ONE MAN'S MEMORY",        he="All of it on<br>one munim?"),
+    dict(img="m106_weaver_stock.png",   k="कारीगर के पास",        h="किस कारीगर के पास<br>कितना किलो यार्न?",
+         ke="AT THE KARIGAR",          he="Which karigar holds<br>how many kilos?"),
+    dict(img="m107_yarn_stock.png",     k="गोदाम में",            h="कितना किलो<br>पड़ा है?",
+         ke="IN THE GODOWN",           he="How much is<br>lying there?"),
+    dict(img="r13_fabric_at_dyer.png",  k="डाइंग में",            h="कितने ताके<br>फंसे हैं?",
+         ke="AT THE DYER",             he="How many taka<br>are stuck?"),
+    dict(img="c01_book_vs_app.png",     k="जब हिसाब कागज पर हो",  h="छोटी सी चूक,<br>बड़ा नुकसान।",         pain=True,
+         ke="WHEN IT IS ALL ON PAPER", he="A small slip,<br>a big loss."),
+    dict(img="03_promise.png",          k="अब",                   h="हिसाब स्क्रीन पर।",
+         ke="NOW",                     he="The books,<br>on a screen."),
+    dict(img="04_sidebar_full.png",     k="हर स्टेज",             h="यार्न से फिनिश<br>कपड़े तक।",
+         ke="EVERY STAGE",             he="Yarn to<br>finished cloth."),
+    dict(img="m102_home_dashboard.png", k="सारा हिसाब एक ही जगह", h="किलो, ताके, मीटर।",
+         ke="ALL IN ONE PLACE",        he="Kilos, taka, metres."),
+    dict(img=None, t="variance",        k="भेजा और आया",          h="फर्क तुरंत सामने।",
+         ke="SENT AND RECEIVED",       he="The gap, at once."),
+    dict(img="r03_stock_ageing.png",    k="कितने दिनों से",       h="माल वहीं फंसा<br>पड़ा है।",
+         ke="HOW MANY DAYS",           he="Stuck in the<br>same place."),
+    dict(img="m130_sync.png",           k="विंडोज और एंड्रॉइड",   h="मोबाइल या<br>कंप्यूटर पर।",
+         ke="WINDOWS AND ANDROID",     he="On your phone<br>or computer."),
+    dict(img=None, t="tagline",         k="",                     h="स्टॉक सही,<br>तो बिजनेस सही।",
+         ke="",                        he="Stock right,<br>business right."),
+    dict(img=None, t="type",            k="जो आप कहेंगे",         h="अगले अपडेट में<br>जोड़ने की कोशिश।",
+         ke="WHAT YOU ASK FOR",        he="Goes into the<br>next update."),
+    dict(img=None, t="cta",             k="",                     h="", ke="", he=""),
 ]
 
 # ── scene bounds: midpoint of each inter-line gap ────────────────────────────
@@ -54,13 +68,18 @@ for i, b in enumerate(BEATS):
 # Break on the punctuation the writer already put in; fall back to word count.
 # Time is shared out by words, which tracks the read closely enough at this size.
 def chunks(text, lo, hi):
-    parts = [p.strip() for p in re.split(r'(?<=[,।?—])\s+', text) if p.strip()]
+    parts = [p.strip() for p in re.split(r'(?<=[,।?—.])\s+', text) if p.strip()]
     # A line with no internal punctuation arrives as one long part — split it on
     # word count too, or it renders as a plate wider than the frame.
-    MAXW = 7
+    MAXW = 8
     # Never end a plate on a word that governs the next one. "1000 मीटर की" /
     # "जगह 950 मीटर" reads as a fragment; the break belongs before "की जगह".
-    HANG = {"की", "के", "का", "से", "में", "पर", "और", "या", "को", "तक", "कि", "जब", "तो"}
+    HANG = {"की", "के", "का", "से", "में", "पर", "और", "या", "को", "तक", "कि", "जब", "तो",
+            # English needs its own list, or a plate ends on "should have. The"
+            "the", "a", "an", "and", "or", "of", "to", "in", "on", "at", "for", "from",
+            "with", "where", "when", "that", "which", "how", "is", "are", "was", "were",
+            "has", "have", "had", "should", "will", "would", "can", "your", "our", "it",
+            "this", "these", "no", "not", "one", "so", "as", "by", "up", "out", "into"}
     split = []
     for p in parts:
         ws = p.split()
@@ -72,8 +91,8 @@ def chunks(text, lo, hi):
         while i < len(ws):
             j = min(i + size, len(ws))
             if j < len(ws):                            # pull the break back off a hanging word
-                for back in (0, 1, 2):
-                    tok = ws[j - 1 - back].strip("।,?—")
+                for back in (0, 1, 2, 3, 4):
+                    tok = ws[j - 1 - back].strip("।,?—.").lower()
                     if tok not in HANG and not tok.isdigit():
                         j -= back; break
             cuts.append(" ".join(ws[i:j])); i = j
@@ -96,10 +115,19 @@ CUES = []
 for i, line in enumerate(LINES):
     CUES += chunks(line, S[i], E[i])
 
+# The audio stays Hindi; these are what an English-text cut shows while it plays.
+# Same 15 bounds, so nothing about the timeline moves.
+LINES_EN = [l.strip() for l in open(f"{HERE}/voiceover/hi-89s-english-subs.txt", encoding="utf-8")
+            if l.strip() and not l.startswith("#")]
+assert len(LINES_EN) == 15, len(LINES_EN)
+CUES_EN = []
+for i, line in enumerate(LINES_EN):
+    CUES_EN += chunks(line, S[i], E[i])
+
 js = lambda o: json.dumps(o, ensure_ascii=False)
 
 HTML = f"""<!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" id="root">
 <head>
 <meta charset="utf-8">
 <title>Taka Register — Reel</title>
@@ -200,11 +228,36 @@ body{{font-family:'DM Sans','Noto Sans Devanagari',sans-serif;-webkit-font-smoot
 </div>
 <script>
 const Q=new URLSearchParams(location.search);
-const STYLE=Q.get('v')||'screens';           // screens | type | split | mixed
+// v is style, optionally suffixed -en for the English-text cut. The audio is
+// Hindi either way — the suffix only changes what is printed on the frame.
+const RAW=Q.get('v')||'screens';
+const EN=/-en$/.test(RAW);
+const STYLE=RAW.replace(/-en$/,'');          // screens | type | split | mixed
 const SUBS_ON=!Q.get('nosubs');
 const BEATS={js(BEATS)};
-const CUES={js(CUES)};
+const CUES=EN?{js(CUES_EN)}:{js(CUES)};
 const DUR={DUR};
+const K=b=>EN?(b.ke!==undefined?b.ke:b.k):b.k;
+const H=b=>EN?(b.he!==undefined?b.he:b.h):b.h;
+const TXT=EN?{{
+  vh:['GOODS','SENT → RECEIVED','GAP'], yarn:'Yarn', cloth:'Cloth',
+  sent:'sent', went:'went', came:'came', more:'over', less:'short',
+  kg:' kg', m:' m',
+  vfoot:'The gap shows up before the payment goes out.',
+  brand:'Taka <i>Register</i>', tag:'Stock right, business right.',
+  cta:'Free demo &nbsp;·&nbsp; message us on <u>WhatsApp</u>',
+  place:'Bhiwandi, Maharashtra',
+  foot:'<b style="color:#a8862f">takaregister.in</b> &nbsp;·&nbsp; for weavers &amp; fabric traders · Bhiwandi'
+}}:{{
+  vh:['माल','भेजा → आया','फर्क'], yarn:'यार्न', cloth:'कपड़ा',
+  sent:'भेजा', went:'गया', came:'आया', more:'ज्यादा', less:'कम',
+  kg:' किलो', m:' मी',
+  vfoot:'फर्क तुरंत सामने — पेमेंट जाने से पहले।',
+  brand:'टका <i>रजिस्टर</i>', tag:'स्टॉक सही, तो बिजनेस सही।',
+  cta:'फ्री डेमो &nbsp;·&nbsp; <u>WhatsApp</u> पर मैसेज कीजिए',
+  place:'भिवंडी, महाराष्ट्र',
+  foot:'<b style="color:#a8862f">takaregister.in</b> &nbsp;·&nbsp; वीवर और ट्रेडर के लिए · भिवंडी'
+}};
 
 const cl=(v,a,b)=>Math.max(a,Math.min(b,v));
 const eOut=t=>1-Math.pow(1-cl(t,0,1),3);
@@ -259,48 +312,47 @@ BEATS.forEach((b,i)=>{{
     const hx = wide ? 30 : 44, hs = wide ? 25 : 31;
     d.innerHTML=
       (wide?'':`<div class="rail" style="top:26px"></div>`)+
-      `<div class="ctr kick" style="top:12px${{wide?'':';left:44px'}}">${{b.k}}</div>`+
-      `<div class="ctr head" style="top:${{hx}}px;font-size:${{hs}}px${{wide?'':';left:44px'}}">${{b.h}}</div>`+
+      `<div class="ctr kick" style="top:12px${{wide?'':';left:44px'}}">${{K(b)}}</div>`+
+      `<div class="ctr head" style="top:${{hx}}px;font-size:${{hs}}px${{wide?'':';left:44px'}}">${{H(b)}}</div>`+
       `<div class="shot" style="left:${{Math.round((SAFE_W-box.w)/2)}}px;top:${{BAND_H-box.h-64}}px">`+
         `<img src="assets/shortlist/${{b.img}}" alt=""></div>`;
     mountShot(d.querySelector('.shot'), b.img, b.crop, box);
   }} else if(tr==='type'){{
     d.innerHTML=
-      (b.k?`<div class="ctr kick" style="top:138px;text-align:center">${{b.k}}</div>`:'')+
-      `<div class="ctr head" style="top:168px;font-size:44px;text-align:center">${{b.h}}</div>`+
+      (K(b)?`<div class="ctr kick" style="top:138px;text-align:center">${{K(b)}}</div>`:'')+
+      `<div class="ctr head" style="top:168px;font-size:44px;text-align:center">${{H(b)}}</div>`+
       `<div class="trule"></div>`;
   }} else if(tr==='variance'){{
     d.innerHTML=
-      `<div class="ctr kick" style="top:12px">${{b.k}}</div>`+
-      `<div class="ctr head" style="top:30px;font-size:25px">${{b.h}}</div>`+
+      `<div class="ctr kick" style="top:12px">${{K(b)}}</div>`+
+      `<div class="ctr head" style="top:30px;font-size:25px">${{H(b)}}</div>`+
       `<div class="vp" style="top:118px">`+
-        `<div class="vh"><span>माल</span><span>भेजा → आया</span><span>फर्क</span></div>`+
-        `<div class="vr up"><span class="lb">यार्न</span>`+
-          `<span class="cell"><span class="cap">भेजा</span><span class="num" data-n="500" data-u=" किलो">0</span></span>`+
-          `<span class="cell"><span class="cap">गया</span><span class="num" data-n="600" data-u=" किलो">0</span></span>`+
-          `<span class="gap"><span class="cap">ज्यादा</span><span class="num" data-n="100" data-p="+">0</span></span></div>`+
-        `<div class="vr dn"><span class="lb">कपड़ा</span>`+
-          `<span class="cell"><span class="cap">भेजा</span><span class="num" data-n="1000" data-u=" मी">0</span></span>`+
-          `<span class="cell"><span class="cap">आया</span><span class="num" data-n="950" data-u=" मी">0</span></span>`+
-          `<span class="gap"><span class="cap">कम</span><span class="num" data-n="50" data-p="−">0</span></span></div>`+
+        `<div class="vh"><span>${{TXT.vh[0]}}</span><span>${{TXT.vh[1]}}</span><span>${{TXT.vh[2]}}</span></div>`+
+        `<div class="vr up"><span class="lb">${{TXT.yarn}}</span>`+
+          `<span class="cell"><span class="cap">${{TXT.sent}}</span><span class="num" data-n="500" data-u="${{TXT.kg}}">0</span></span>`+
+          `<span class="cell"><span class="cap">${{TXT.went}}</span><span class="num" data-n="600" data-u="${{TXT.kg}}">0</span></span>`+
+          `<span class="gap"><span class="cap">${{TXT.more}}</span><span class="num" data-n="100" data-p="+">0</span></span></div>`+
+        `<div class="vr dn"><span class="lb">${{TXT.cloth}}</span>`+
+          `<span class="cell"><span class="cap">${{TXT.sent}}</span><span class="num" data-n="1000" data-u="${{TXT.m}}">0</span></span>`+
+          `<span class="cell"><span class="cap">${{TXT.came}}</span><span class="num" data-n="950" data-u="${{TXT.m}}">0</span></span>`+
+          `<span class="gap"><span class="cap">${{TXT.less}}</span><span class="num" data-n="50" data-p="−">0</span></span></div>`+
       `</div>`+
-      `<div class="vfoot" style="top:334px">${{svgTick}}<span>फर्क तुरंत सामने — पेमेंट जाने से पहले।</span></div>`;
+      `<div class="vfoot" style="top:334px">${{svgTick}}<span>${{TXT.vfoot}}</span></div>`;
   }} else if(tr==='tagline'){{
-    d.innerHTML=`<div class="tag" style="top:170px"><div class="big">${{b.h}}</div><div class="rule"></div></div>`;
+    d.innerHTML=`<div class="tag" style="top:170px"><div class="big">${{H(b)}}</div><div class="rule"></div></div>`;
   }} else if(tr==='cta'){{
     const contacts = (STYLE==='split');
     d.innerHTML=
-      `<div class="brand" style="top:${{contacts?70:104}}px">टका <i>रजिस्टर</i></div>`+
-      `<div class="sub" style="top:${{contacts?120:154}}px">स्टॉक सही, तो बिजनेस सही।</div>`+
-      `<div class="cta" style="top:${{contacts?160:196}}px">फ्री डेमो &nbsp;·&nbsp; <u>WhatsApp</u> पर मैसेज कीजिए</div>`+
+      `<div class="brand" style="top:${{contacts?70:104}}px">${{TXT.brand}}</div>`+
+      `<div class="sub" style="top:${{contacts?120:154}}px">${{TXT.tag}}</div>`+
+      `<div class="cta" style="top:${{contacts?160:196}}px">${{TXT.cta}}</div>`+
       (contacts
         ? `<div class="contact" style="top:228px">`+
             `<div>${{ICON.ph}}<b>+91 78209 86133</b></div>`+
             `<div>${{ICON.web}}<span>www.takaregister.in</span></div>`+
-            `<div>${{ICON.pin}}<span>भिवंडी, महाराष्ट्र</span></div>`+
+            `<div>${{ICON.pin}}<span>${{TXT.place}}</span></div>`+
           `</div>`
-        : `<div class="sub" style="top:266px;font-size:12px;color:#6f7787">`+
-            `<b style="color:#a8862f">takaregister.in</b> &nbsp;·&nbsp; वीवर और ट्रेडर के लिए · भिवंडी</div>`);
+        : `<div class="sub" style="top:266px;font-size:12px;color:#6f7787">${{TXT.foot}}</div>`);
   }}
   safe.appendChild(d);
 }});
@@ -373,6 +425,7 @@ window.__SC=BEATS.map(b=>[('b'+BEATS.indexOf(b)),b.s,b.d]);
 window.__CUES=CUES;
 window.__imagesReady=Promise.all(
   [...document.images].map(i=>i.complete?Promise.resolve():new Promise(r=>{{i.onload=i.onerror=r;}})));
+document.documentElement.lang = EN ? 'en' : 'hi';
 renderAt(0);
 if(!location.search.includes('render'))
   window.addEventListener('load',()=>{{const t0=performance.now();

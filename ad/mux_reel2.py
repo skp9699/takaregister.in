@@ -21,7 +21,7 @@ DUR = 81.03
 SWELL = (33.5, 68.5, 77.5)          # brand beat, tagline, sign-off
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--styles", default="screens,type,split,mixed")
+ap.add_argument("--styles", default="screens,type,split,mixed,screens-en,type-en,split-en,mixed-en")
 ap.add_argument("--music", default="", help="also write a bedded cut of this style")
 ap.add_argument("--bed", type=float, default=0.62)
 A = ap.parse_args()
